@@ -2,6 +2,26 @@
 var su = require("./sudokuOBJ.js");
 },{"./sudokuOBJ.js":2}],2:[function(require,module,exports){
 console.log("Loaded SudokuOBJ.js");
+var tileStore = require("./tileStore.js");
 
+module.exports = function(){
+	var rows = new tileStore();
+	var cols = new tileStore();
+	var area = new tileStore();
+}
+},{"./tileStore.js":3}],3:[function(require,module,exports){
+console.log("Loaded tileStore.js");
 
+module.exports = function(){
+	this.available = function(){
+		var av = [];
+		for (var i = 0; i < 9; i++) {
+			if(i in this.tiles) av[i] = false;
+			else av[i] = true;
+		};
+		return av;
+	}
+	
+	this.tiles = [];
+}
 },{}]},{},[1]);
