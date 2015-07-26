@@ -78,27 +78,30 @@ describe("sudoku Object", function() {
 			})
 		})
 
-		it("should be the correct tileOBJs", function(done){
-			for (var x = 0; x < 9; x++) {
-				for (var y = 0; y < 9; y++) {
-					var r = su.getRow(y);
-					var c = su.getCol(x);
-					expect(r.tiles[x]).to.equal(c.tiles[y]);
-				}
-			}
-			done();
-		})
+		describe("general", function() {
 
-		it("get tile should get the correct tileOBJ", function(done){
-			for (var x = 0; x < 9; x++) {
-				for (var y = 0; y < 9; y++) {
-					var r = su.getRow(y);
-					var c = su.getCol(x);
-					expect(r.tiles[x]).to.equal(c.tiles[y]);
-					expect(su.getTile(x, y)).to.equal(r.tiles[x]);
+			it("should be the correct tileOBJs", function(done){
+				for (var x = 0; x < 9; x++) {
+					for (var y = 0; y < 9; y++) {
+						var r = su.getRow(y);
+						var c = su.getCol(x);
+						expect(r.tiles[x]).to.equal(c.tiles[y]);
+					}
 				}
-			}
-			done();
+				done();
+			})
+
+			it("get tile should get the correct tileOBJ", function(done){
+				for (var x = 0; x < 9; x++) {
+					for (var y = 0; y < 9; y++) {
+						var r = su.getRow(y);
+						var c = su.getCol(x);
+						expect(r.tiles[x]).to.equal(c.tiles[y]);
+						expect(su.getTile(x, y)).to.equal(r.tiles[x]);
+					}
+				}
+				done();
+			})
 		})
 	})
 
