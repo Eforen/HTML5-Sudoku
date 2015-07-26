@@ -1,5 +1,5 @@
 # HTML5-Sudoku
-Simple React.js Sudoku
+Simple React.js Sudoku app writen with Legit TDD by Ariel Lothlorien
 
 # Current Status
 Base structure testing.
