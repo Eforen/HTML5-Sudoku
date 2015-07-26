@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "node ./node_modules/mocha/bin/_mocha --reporter nyan",
+    "test": "node ./node_modules/mocha/bin/_mocha --reporter spec",
+    "testn": "node ./node_modules/mocha/bin/_mocha --reporter nyan",
     "build": "./node_modules/.bin/browserify public/javascripts/app.js -o public/javascripts/bundle.js",
     "watch": "./node_modules/.bin/watchify public/javascripts/app.js -o public/javascripts/bundle.js"
   },
