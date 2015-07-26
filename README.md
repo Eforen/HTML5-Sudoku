@@ -6,6 +6,7 @@ Base structure testing.
 
 # To Do before implimenting GUI
 - [x] Add static serving node.js to allow debugging in chrome without crossdomain issues.
+- [x] Setup Testing for TDD and Browserify.
 - [ ] This is a complete item
 - [ ] Create Sudoku Object/Class
 - [ ] Make tiles that automaticly use the Sudoku they are given to enter into the row, col, and region they are in.

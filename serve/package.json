@@ -3,7 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "node ./node_modules/mocha/bin/_mocha --reporter nyan",
+    "build": "./node_modules/.bin/browserify public/javascripts/app.js -o public/javascripts/bundle.js",
+    "watch": "./node_modules/.bin/watchify public/javascripts/app.js -o public/javascripts/bundle.js"
+  },
+  "devDependencies": {
+    "browserify": "^11.0.0",
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5",
+    "watchify": "^3.3.0"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -13,5 +22,17 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
+  },
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "test/*.js",
+    "browsers": [
+      "ie/7..latest",
+      "chrome/latest",
+      "firefox/latest",
+      "safari/latest",
+      "iphone/latest",
+      "android/latest"
+    ]
   }
 }
