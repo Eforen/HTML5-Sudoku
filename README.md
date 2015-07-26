@@ -1,5 +1,5 @@
 # HTML5-Sudoku
-Simple Reactive.js Sudoku
+Simple React.js Sudoku
 
 # Current Status
 Base structure testing.
