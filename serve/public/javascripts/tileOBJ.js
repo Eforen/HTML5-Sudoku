@@ -1,6 +1,6 @@
 console.log("Loaded tileOBJ.js");
 
-var tokens = require("../public/javascripts/tokenENUM.js");
+//var tokens = require("../public/javascripts/tokenENUM.js");
 
 var tileOBJ = function(){
 	this.isSetup = false;
@@ -50,9 +50,9 @@ var tileOBJ = function(){
 }
 
 tileOBJ.types = {
-	blank,
-	set,
-	planned
+	blank: 1,
+	set:2,
+	planned:3
 }
 
 module.exports = tileOBJ;

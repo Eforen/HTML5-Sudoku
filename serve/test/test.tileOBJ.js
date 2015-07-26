@@ -76,34 +76,28 @@ describe("tile Object", function() {
 	describe("data Value", function() {
 		var su = null;
 		beforeEach(function(done){
-			su = new sudoku(); //should not need this
-			expect(su).not.to.be.null; //Test setup expectation
-
-			expect(tile.setup).to.be.a('function');
-			tile.setup(su.getRow(1), su.getCol(2), su.getRegion(1), 3,2);
-
 			done();
 		})
+
+		it("default Value", function(done){
+			expect(tile.getType()).to.equal(tileOBJ.types.blank);
+			done();
+		})		
 
 		it("set Value", function(done){
-			tile.set()
-			expect(tile.getRow()).to.equal(su.getRow(1));
+			tile.set(tokens.c, tileOBJ.types.planned);
 			done();
 		})
-		it("cols match", function(done){
-			expect(tile.getCol()).to.equal(su.getCol(2));
+
+		it("get token Value", function(done){
+			tile.set(tokens.c, tileOBJ.types.planned);
+			expect(tile.getToken()).to.equal(tokens.c);
 			done();
 		})
-		it("region match", function(done){
-			expect(tile.getRegion()).to.equal(su.getRegion(1));
-			done();
-		})
-		it("pos x match", function(done){
-			expect(tile.getX()).to.equal(3);
-			done();
-		})
-		it("pos y match", function(done){
-			expect(tile.getY()).to.equal(2);
+
+		it("get type Value", function(done){
+			tile.set(tokens.c, tileOBJ.types.planned);
+			expect(tile.getType()).to.equal(tileOBJ.types.planned);
 			done();
 		})
 
