@@ -73,31 +73,48 @@ describe("tile Object", function() {
 
 	})
 
-	describe("data Value", function() {
+	describe("data Values", function() {
 		var su = null;
 		beforeEach(function(done){
 			done();
 		})
 
-		it("default Value", function(done){
+		it("default Token", function(done){
 			expect(tile.getType()).to.equal(tileOBJ.types.blank);
 			done();
 		})		
 
-		it("set Value", function(done){
+		it("set Token", function(done){
+			tile.setToken(tokens.c);
+			done();
+		})
+
+		it("set Type", function(done){
+			tile.setType(tileOBJ.types.planned);
+			done();
+		})
+
+		it("set Both", function(done){
 			tile.set(tokens.c, tileOBJ.types.planned);
 			done();
 		})
 
-		it("get token Value", function(done){
-			tile.set(tokens.c, tileOBJ.types.planned);
+		it("get token Token", function(done){
+			tile.setToken(tokens.c);
 			expect(tile.getToken()).to.equal(tokens.c);
 			done();
 		})
 
-		it("get type Value", function(done){
-			tile.set(tokens.c, tileOBJ.types.planned);
+		it("get type Type", function(done){
+			tile.setType(tileOBJ.types.planned);
 			expect(tile.getType()).to.equal(tileOBJ.types.planned);
+			done();
+		})
+
+		it("get both", function(done){
+			tile.set(tokens.c, tileOBJ.types.planned);
+			expect(tile.get().token).to.equal(tokens.c);
+			expect(tile.get().type).to.equal(tileOBJ.types.planned);
 			done();
 		})
 

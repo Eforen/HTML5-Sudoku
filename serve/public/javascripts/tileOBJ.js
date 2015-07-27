@@ -1,6 +1,6 @@
 console.log("Loaded tileOBJ.js");
 
-//var tokens = require("../public/javascripts/tokenENUM.js");
+//var tokens = require("./tokenENUM.js");
 
 var tileOBJ = function(){
 	this.isSetup = false;
@@ -37,8 +37,33 @@ var tileOBJ = function(){
 		return _y;
 	}
 
-	this.setTo = function(val, type){
+	this._value = 1;
+	this._type = 1;
 
+	this.set = function(val, type){
+		this._value = val;
+		this._type = type;
+	}
+	this.get = function(){
+		return {
+			token: this._value,
+			type: this._type
+		}
+	}
+
+	this.getType=function(){
+		return this._type;
+	}
+	this.setType=function(t){
+		this._type = t;
+	}
+
+	this.getToken=function(){
+		return this._value;
+	}
+
+	this.setToken=function(v){
+		this._value = v;
 	}
 	//row.tiles[rowP] = this;
 	//col.tiles[colP] = this;
