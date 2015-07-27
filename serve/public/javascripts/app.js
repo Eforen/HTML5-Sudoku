@@ -1,1 +1,3 @@
-var su = require("./sudokuOBJ.js");
+window.sudokuOBJ = require("./sudokuOBJ.js");
+
+window.test = new window.sudokuOBJ();

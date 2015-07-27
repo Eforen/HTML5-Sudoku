@@ -1,5 +1,6 @@
 console.log("Loaded SudokuOBJ.js");
 var tileStore = require("./tileStore.js");
+var tileOBJ   = require("./tileOBJ.js");
 
 module.exports = function(){
 	var rows = [
@@ -45,4 +46,30 @@ module.exports = function(){
 		posY = parseInt(posY/3);
 		return regions[3*posY+posX];
 	}
+
+	this.putTile = function(x, y){
+		var r = rows[y];
+		var c = cols[x];
+		var re = this.getRegion(x, y);
+
+		var t = new tileOBJ();
+
+		t.setup(r, c, re, x, y);
+
+		r.tiles[x] = t;
+		c.tiles[y] = t;
+		re.tiles[3*parseInt(y%3)+parseInt(x%3)] = t;
+	}
+
+	for (var x = 0; x < 9; x++) {
+		for (var y = 0; y < 9; y++) {
+			this.putTile(x, y);
+		}
+	}
+
+	this.getTile = function(x, y){
+		return this.getRow(y).tiles[x];
+	}
+
+	var debug = "breakpointable";
 }

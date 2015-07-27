@@ -42,7 +42,7 @@ describe("sudoku Object", function() {
 				for (var r = 0; r < 9; r++) {
 					var ro = su.getRow(r);
 					for (var c = 0; c < 9; c++) {
-						expect(r.tiles[c]).to.be.instanceof(tileOBJ);
+						expect(ro.tiles[c]).to.be.instanceof(tileOBJ);
 					}
 				}
 				done();
@@ -69,9 +69,9 @@ describe("sudoku Object", function() {
 
 			it("should all be full of tileOBJs", function(done){
 				for (var c = 0; c < 9; c++) {
-					var ro = su.getRow(r);
+					var co = su.getCol(c);
 					for (var r = 0; r < 9; r++) {
-						expect(r.tiles[c]).to.be.instanceof(tileOBJ);
+						expect(co.tiles[r]).to.be.instanceof(tileOBJ);
 					}
 				}
 				done();
@@ -146,7 +146,7 @@ describe("sudoku Object", function() {
 			for (var r = 0; r < 9; r++) {
 				var ro = su.getRegion(r);
 				for (var i = 0; i < 9; i++) {
-					expect(r.tiles[c]).to.be.instanceof(tileOBJ);
+					expect(ro.tiles[i]).to.be.instanceof(tileOBJ);
 				}
 			}
 			done();
@@ -156,16 +156,16 @@ describe("sudoku Object", function() {
 			var r = su.getRegions();
 			for (var x = 0; x < 9; x++) {
 				for (var y = 0; y < 9; y++) {
-					var xx = null;
+					var rx = null;
 					if(x > 0 && x < 3) rx = 0;
 					if(x > 2 && x < 6) rx = 1;
 					if(x > 5 && x < 9) rx = 2;
-					var yy = null;
+					var ry = null;
 					if(y > 0 && y < 3) ry = 0;
 					if(y > 2 && y < 6) ry = 1;
 					if(y > 5 && y < 9) ry = 2;
 
-					expect(r[3*ry+rx].tiles(3*(y%3)+(x%3)).to.equal(su.getTile(x, y)));
+					expect(r[3*ry+rx].tiles[3*parseInt(y%3)+parseInt(x%3)]).to.equal(su.getTile(x, y));
 				}
 			}
 			done();
