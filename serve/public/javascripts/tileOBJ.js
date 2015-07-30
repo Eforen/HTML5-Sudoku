@@ -77,7 +77,8 @@ var tileOBJ = function(){
 tileOBJ.types = {
 	blank: 1,
 	set:2,
-	planned:3
+	planned:3,
+	locked:4
 }
 
 module.exports = tileOBJ;

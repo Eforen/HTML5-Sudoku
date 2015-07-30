@@ -2,7 +2,7 @@ console.log("Loaded SudokuOBJ.js");
 var tileStore = require("./tileStore.js");
 var tileOBJ   = require("./tileOBJ.js");
 
-module.exports = function(){
+var sudokuOBJ = function(){
 	var rows = [
 		new tileStore(), new tileStore(), new tileStore(),
 		new tileStore(), new tileStore(), new tileStore(),
@@ -73,3 +73,9 @@ module.exports = function(){
 
 	var debug = "breakpointable";
 }
+
+sudokuOBJ.loadFromJSON = function(json){
+	return new sudokuOBJ();
+}
+
+module.exports = sudokuOBJ;
