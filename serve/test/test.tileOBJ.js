@@ -80,6 +80,11 @@ describe("tile Object", function() {
 		})
 
 		it("default Token", function(done){
+			expect(tile.getToken()).to.equal(1);
+			done();
+		})	
+
+		it("default Type", function(done){
 			expect(tile.getType()).to.equal(tileOBJ.types.blank);
 			done();
 		})		
@@ -120,4 +125,24 @@ describe("tile Object", function() {
 
 	})
 
+	describe("Guessing", function(){
+		it("guess default should be false", function(done){
+			expect(tile.getGuess(tokens.b)).to.equal(false);
+		})
+		it("can set guess (value)", function(done){
+			expect(tile.getGuess(tokens.c)).to.equal(false);
+			tile.setGuess(tokens.c);
+			expect(tile.getGuess(tokens.c)).to.equal(true);
+		})
+		
+		it("can set guess (type)", function(done){
+			expect(tile.getType()).to.equal(tileOBJ.types.blank);
+			tile.setGuess(tokens.d);
+			expect(tile.getType()).to.equal(tileOBJ.types.guess);
+		})
+
+		it("can get guesses as array", function(done){
+			expect(tile.getGuesses()).to.be('array');
+		})
+	})
 })
