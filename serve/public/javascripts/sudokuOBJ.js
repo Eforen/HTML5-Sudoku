@@ -1,6 +1,7 @@
 console.log("Loaded SudokuOBJ.js");
 var tileStore = require("./tileStore.js");
 var tileOBJ   = require("./tileOBJ.js");
+var token = require("./tokenENUM.js");
 
 var sudokuOBJ = function(){
 	var rows = [
@@ -74,8 +75,46 @@ var sudokuOBJ = function(){
 	var debug = "breakpointable";
 }
 
-sudokuOBJ.loadFromJSON = function(json){
-	return new sudokuOBJ();
+sudokuOBJ.loadFromOBJ = function(obj){
+	var su = new sudokuOBJ();
+
+	var arr = obj.puzzle.split("");
+	var x = 0;
+	var y = 0;
+
+	var proc = false;
+
+	var p = function(value, check){
+		if(value == check){
+			su.getTile(x,y).set(check, tileOBJ.types.locked);
+			proc = true;
+		}
+	}
+
+	for (var i = 0; i < arr.length; i++) {
+		if(arr[i] == 0){
+			su.getTile(x,y).set(0, tileOBJ.types.blank);
+			proc = true;
+		}
+		p(arr[i], token.a);
+		p(arr[i], token.b);
+		p(arr[i], token.c);
+		p(arr[i], token.d);
+		p(arr[i], token.e);
+		p(arr[i], token.f);
+		p(arr[i], token.g);
+		p(arr[i], token.h);
+		p(arr[i], token.i);
+		if(proc){
+			x++;
+			if(x>=9){
+				x=0;
+				y++;
+			}
+		}
+	};
+
+	return su;
 }
 
 module.exports = sudokuOBJ;

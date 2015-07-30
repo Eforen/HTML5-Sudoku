@@ -8,8 +8,15 @@ var tokens = require("../public/javascripts/tokenENUM.js");
 describe("sudoku Object", function() {
 
 	var su = null;
+	var testJSON = "{}";
+	var testOBJ = {};
 
 	beforeEach(function(done) {
+		test = '{"name": "Simple Test",	"puzzle": "043000620700403008600208007075000340000000000098000570900507003100602005087000260"}';
+		testOBJ = {
+			name: "Simple Test",	
+			puzzle: "043000620700403008600208007075000340000000000098000570900507003100602005087000260"
+		}
 		su = new sudoku();
 		//su = null; //Debug setup expectation
 		expect(su).not.to.be.null; //Test setup expectation
@@ -79,32 +86,6 @@ describe("sudoku Object", function() {
 				done();
 			})
 		})
-
-		describe("general", function() {
-
-			it("should be the correct tileOBJs", function(done){
-				for (var x = 0; x < 9; x++) {
-					for (var y = 0; y < 9; y++) {
-						var r = su.getRow(y);
-						var c = su.getCol(x);
-						expect(r.tiles[x]).to.equal(c.tiles[y]);
-					}
-				}
-				done();
-			})
-
-			it("get tile should get the correct tileOBJ", function(done){
-				for (var x = 0; x < 9; x++) {
-					for (var y = 0; y < 9; y++) {
-						var r = su.getRow(y);
-						var c = su.getCol(x);
-						expect(r.tiles[x]).to.equal(c.tiles[y]);
-						expect(su.getTile(x, y)).to.equal(r.tiles[x]);
-					}
-				}
-				done();
-			})
-		})
 	})
 
 
@@ -153,40 +134,21 @@ describe("sudoku Object", function() {
 			}
 			done();
 		})
-
-		it("should all be the correct tileOBJs", function(done){
-			var r = su.getRegions();
-			for (var x = 0; x < 9; x++) {
-				for (var y = 0; y < 9; y++) {
-					var rx = null;
-					if(x > 0 && x < 3) rx = 0;
-					if(x > 2 && x < 6) rx = 1;
-					if(x > 5 && x < 9) rx = 2;
-					var ry = null;
-					if(y > 0 && y < 3) ry = 0;
-					if(y > 2 && y < 6) ry = 1;
-					if(y > 5 && y < 9) ry = 2;
-
-					expect(r[3*ry+rx].tiles[3*parseInt(y%3)+parseInt(x%3)]).to.equal(su.getTile(x, y));
-				}
-			}
-			done();
-		})
 	})
 
 	describe("Data", function(){
-		var test = "{}";
 
 		beforeEach(function(done) {
-			test = '{"name": "Simple Test",	"puzzle": "043000620700403008600208007075000340000000000098000570900507003100602005087000260"}';
-			su = sudoku.loadFromJSON(test);
+			//su = sudoku.loadFromJSON(test);
+			su = sudoku.loadFromOBJ(testOBJ);
 			//su = null; //Debug setup expectation
 			expect(su).not.to.be.null; //Test setup expectation
 			expect(su).to.be.instanceof(sudoku); //Test setup expectation
 			done();
 		})
 		it("should load from JSON", function(done){
-			var su = sudoku.loadFromJSON(test);
+			//var su = sudoku.loadFromJSON(test);
+			su = sudoku.loadFromOBJ(testOBJ);
 			done();
 		})
 		describe("should be the correct data:", function(){
@@ -364,6 +326,51 @@ describe("sudoku Object", function() {
 				expect(su.getTile(7,8).getType()).to.equal(tileOBJ.types.locked);
 				expect(su.getTile(8,8).getType()).to.equal(tileOBJ.types.blank);
 
+				done();
+			})
+		})
+
+		describe("structure", function() {
+
+			it("should be the correct tileOBJs", function(done){
+				for (var x = 0; x < 9; x++) {
+					for (var y = 0; y < 9; y++) {
+						var r = su.getRow(y);
+						var c = su.getCol(x);
+						expect(r.tiles[x]).to.equal(c.tiles[y]);
+					}
+				}
+				done();
+			})
+
+			it("get tile should get the correct tileOBJ", function(done){
+				for (var x = 0; x < 9; x++) {
+					for (var y = 0; y < 9; y++) {
+						var r = su.getRow(y);
+						var c = su.getCol(x);
+						expect(r.tiles[x]).to.equal(c.tiles[y]);
+						expect(su.getTile(x, y)).to.equal(r.tiles[x]);
+					}
+				}
+				done();
+			})
+
+			it("regions should all be the correct tileOBJs", function(done){
+				var r = su.getRegions();
+				for (var x = 0; x < 9; x++) {
+					for (var y = 0; y < 9; y++) {
+						var rx = null;
+						if(x > 0 && x < 3) rx = 0;
+						if(x > 2 && x < 6) rx = 1;
+						if(x > 5 && x < 9) rx = 2;
+						var ry = null;
+						if(y > 0 && y < 3) ry = 0;
+						if(y > 2 && y < 6) ry = 1;
+						if(y > 5 && y < 9) ry = 2;
+
+						expect(r[3*ry+rx].tiles[3*parseInt(y%3)+parseInt(x%3)]).to.equal(su.getTile(x, y));
+					}
+				}
 				done();
 			})
 		})
