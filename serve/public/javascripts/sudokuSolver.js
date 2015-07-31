@@ -4,7 +4,11 @@ var tileStore = require("./tileStore.js");
 var tileOBJ   = require("./tileOBJ.js");
 var token = require("./tokenENUM.js");
 
-var sudokuSolver = function(){
+var sudokuSolver = function(sudoku){
+	var su = sudoku;
+	this.getSudoku = function(){
+		return su;
+	}
 }
 
-return sudokuSolver;
+module.exports = sudokuSolver;
