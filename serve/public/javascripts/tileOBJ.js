@@ -76,7 +76,7 @@ var tileOBJ = function(){
 	var _guesses = [];
 
 	this.setGuess = function(token, state){
-		if(typeof(state) == "undefined") state = true;
+		if(typeof(state) == "undefined") state = false;
 		_guesses[token] = state;
 	}
 
