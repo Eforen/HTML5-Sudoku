@@ -76,24 +76,39 @@ var tileOBJ = function(){
 	var _guesses = [];
 
 	this.setGuess = function(token, state){
-		if(typeof(state) == "undefined") state = false;
+		if(typeof(state) == "undefined") state = true;
 		_guesses[token] = state;
+		this.checkGuessState();
+	}
+
+	this.checkGuessState = function(){
+		var count = 0;
+		for (var i = 0; i < _guesses.length; i++) {
+			if(_guesses[i]) count++;
+		};
+		if(count > 0) this._type = tileOBJ.types.guess;
+		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;
 	}
 
 	this.unsetGuess = function(token){
 		_guesses[token] = false;
+		this.checkGuessState();
 	}
 
 	this.getGuess = function(token){
+		if(typeof(_guesses[token]) == "undefined") return false;
 		if(_guesses[token] === true) return true;
 		return false;
+	}
+	this.getGuesses = function(){
+		return _guesses;
 	}
 }
 
 tileOBJ.types = {
 	blank: 1,
 	set:2,
-	planned:3,
+	guess:3,
 	locked:4
 }
 

@@ -145,7 +145,7 @@ describe("tile Object", function() {
 		})
 
 		it("can get guesses as array", function(done){
-			expect(tile.getGuesses()).to.be('array');
+			expect(tile.getGuesses()).to.be.instanceof(Array);
 			done();
 		})
 	})
