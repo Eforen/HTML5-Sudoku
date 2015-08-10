@@ -36,7 +36,7 @@ describe("sudoku solver", function() {
 	})
 
 	it("it should contain the sudoku provided before", function(done){
-		expect(solve.getSudoku()).to.be(su);
+		expect(solve.getSudoku()).to.be.equal(su);
 		done();
 	})
 

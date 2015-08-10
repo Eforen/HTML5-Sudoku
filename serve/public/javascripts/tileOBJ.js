@@ -72,6 +72,22 @@ var tileOBJ = function(){
 	//TODO: Make Areas make sense!
 	
 	//this.tiles = [];
+
+	var _guesses = [];
+
+	this.setGuess = function(token, state){
+		if(typeof(state) == "undefined") state = true;
+		_guesses[token] = state;
+	}
+
+	this.unsetGuess = function(token){
+		_guesses[token] = false;
+	}
+
+	this.getGuess = function(token){
+		if(_guesses[token] === true) return true;
+		return false;
+	}
 }
 
 tileOBJ.types = {
