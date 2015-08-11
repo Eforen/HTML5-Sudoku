@@ -148,5 +148,67 @@ describe("tile Object", function() {
 			expect(tile.getGuesses()).to.be.instanceof(Array);
 			done();
 		})
+		
+		it("can set guesses as array", function(done){
+			expect(tile.getGuess(tokens.a)).to.equal(false);
+			expect(tile.getGuess(tokens.b)).to.equal(false);
+			expect(tile.getGuess(tokens.c)).to.equal(false);
+			expect(tile.getGuess(tokens.d)).to.equal(false);
+			expect(tile.getGuess(tokens.f)).to.equal(false);
+
+			var arr = []
+			arr[tokens.a] = true;
+			arr[tokens.b] = false;
+			arr[tokens.c] = true;
+			arr[tokens.d] = true;
+			arr[tokens.f] = true;
+
+			tile.setGuesses(arr);
+
+			expect(tile.getGuess(tokens.a)).to.equal(true);
+			expect(tile.getGuess(tokens.b)).to.equal(false);
+			expect(tile.getGuess(tokens.c)).to.equal(true);
+			expect(tile.getGuess(tokens.d)).to.equal(true);
+			expect(tile.getGuess(tokens.e)).to.equal(false);
+			expect(tile.getGuess(tokens.f)).to.equal(true);
+			done();
+		})
+		
+		it("can set all guesses to value", function(done){
+			expect(tile.getGuess(tokens.a)).to.equal(false);
+			expect(tile.getGuess(tokens.b)).to.equal(false);
+			expect(tile.getGuess(tokens.c)).to.equal(false);
+			expect(tile.getGuess(tokens.d)).to.equal(false);
+			expect(tile.getGuess(tokens.e)).to.equal(false);
+			expect(tile.getGuess(tokens.f)).to.equal(false);
+			expect(tile.getGuess(tokens.g)).to.equal(false);
+			expect(tile.getGuess(tokens.h)).to.equal(false);
+			expect(tile.getGuess(tokens.i)).to.equal(false);
+
+			tile.setGuesses(true);
+
+			expect(tile.getGuess(tokens.a)).to.equal(true);
+			expect(tile.getGuess(tokens.b)).to.equal(true);
+			expect(tile.getGuess(tokens.c)).to.equal(true);
+			expect(tile.getGuess(tokens.d)).to.equal(true);
+			expect(tile.getGuess(tokens.e)).to.equal(true);
+			expect(tile.getGuess(tokens.f)).to.equal(true);
+			expect(tile.getGuess(tokens.g)).to.equal(true);
+			expect(tile.getGuess(tokens.h)).to.equal(true);
+			expect(tile.getGuess(tokens.i)).to.equal(true);
+
+			tile.setGuesses(false);
+
+			expect(tile.getGuess(tokens.a)).to.equal(false);
+			expect(tile.getGuess(tokens.b)).to.equal(false);
+			expect(tile.getGuess(tokens.c)).to.equal(false);
+			expect(tile.getGuess(tokens.d)).to.equal(false);
+			expect(tile.getGuess(tokens.e)).to.equal(false);
+			expect(tile.getGuess(tokens.f)).to.equal(false);
+			expect(tile.getGuess(tokens.g)).to.equal(false);
+			expect(tile.getGuess(tokens.h)).to.equal(false);
+			expect(tile.getGuess(tokens.i)).to.equal(false);
+			done();
+		})
 	})
 })

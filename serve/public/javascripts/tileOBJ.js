@@ -1,6 +1,6 @@
 console.log("Loaded tileOBJ.js");
 
-//var tokens = require("./tokenENUM.js");
+var tokens = require("./tokenENUM.js");
 
 var tileOBJ = function(){
 	this.isSetup = false;
@@ -78,6 +78,7 @@ var tileOBJ = function(){
 	this.setGuess = function(token, state){
 		if(typeof(state) == "undefined") state = true;
 		_guesses[token] = state;
+
 		this.checkGuessState();
 	}
 
@@ -102,6 +103,50 @@ var tileOBJ = function(){
 	}
 	this.getGuesses = function(){
 		return _guesses;
+	}
+
+	this.setGuesses = function(data){
+		if(Array.isArray(data)) {
+			var check = function(token){
+				if(data[token] == true || data[token] == false){
+					_guesses[token] = data[token];
+				}
+			}
+			check(tokens.a);
+			check(tokens.b);
+			check(tokens.c);
+			check(tokens.d);
+			check(tokens.e);
+			check(tokens.f);
+			check(tokens.g);
+			check(tokens.h);
+			check(tokens.i);
+			/*
+			_guesses[tokens.a] = data[tokens.a];
+			_guesses[tokens.b] = data[tokens.b];
+			_guesses[tokens.c] = data[tokens.c];
+			_guesses[tokens.d] = data[tokens.d];
+			_guesses[tokens.e] = data[tokens.e];
+			_guesses[tokens.f] = data[tokens.f];
+			_guesses[tokens.g] = data[tokens.g];
+			_guesses[tokens.h] = data[tokens.h];
+			_guesses[tokens.i] = data[tokens.i];
+			*/
+			this.checkGuessState();
+			return;
+		}
+		if(data != true) data = false;
+		_guesses = [];
+		_guesses[tokens.a] = data;
+		_guesses[tokens.b] = data;
+		_guesses[tokens.c] = data;
+		_guesses[tokens.d] = data;
+		_guesses[tokens.e] = data;
+		_guesses[tokens.f] = data;
+		_guesses[tokens.g] = data;
+		_guesses[tokens.h] = data;
+		_guesses[tokens.i] = data;
+		this.checkGuessState();
 	}
 }
 
