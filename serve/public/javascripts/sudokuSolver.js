@@ -31,16 +31,30 @@ var sudokuSolver = function(sudoku){
 		return su;
 	}
 
-	this.solveRow = function(index){
-		var row = su.getRow(index);
+	this.solveForRow = function(x, y){
+		var row = su.getRow(y);
+		var tile = su.getTile(x, y);
+		this.excludeSet(tile, row);
 	}
 
-	this.solveCol = function(index){
-		var col = su.getCol(index);
+	this.solveForCol = function(x, y){
+		var col = su.getCol(x);
+		var tile = su.getTile(x, y);
+		this.excludeSet(tile, col);
 	}
 
-	this.solveRegion = function(x, y){
-		var region = su.getRegion(x, y);
+	this.solveForRegion = function(x, y){
+		var region = su.getRegion(parseInt(x/3), parseInt(y/3));
+		var tile = su.getTile(x, y);
+		this.excludeSet(tile, region);
+	}
+
+	this.excludeSet = function(tile, container){
+		for (var i = 0; i < container.tiles.length; i++) {
+			if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+				tile.setGuess(container.tiles[i].getToken(), false);
+			}
+		}
 	}
 }
 

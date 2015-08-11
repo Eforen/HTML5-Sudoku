@@ -79,8 +79,8 @@ describe("sudoku solver", function() {
 	// 0hg 000 bf0
 
 	it("should remove all guesses of tile that are in row", function(done){
-		solve.solveRow(0);
-		tile = su.getTile(0,0);
+		solve.solveForRow(0,0);
+		tile = solve.getSudoku().getTile(0,0);
 		expect(tile.getGuess(tokens.a)).to.equal(true); // 1
 		expect(tile.getGuess(tokens.b)).to.equal(false); // 2
 		expect(tile.getGuess(tokens.c)).to.equal(false); // 3
@@ -93,8 +93,8 @@ describe("sudoku solver", function() {
 	})
 
 	it("should remove all guesses of tile that are in col", function(done){
-		solve.solveCol(0);
-		tile = su.getTile(0,0);
+		solve.solveForCol(0,0);
+		tile = solve.getSudoku().getTile(0,0);
 		expect(tile.getGuess(tokens.a)).to.equal(false); // 1
 		expect(tile.getGuess(tokens.b)).to.equal(true); // 2
 		expect(tile.getGuess(tokens.c)).to.equal(true); // 3
@@ -110,8 +110,8 @@ describe("sudoku solver", function() {
 	// g 0 0
 	// f 0 0
 	it("should remove all guesses of tile that are in region", function(done){
-		solve.solveRegion(0,0);
-		tile = su.getTile(0,0);
+		solve.solveForRegion(0,0);
+		tile = solve.getSudoku().getTile(0,0);
 		expect(tile.getGuess(tokens.a)).to.equal(true); // 1
 		expect(tile.getGuess(tokens.b)).to.equal(true); // 2
 		expect(tile.getGuess(tokens.c)).to.equal(false); // 3
