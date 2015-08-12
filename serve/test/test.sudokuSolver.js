@@ -132,13 +132,12 @@ describe("sudoku solver", function() {
 		   posibility space (ROW, COL or REGION) */
 
 		solve.solvePassBasic();
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|043|000|620|\n"+
 											"|700|403|008|\n"+
 											"|600|208|007|\n"+
 											"*---+---+---*\n"+
-											"|075|000|340|\n"+
+											"|275|000|340|\n"+
 											"|000|000|000|\n"+
 											"|098|000|570|\n"+
 											"*---+---+---*\n"+
@@ -152,7 +151,6 @@ describe("sudoku solver", function() {
 	it("pass #02 basic solve", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|043|000|620|\n"+
 											"|700|403|008|\n"+
@@ -173,7 +171,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|000|620|\n"+
 											"|700|403|008|\n"+
@@ -195,7 +192,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|000|620|\n"+
 											"|700|403|008|\n"+
@@ -226,7 +222,6 @@ describe("sudoku solver", function() {
 		the same region
 		*********************************************/
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|070|620|\n"+
 											"|700|463|008|\n"+
@@ -251,7 +246,6 @@ describe("sudoku solver", function() {
 		solve.solveRegionExclusion();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|070|620|\n"+
 											"|700|463|008|\n"+
@@ -285,7 +279,6 @@ describe("sudoku solver", function() {
 		*********************************************/
 
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|008|\n"+
@@ -313,7 +306,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|008|\n"+
@@ -349,7 +341,6 @@ describe("sudoku solver", function() {
 		*********************************************/
 
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -379,7 +370,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -409,7 +399,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solveRegionExclusion();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -441,7 +430,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -473,7 +461,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solveRowExclusion();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -507,7 +494,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -541,7 +527,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -576,7 +561,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solveColExclusion();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -612,7 +596,6 @@ describe("sudoku solver", function() {
 		solve.solveColExclusion();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -649,7 +632,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solveRegionExclusion();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -687,7 +669,6 @@ describe("sudoku solver", function() {
 		solve.solveRegionExclusion();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -726,7 +707,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solveRowExclusion();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|058|\n"+
@@ -766,7 +746,6 @@ describe("sudoku solver", function() {
 		solve.solveRowExclusion();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|620|\n"+
 											"|700|463|158|\n"+
@@ -807,7 +786,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|075|629|\n"+
 											"|720|463|158|\n"+
@@ -849,7 +827,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|175|629|\n"+
 											"|729|463|158|\n"+
@@ -892,7 +869,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|175|629|\n"+
 											"|729|463|158|\n"+
@@ -936,7 +912,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|175|629|\n"+
 											"|729|463|158|\n"+
@@ -981,7 +956,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|175|629|\n"+
 											"|729|463|158|\n"+
@@ -1027,7 +1001,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|175|629|\n"+
 											"|729|463|158|\n"+
@@ -1074,7 +1047,6 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		structure = solve.getSudoku().getstructure();
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|175|629|\n"+
 											"|729|463|158|\n"+
