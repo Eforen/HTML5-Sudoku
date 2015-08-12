@@ -1,7 +1,7 @@
 console.log("Loaded tileOBJ.js");
 
 var tokens = require("./tokenENUM.js");
-
+//as
 var tileOBJ = function(){
 	this.isSetup = false;
 
