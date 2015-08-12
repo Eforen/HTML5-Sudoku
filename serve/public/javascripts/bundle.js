@@ -1,20 +1,20 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 window.sudokuOBJ = require("./sudokuOBJ.js");
-window.sudokuOBJ = require("./sudokuSolver.js");
+window.sudokuSolver = require("./sudokuSolver.js");
+window.token = require("./tokenENUM.js");
 
-//
 //test = new window.sudokuOBJ();
-/*
-var testData = {
+window.testData = {
 			name: "Simple Test",	
 			puzzle: "043000620700403008600208007075000340000000000098000570900507003100602005087000260"
 		}
 
-su = sudokuOBJ.loadFromOBJ(window.testData);
-solve = new sudokuSolver(window.su);
-su2 = window.solve.getSudoku();
+window.su = window.sudokuOBJ.loadFromOBJ(window.testData);
+window.solve = new window.sudokuSolver(window.su);
+window.su2 = window.solve.getSudoku();
+/*
 */
-},{"./sudokuOBJ.js":2,"./sudokuSolver.js":3}],2:[function(require,module,exports){
+},{"./sudokuOBJ.js":2,"./sudokuSolver.js":3,"./tokenENUM.js":6}],2:[function(require,module,exports){
 console.log("Loaded SudokuOBJ.js");
 var tileStore = require("./tileStore.js");
 var tileOBJ   = require("./tileOBJ.js");
@@ -36,6 +36,7 @@ var sudokuOBJ = function(){
 		new tileStore(), new tileStore(), new tileStore(),
 		new tileStore(), new tileStore(), new tileStore()
 		];
+
 
 	this.getRows=function(){
 		return rows;
@@ -89,6 +90,42 @@ var sudokuOBJ = function(){
 		return this.getRow(y).tiles[x];
 	}
 
+	this.getStructure = function(){
+		/*
+*---*---*---*
+|043|000|620|
+|700|403|008|
+|600|208|007|
+*---+---+---*
+|075|000|340|
+|000|000|000|
+|098|000|570|
+*---+---+---*
+|900|507|003|
+|100|602|005|
+|087|000|260|
+*---*---*---*
+		*/
+		
+		var r = "*---*---*---*\n"
+		var row //storage for a row
+		for (var y = 0; y < 9; y++) {
+			r += "|"
+			row = this.getRow(y);
+			for (var x = 0; x < 9; x++) {
+				r += row.tiles[x].getToken()
+				if(x % 3 === 2) r += "|"
+			}
+
+			if(y === 2 || y === 5) r += "\n*---+---+---*"
+			r += "\n"
+		}
+
+		r += "*---*---*---*\n"
+
+		return r
+	}
+
 	var debug = "breakpointable";
 }
 
@@ -109,7 +146,7 @@ sudokuOBJ.loadFromOBJ = function(obj){
 	}
 
 	for (var i = 0; i < arr.length; i++) {
-		if(arr[i] == 0){
+		if(arr[i] == 0){ // jshint ignore:line
 			su.getTile(x,y).set(0, tileOBJ.types.blank);
 			proc = true;
 		}
@@ -129,7 +166,7 @@ sudokuOBJ.loadFromOBJ = function(obj){
 				y++;
 			}
 		}
-	};
+	}
 
 	return su;
 }
@@ -143,8 +180,13 @@ var tileOBJ   = require("./tileOBJ.js");
 var token = require("./tokenENUM.js");
 
 var sudokuSolver = function(sudoku){
+	//Private Vars
 	var su = sudoku;
-	this.getSudoku = function(){
+
+	//Public Vars
+
+	//Methods
+	this.prepSudoku=function(){
 		var defaultGuesses = [];
 			defaultGuesses[token.a] = true;
 			defaultGuesses[token.b] = true;
@@ -165,7 +207,10 @@ var sudokuSolver = function(sudoku){
 				}
 			}
 		}
+	}
 
+
+	this.getSudoku = function(){
 		return su;
 	}
 
@@ -194,6 +239,12 @@ var sudokuSolver = function(sudoku){
 			}
 		}
 	}
+
+	//Start of Constructor
+
+	this.prepSudoku();
+
+	//End of Constructor
 }
 
 module.exports = sudokuSolver;
@@ -201,7 +252,7 @@ module.exports = sudokuSolver;
 console.log("Loaded tileOBJ.js");
 
 var tokens = require("./tokenENUM.js");
-
+//as
 var tileOBJ = function(){
 	this.isSetup = false;
 
@@ -286,7 +337,7 @@ var tileOBJ = function(){
 		var count = 0;
 		for (var i = 0; i < _guesses.length; i++) {
 			if(_guesses[i]) count++;
-		};
+		}
 		if(count > 0) this._type = tileOBJ.types.guess;
 		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;
 	}
@@ -308,7 +359,7 @@ var tileOBJ = function(){
 	this.setGuesses = function(data){
 		if(Array.isArray(data)) {
 			var check = function(token){
-				if(data[token] == true || data[token] == false){
+				if(data[token] === true || data[token] === false){
 					_guesses[token] = data[token];
 				}
 			}
@@ -335,7 +386,7 @@ var tileOBJ = function(){
 			this.checkGuessState();
 			return;
 		}
-		if(data != true) data = false;
+		if(data !== true) data = false;
 		_guesses = [];
 		_guesses[tokens.a] = data;
 		_guesses[tokens.b] = data;
@@ -367,7 +418,7 @@ module.exports = function(){
 		for (var i = 0; i < 9; i++) {
 			if(i in this.tiles) av[i] = false;
 			else av[i] = true;
-		};
+		}
 		return av;
 	}
 	

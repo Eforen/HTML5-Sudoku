@@ -20,6 +20,7 @@ var sudokuOBJ = function(){
 		new tileStore(), new tileStore(), new tileStore()
 		];
 
+
 	this.getRows=function(){
 		return rows;
 	}
@@ -70,6 +71,42 @@ var sudokuOBJ = function(){
 
 	this.getTile = function(x, y){
 		return this.getRow(y).tiles[x];
+	}
+
+	this.getStructure = function(){
+		/*
+*---*---*---*
+|043|000|620|
+|700|403|008|
+|600|208|007|
+*---+---+---*
+|075|000|340|
+|000|000|000|
+|098|000|570|
+*---+---+---*
+|900|507|003|
+|100|602|005|
+|087|000|260|
+*---*---*---*
+		*/
+		
+		var r = "*---*---*---*\n"
+		var row //storage for a row
+		for (var y = 0; y < 9; y++) {
+			r += "|"
+			row = this.getRow(y);
+			for (var x = 0; x < 9; x++) {
+				r += row.tiles[x].getToken()
+				if(x % 3 === 2) r += "|"
+			}
+
+			if(y === 2 || y === 5) r += "\n*---+---+---*"
+			r += "\n"
+		}
+
+		r += "*---*---*---*\n"
+
+		return r
 	}
 
 	var debug = "breakpointable";

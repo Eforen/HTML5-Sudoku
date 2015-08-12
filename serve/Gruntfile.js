@@ -5,10 +5,10 @@ module.exports = function(grunt) {
       'public/javascripts/bundle.js': ['public/javascripts/app.js']
     },
     watch: {
-      options: {
-        livereload: true,
-      },
       main: {
+        options: {
+          livereload: true,
+        },
         files: [ "public/javascripts/*.js", "!public/javascripts/bundle.js"],
         tasks: [ 'browserify' ]
       },
@@ -65,6 +65,7 @@ module.exports = function(grunt) {
     mochaTest: {
       all: {
         options: {
+          ui: 'bdd',
           reporter: 'spec',
           quiet: false, // Optionally suppress output to standard out (defaults to false) 
           clearRequireCache: true // Clear the require cache before running tests so that the tests actually run on the new code

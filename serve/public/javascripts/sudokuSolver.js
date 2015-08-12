@@ -5,8 +5,13 @@ var tileOBJ   = require("./tileOBJ.js");
 var token = require("./tokenENUM.js");
 
 var sudokuSolver = function(sudoku){
+	//Private Vars
 	var su = sudoku;
-	this.getSudoku = function(){
+
+	//Public Vars
+
+	//Methods
+	this.prepSudoku=function(){
 		var defaultGuesses = [];
 			defaultGuesses[token.a] = true;
 			defaultGuesses[token.b] = true;
@@ -27,7 +32,10 @@ var sudokuSolver = function(sudoku){
 				}
 			}
 		}
+	}
 
+
+	this.getSudoku = function(){
 		return su;
 	}
 
@@ -56,6 +64,12 @@ var sudokuSolver = function(sudoku){
 			}
 		}
 	}
+
+	//Start of Constructor
+
+	this.prepSudoku();
+
+	//End of Constructor
 }
 
 module.exports = sudokuSolver;
