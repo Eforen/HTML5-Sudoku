@@ -43,7 +43,7 @@ describe("sudoku Object", function() {
 			it("should all be tileStores", function(done){
 				for (var i = 0; i < 9; i++) {
 					expect(su.getRow(i)).to.be.an.instanceof(tileStore);
-				};
+				}
 				done();
 			})
 
@@ -72,7 +72,7 @@ describe("sudoku Object", function() {
 			it("should all be tileStores", function(done){
 				for (var i = 0; i < 9; i++) {
 					expect(su.getCol(i)).to.be.an.instanceof(tileStore);
-				};
+				}
 				done();
 			})
 
@@ -103,7 +103,7 @@ describe("sudoku Object", function() {
 		it("should all be tileStores", function(done){
 			for (var i = 0; i < 9; i++) {
 				expect(su.getRegion(i)).to.be.an.instanceof(tileStore);
-			};
+			}
 			done();
 		})
 

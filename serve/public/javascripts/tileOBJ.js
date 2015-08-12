@@ -86,7 +86,7 @@ var tileOBJ = function(){
 		var count = 0;
 		for (var i = 0; i < _guesses.length; i++) {
 			if(_guesses[i]) count++;
-		};
+		}
 		if(count > 0) this._type = tileOBJ.types.guess;
 		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;
 	}
@@ -108,7 +108,7 @@ var tileOBJ = function(){
 	this.setGuesses = function(data){
 		if(Array.isArray(data)) {
 			var check = function(token){
-				if(data[token] == true || data[token] == false){
+				if(data[token] === true || data[token] === false){
 					_guesses[token] = data[token];
 				}
 			}
@@ -135,7 +135,7 @@ var tileOBJ = function(){
 			this.checkGuessState();
 			return;
 		}
-		if(data != true) data = false;
+		if(data !== true) data = false;
 		_guesses = [];
 		_guesses[tokens.a] = data;
 		_guesses[tokens.b] = data;

@@ -111,6 +111,9 @@ module.exports = function(grunt) {
       //Set Syntax Check
       grunt.config('jshint.codeBase.files.src', filepath)
 
+      //change reporter to nyan for compressed output
+      grunt.config('mochaTest.all.options.reporter', 'nyan')
+
       //make my own filepath storage
       var file = filepath;
 

@@ -92,7 +92,7 @@ sudokuOBJ.loadFromOBJ = function(obj){
 	}
 
 	for (var i = 0; i < arr.length; i++) {
-		if(arr[i] == 0){
+		if(arr[i] == 0){ // jshint ignore:line
 			su.getTile(x,y).set(0, tileOBJ.types.blank);
 			proc = true;
 		}
@@ -112,7 +112,7 @@ sudokuOBJ.loadFromOBJ = function(obj){
 				y++;
 			}
 		}
-	};
+	}
 
 	return su;
 }
