@@ -67,6 +67,7 @@ module.exports = function(grunt) {
         options: {
           ui: 'bdd',
           reporter: 'spec',
+          captureFile: 'TestResults.txt',
           quiet: false, // Optionally suppress output to standard out (defaults to false) 
           clearRequireCache: true // Clear the require cache before running tests so that the tests actually run on the new code
         },
@@ -113,7 +114,7 @@ module.exports = function(grunt) {
       grunt.config('jshint.codeBase.files.src', filepath)
 
       //change reporter to nyan for compressed output
-      grunt.config('mochaTest.all.options.reporter', 'nyan')
+      //grunt.config('mochaTest.all.options.reporter', 'nyan')
 
       //make my own filepath storage
       var file = filepath;

@@ -65,6 +65,34 @@ var sudokuSolver = function(sudoku){
 		}
 	}
 
+	this.excludeGuess = function(container){
+		for (var n = 1; n < 10; n++) {
+			var inMoreThenOne = 0
+			var index = 0
+			for (var i = 0; i < container.tiles.length; i++) {
+				if(container.tiles[i].getType() === tileOBJ.types.guess){
+					if(container.tiles[i].getGuess(n)){
+						inMoreThenOne++
+						index = i
+					}
+				}
+				/*
+				if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+					if(container.tiles[i].getGuess(n)){
+						inMoreThenOne++
+						index = i
+					}
+				}
+				*/
+			}
+			if(inMoreThenOne === 1){
+				//console.log("found one")
+				container.tiles[index].setToken(n)
+				container.tiles[index].setType(tileOBJ.types.set)
+			}
+		}
+	}
+
 	this.solvePassBasic = function(){
 		for (var x = 0; x < 9; x++) {
 			for (var y = 0; y < 9; y++) {
@@ -96,6 +124,29 @@ var sudokuSolver = function(sudoku){
 			}
 		}
 	}
+
+	this.solveRegionExclusion = function(){
+		var regions = this.getSudoku().getRegions()
+		for (var i = 0; i < 9; i++) {
+			this.excludeGuess(regions[i])
+		}
+	}
+	this.solveRowExclusion = function(){
+		//var row = this.getSudoku().getRows()
+		for (var i = 0; i < 9; i++) {
+			this.excludeGuess(this.getSudoku().getRow(i))
+		}
+	}
+
+	/*
+
+	this.solveColExclusion = function(){
+		var col = this.getSudoku().getCols()
+		for (var i = 0; i < 9; i++) {
+			this.excludeGuess(col[i])
+		}
+	}
+	*/
 
 	//Start of Constructor
 
