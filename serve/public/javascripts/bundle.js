@@ -87,7 +87,35 @@ var sudokuOBJ = function(){
 	}
 
 	this.getTile = function(x, y){
-		return this.getRow(y).tiles[x];
+		var r = this.getRow(y)
+		return r.tiles[x];
+	}
+
+	this.debugDataSet = function(data){
+		var r = "|"
+		for (var i = 0; i < data.length; i++) {
+			if(data == null) continue
+			if(data[i].getType() === tileOBJ.types.locked || data[i].getType() === tileOBJ.types.set) r += data[i].getToken()
+			if(data[i].getType() === tileOBJ.types.guess){
+				for (var n = 1; n <= 9; n++) {
+					if(data[i].getGuess(n)) r += n
+				}
+			}
+			r += "|"
+		}
+		return r
+	}
+
+	this.debugRow = function(y){
+		return this.debugDataSet(this.getRow(y).tiles)
+	}
+
+	this.debugCol = function(x){
+		return this.debugDataSet(this.getCol(x).tiles)
+	}
+
+	this.debugRegion = function(x, y){
+		return this.debugDataSet(this.getRegion(x, y).tiles)
 	}
 
 	this.getStructure = function(){
@@ -234,36 +262,44 @@ var sudokuSolver = function(sudoku){
 
 	this.excludeSet = function(tile, container){
 		for (var i = 0; i < container.tiles.length; i++) {
-			if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+			if(container.tiles[i].getType() === tileOBJ.types.locked || container.tiles[i].getType() === tileOBJ.types.set){
 				tile.setGuess(container.tiles[i].getToken(), false);
 			}
 		}
 	}
 
-	this.excludeGuess = function(container){
+	this.excludeGuess = function(container, debug){
+		var data = []
 		for (var n = 1; n < 10; n++) {
-			var inMoreThenOne = 0
-			var index = 0
+			data[n]={
+				inMoreThenOne: 0,
+				index: 0
+			}
 			for (var i = 0; i < container.tiles.length; i++) {
 				if(container.tiles[i].getType() === tileOBJ.types.guess){
 					if(container.tiles[i].getGuess(n)){
-						inMoreThenOne++
-						index = i
+						data[n].inMoreThenOne++
+						data[n].index = i
+					}
+				}
+				if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+					if(container.tiles[i].getToken() == n){
+						data[n].inMoreThenOne += 10
+						data[n].index = i
 					}
 				}
 				/*
-				if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
-					if(container.tiles[i].getGuess(n)){
-						inMoreThenOne++
-						index = i
-					}
-				}
 				*/
 			}
-			if(inMoreThenOne === 1){
+		}
+		for (var n = 1; n < 10; n++) {
+			if(n == 4 && debug === true) {//debug 
+				console.log("\n\n********************************************\nSolve for N"+n+" is "+data[n].inMoreThenOne+"|"+data[n].index+"\n********************************************\n\n")
+			}
+			if(data[n].inMoreThenOne === 1){
 				//console.log("found one")
-				container.tiles[index].setToken(n)
-				container.tiles[index].setType(tileOBJ.types.set)
+				container.tiles[data[n].index].setToken(n)
+				container.tiles[data[n].index].setType(tileOBJ.types.set)
 			}
 		}
 	}
@@ -271,6 +307,7 @@ var sudokuSolver = function(sudoku){
 	this.solvePassBasic = function(){
 		for (var x = 0; x < 9; x++) {
 			for (var y = 0; y < 9; y++) {
+				if(y === 7) console.log("Solving For r"+9+" c"+x)
 				this.solveForRow(x, y)
 				this.solveForCol(x, y)
 				this.solveForRegion(x, y)
@@ -309,7 +346,7 @@ var sudokuSolver = function(sudoku){
 	this.solveRowExclusion = function(){
 		//var row = this.getSudoku().getRows()
 		for (var i = 0; i < 9; i++) {
-			this.excludeGuess(this.getSudoku().getRow(i))
+			this.excludeGuess(this.getSudoku().getRow(i), i === 6)
 		}
 	}
 

@@ -1,5 +1,6 @@
 var expect = require("chai").expect;
 var tileStore = require("../public/javascripts/tileStore.js");
+var sudoku = require("../public/javascripts/sudokuOBJ.js");
 
 describe("tileStore Object", function() {
 	it("should have all available", function(done){

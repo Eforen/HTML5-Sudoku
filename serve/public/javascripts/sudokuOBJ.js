@@ -70,7 +70,35 @@ var sudokuOBJ = function(){
 	}
 
 	this.getTile = function(x, y){
-		return this.getRow(y).tiles[x];
+		var r = this.getRow(y)
+		return r.tiles[x];
+	}
+
+	this.debugDataSet = function(data){
+		var r = "|"
+		for (var i = 0; i < data.length; i++) {
+			if(data == null) continue
+			if(data[i].getType() === tileOBJ.types.locked || data[i].getType() === tileOBJ.types.set) r += data[i].getToken()
+			if(data[i].getType() === tileOBJ.types.guess){
+				for (var n = 1; n <= 9; n++) {
+					if(data[i].getGuess(n)) r += n
+				}
+			}
+			r += "|"
+		}
+		return r
+	}
+
+	this.debugRow = function(y){
+		return this.debugDataSet(this.getRow(y).tiles)
+	}
+
+	this.debugCol = function(x){
+		return this.debugDataSet(this.getCol(x).tiles)
+	}
+
+	this.debugRegion = function(x, y){
+		return this.debugDataSet(this.getRegion(x, y).tiles)
 	}
 
 	this.getStructure = function(){

@@ -328,40 +328,6 @@ describe("sudoku Object", function() {
 
 				done();
 			})
-			it("should return correct structure in string", function(done){
-				
-				/*
-*---*---*---*
-|043|000|620|
-|700|403|008|
-|600|208|007|
-*---+---+---*
-|075|000|340|
-|000|000|000|
-|098|000|570|
-*---+---+---*
-|900|507|003|
-|100|602|005|
-|087|000|260|
-*---*---*---*
-				*/
-				var target =	"*---*---*---*\n"+
-								"|043|000|620|\n"+
-								"|700|403|008|\n"+
-								"|600|208|007|\n"+
-								"*---+---+---*\n"+
-								"|075|000|340|\n"+
-								"|000|000|000|\n"+
-								"|098|000|570|\n"+
-								"*---+---+---*\n"+
-								"|900|507|003|\n"+
-								"|100|602|005|\n"+
-								"|087|000|260|\n"+
-								"*---*---*---*\n"
-				expect(su.getStructure()).to.equal(target);
-
-				done()
-			})
 		})
 
 		describe("structure", function() {
@@ -406,6 +372,205 @@ describe("sudoku Object", function() {
 					}
 				}
 				done();
+			})
+
+			describe("debug methods", function() {
+
+				it("should return correct structure in string", function(done){
+					
+					/*
+	*---*---*---*
+	|043|000|620|
+	|700|403|008|
+	|600|208|007|
+	*---+---+---*
+	|075|000|340|
+	|000|000|000|
+	|098|000|570|
+	*---+---+---*
+	|900|507|003|
+	|100|602|005|
+	|087|000|260|
+	*---*---*---*
+					*/
+					var target =	"*---*---*---*\n"+
+									"|043|000|620|\n"+
+									"|700|403|008|\n"+
+									"|600|208|007|\n"+
+									"*---+---+---*\n"+
+									"|075|000|340|\n"+
+									"|000|000|000|\n"+
+									"|098|000|570|\n"+
+									"*---+---+---*\n"+
+									"|900|507|003|\n"+
+									"|100|602|005|\n"+
+									"|087|000|260|\n"+
+									"*---*---*---*\n"
+					expect(su.getStructure()).to.equal(target);
+
+					done()
+				})
+
+				it("should print debug of tiles in row with .debugRow(y)", function(done){
+
+					expect(su.debugRow(0)).to.equal("||4|3||||6|2||")
+					expect(su.debugRow(1)).to.equal("|7|||4||3|||8|")
+					expect(su.debugRow(2)).to.equal("|6|||2||8|||7|")
+					expect(su.debugRow(3)).to.equal("||7|5||||3|4||")
+					expect(su.debugRow(4)).to.equal("||||||||||")
+					expect(su.debugRow(5)).to.equal("||9|8||||5|7||")
+					expect(su.debugRow(6)).to.equal("|9|||5||7|||3|")
+					expect(su.debugRow(7)).to.equal("|1|||6||2|||5|")
+					expect(su.debugRow(8)).to.equal("||8|7||||2|6||")
+
+					done();
+				})
+
+				it("should print debug of tiles in row with .debugRow(y) with guesses", function(done){
+
+					var row = su.getRow(0).tiles
+
+					// a b c  d e f  g h i
+					// 1 2 3  4 5 6  7 8 9
+
+					var arr = []
+					arr[tokens.e] = true;
+					arr[tokens.h] = true;
+					row[0].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.g] = true;
+					arr[tokens.i] = true;
+					row[3].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.e] = true;
+					arr[tokens.g] = true;
+					arr[tokens.i] = true;
+					row[4].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.e] = true;
+					arr[tokens.i] = true;
+					row[5].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.i] = true;
+					row[8].setGuesses(arr)
+
+					expect(su.debugRow(0)).to.equal("|58|4|3|179|1579|159|6|2|19|")
+					expect(su.debugRow(1)).to.equal("|7|||4||3|||8|")
+					expect(su.debugRow(2)).to.equal("|6|||2||8|||7|")
+					expect(su.debugRow(3)).to.equal("||7|5||||3|4||")
+					expect(su.debugRow(4)).to.equal("||||||||||")
+					expect(su.debugRow(5)).to.equal("||9|8||||5|7||")
+					expect(su.debugRow(6)).to.equal("|9|||5||7|||3|")
+					expect(su.debugRow(7)).to.equal("|1|||6||2|||5|")
+					expect(su.debugRow(8)).to.equal("||8|7||||2|6||")
+
+					done();
+				})
+
+				it("should print debug of tiles in col with .debugCol(x)", function(done){
+
+
+					expect(su.debugCol(0)).to.equal("||7|6||||9|1||")
+
+					done();
+				})
+
+				it("should print debug of tiles in col with .debugCol(x) with guesses", function(done){
+
+					var col = su.getCol(0).tiles
+
+					// a b c  d e f  g h i
+					// 1 2 3  4 5 6  7 8 9
+
+					var arr = []
+					arr[tokens.e] = true;
+					arr[tokens.h] = true;
+					col[0].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.g] = true;
+					arr[tokens.i] = true;
+					col[3].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.e] = true;
+					arr[tokens.g] = true;
+					arr[tokens.i] = true;
+					col[4].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.e] = true;
+					arr[tokens.i] = true;
+					col[5].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.i] = true;
+					col[8].setGuesses(arr)
+
+					expect(su.debugCol(0)).to.equal("|58|7|6|179|1579|159|9|1|19|")
+
+					done();
+				})
+
+				it("should print debug of tiles in region with .debugRegion(y)", function(done){
+
+					expect(su.debugRegion(0,0)).to.equal("||4|3|7|||6|||")
+
+					done();
+				})
+
+				it("should print debug of tiles in region with .debugRegion(x, y) with guesses", function(done){
+
+					var region = su.getRegion(0,0).tiles
+
+					// a b c  d e f  g h i
+					// 1 2 3  4 5 6  7 8 9
+
+					var arr = []
+					arr[tokens.e] = true;
+					arr[tokens.h] = true;
+					region[0].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.g] = true;
+					arr[tokens.i] = true;
+					region[4].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.e] = true;
+					arr[tokens.g] = true;
+					arr[tokens.i] = true;
+					region[5].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.e] = true;
+					arr[tokens.i] = true;
+					region[7].setGuesses(arr)
+
+					arr = []
+					arr[tokens.a] = true;
+					arr[tokens.i] = true;
+					region[8].setGuesses(arr)
+
+					expect(su.debugRegion(0,0)).to.equal("|58|4|3|7|179|1579|6|159|19|")
+
+					done();
+				})
 			})
 		})
 	})

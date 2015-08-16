@@ -149,11 +149,12 @@ describe("tile Object", function() {
 			done();
 		})
 		
-		it("can set guesses as array", function(done){
+		it("can set guesses as array partial range", function(done){
 			expect(tile.getGuess(tokens.a)).to.equal(false);
 			expect(tile.getGuess(tokens.b)).to.equal(false);
 			expect(tile.getGuess(tokens.c)).to.equal(false);
 			expect(tile.getGuess(tokens.d)).to.equal(false);
+			expect(tile.getGuess(tokens.e)).to.equal(false);
 			expect(tile.getGuess(tokens.f)).to.equal(false);
 
 			var arr = []
@@ -171,6 +172,42 @@ describe("tile Object", function() {
 			expect(tile.getGuess(tokens.d)).to.equal(true);
 			expect(tile.getGuess(tokens.e)).to.equal(false);
 			expect(tile.getGuess(tokens.f)).to.equal(true);
+			done();
+		})
+		
+		it("can set guesses as array full range", function(done){
+			expect(tile.getGuess(tokens.a)).to.equal(false);
+			expect(tile.getGuess(tokens.b)).to.equal(false);
+			expect(tile.getGuess(tokens.c)).to.equal(false);
+			expect(tile.getGuess(tokens.d)).to.equal(false);
+			expect(tile.getGuess(tokens.e)).to.equal(false);
+			expect(tile.getGuess(tokens.f)).to.equal(false);
+			expect(tile.getGuess(tokens.g)).to.equal(false);
+			expect(tile.getGuess(tokens.h)).to.equal(false);
+			expect(tile.getGuess(tokens.i)).to.equal(false);
+
+			var arr = []
+			arr[tokens.a] = true;
+			arr[tokens.b] = true;
+			arr[tokens.c] = true;
+			arr[tokens.d] = true;
+			arr[tokens.e] = true;
+			arr[tokens.f] = true;
+			arr[tokens.g] = true;
+			arr[tokens.h] = true;
+			arr[tokens.i] = true;
+
+			tile.setGuesses(arr);
+
+			expect(tile.getGuess(tokens.a)).to.equal(true);
+			expect(tile.getGuess(tokens.b)).to.equal(true);
+			expect(tile.getGuess(tokens.c)).to.equal(true);
+			expect(tile.getGuess(tokens.d)).to.equal(true);
+			expect(tile.getGuess(tokens.e)).to.equal(true);
+			expect(tile.getGuess(tokens.f)).to.equal(true);
+			expect(tile.getGuess(tokens.g)).to.equal(true);
+			expect(tile.getGuess(tokens.h)).to.equal(true);
+			expect(tile.getGuess(tokens.i)).to.equal(true);
 			done();
 		})
 		
@@ -208,6 +245,13 @@ describe("tile Object", function() {
 			expect(tile.getGuess(tokens.g)).to.equal(false);
 			expect(tile.getGuess(tokens.h)).to.equal(false);
 			expect(tile.getGuess(tokens.i)).to.equal(false);
+			done();
+		})
+		
+		it("should change type to set when was guess", function(done){
+			tile.setGuesses(true);
+			tile.set(tokens.a);
+			expect(tile.getType()).to.equal(tileOBJ.types.set);
 			done();
 		})
 	})
