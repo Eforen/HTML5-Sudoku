@@ -95,12 +95,12 @@ describe("tile Object", function() {
 		})
 
 		it("set Type", function(done){
-			tile.setType(tileOBJ.types.planned);
+			tile.setType(tileOBJ.types.guess);
 			done();
 		})
 
 		it("set Both", function(done){
-			tile.set(tokens.c, tileOBJ.types.planned);
+			tile.set(tokens.c, tileOBJ.types.guess);
 			done();
 		})
 
@@ -111,15 +111,15 @@ describe("tile Object", function() {
 		})
 
 		it("get type Type", function(done){
-			tile.setType(tileOBJ.types.planned);
-			expect(tile.getType()).to.equal(tileOBJ.types.planned);
+			tile.setType(tileOBJ.types.guess);
+			expect(tile.getType()).to.equal(tileOBJ.types.guess);
 			done();
 		})
 
 		it("get both", function(done){
-			tile.set(tokens.c, tileOBJ.types.planned);
+			tile.set(tokens.c, tileOBJ.types.guess);
 			expect(tile.get().token).to.equal(tokens.c);
-			expect(tile.get().type).to.equal(tileOBJ.types.planned);
+			expect(tile.get().type).to.equal(tileOBJ.types.guess);
 			done();
 		})
 
@@ -251,6 +251,13 @@ describe("tile Object", function() {
 		it("should change type to set when was guess", function(done){
 			tile.setGuesses(true);
 			tile.set(tokens.a);
+			expect(tile.getType()).to.equal(tileOBJ.types.set);
+			done();
+		})
+		
+		it("should change type to set when was guess 2", function(done){
+			tile.setGuesses(true);
+			tile.setToken(tokens.a);
 			expect(tile.getType()).to.equal(tileOBJ.types.set);
 			done();
 		})

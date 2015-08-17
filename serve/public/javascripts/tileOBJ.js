@@ -42,7 +42,8 @@ var tileOBJ = function(){
 
 	this.set = function(val, type){
 		this._value = val;
-		this._type = type;
+		if(typeof(type) == "undefined") this._type = tileOBJ.types.set
+		else this._type = type;
 	}
 	this.get = function(){
 		return {
@@ -64,6 +65,7 @@ var tileOBJ = function(){
 
 	this.setToken=function(v){
 		this._value = v;
+		this._type = tileOBJ.types.set
 	}
 	//row.tiles[rowP] = this;
 	//col.tiles[colP] = this;
@@ -83,9 +85,10 @@ var tileOBJ = function(){
 	}
 
 	this.checkGuessState = function(){
+		//set counter for guess
 		var count = 0;
 		for (var i = 0; i < _guesses.length; i++) {
-			if(_guesses[i]) count++;
+			if(_guesses[i] === true) count++;
 		}
 		if(count > 0) this._type = tileOBJ.types.guess;
 		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;

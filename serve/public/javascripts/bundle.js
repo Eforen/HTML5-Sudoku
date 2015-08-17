@@ -245,30 +245,58 @@ var sudokuSolver = function(sudoku){
 	this.solveForRow = function(x, y){
 		//var row = su.getRow(y);
 		var tile = su.getTile(x, y);
-		this.excludeSet(tile, tile.getRow());
+		this.excludeInSet(tile.getRow());
 	}
 
 	this.solveForCol = function(x, y){
 		//var col = su.getCol(x);
 		var tile = su.getTile(x, y);
-		this.excludeSet(tile, tile.getCol());
+		this.excludeInSet(tile.getCol());
 	}
 
 	this.solveForRegion = function(x, y){
 		//var region = su.getRegion(parseInt(x/3)-1, parseInt(y/3)-1);
 		var tile = su.getTile(x, y);
-		this.excludeSet(tile, tile.getRegion());
+		this.excludeInSet(tile.getRegion());
 	}
 
 	this.excludeSet = function(tile, container){
-		for (var i = 0; i < container.tiles.length; i++) {
-			if(container.tiles[i].getType() === tileOBJ.types.locked || container.tiles[i].getType() === tileOBJ.types.set){
-				tile.setGuess(container.tiles[i].getToken(), false);
+
+		for (var n = 1; n < 10; n++) {
+			for (var i = 0; i < container.tiles.length; i++) {
+				if(container.tiles[i].getToken() === n || container.tiles[i].getType() === tileOBJ.types.locked || container.tiles[i].getType() === tileOBJ.types.set){
+					console.log("Making "+n+"|"+i+" falsy")
+					tile.setGuess(n, false);
+					break;
+				}
 			}
 		}
 	}
 
-	this.excludeGuess = function(container, debug){
+	this.excludeInSet = function(container){
+		var data = []
+
+		//run through set and mark all present tokens as false in data set leave all others null
+		for (var i = 0; i < container.tiles.length; i++) {
+			//If tile is guess then skip it
+			if(container.tiles[i].getType() === tileOBJ.types.guess){
+				continue
+			}
+			//If tile is set then set data as false
+			if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+				data[container.tiles[i].getToken()] = false
+			}
+		}
+
+		//Kill all bad guesses with the data array
+		for (var i = 0; i < container.tiles.length; i++)
+			if(container.tiles[i].getType() === tileOBJ.types.guess)
+				container.tiles[i].setGuesses(data)
+		
+	}
+
+	this.excludeGuess = function(container, includeGuesses, debug){
+		if(includeGuesses == null) includeGuesses = false
 		var data = []
 		for (var n = 1; n < 10; n++) {
 			data[n]={
@@ -293,9 +321,9 @@ var sudokuSolver = function(sudoku){
 			}
 		}
 		for (var n = 1; n < 10; n++) {
-			if(n == 4 && debug === true) {//debug 
+			/*if(n == 4 && debug === true) {//debug 
 				console.log("\n\n********************************************\nSolve for N"+n+" is "+data[n].inMoreThenOne+"|"+data[n].index+"\n********************************************\n\n")
-			}
+			}*/
 			if(data[n].inMoreThenOne === 1){
 				//console.log("found one")
 				container.tiles[data[n].index].setToken(n)
@@ -307,7 +335,7 @@ var sudokuSolver = function(sudoku){
 	this.solvePassBasic = function(){
 		for (var x = 0; x < 9; x++) {
 			for (var y = 0; y < 9; y++) {
-				if(y === 7) console.log("Solving For r"+9+" c"+x)
+				//if(y === 7) console.log("Solving For r"+9+" c"+x)
 				this.solveForRow(x, y)
 				this.solveForCol(x, y)
 				this.solveForRegion(x, y)
@@ -340,13 +368,13 @@ var sudokuSolver = function(sudoku){
 	this.solveRegionExclusion = function(){
 		var regions = this.getSudoku().getRegions()
 		for (var i = 0; i < 9; i++) {
-			this.excludeGuess(regions[i])
+			this.excludeGuess(regions[i], true)
 		}
 	}
 	this.solveRowExclusion = function(){
 		//var row = this.getSudoku().getRows()
 		for (var i = 0; i < 9; i++) {
-			this.excludeGuess(this.getSudoku().getRow(i), i === 6)
+			this.excludeGuess(this.getSudoku().getRow(i), true, i === 6)
 		}
 	}
 
@@ -355,7 +383,7 @@ var sudokuSolver = function(sudoku){
 	this.solveColExclusion = function(){
 		var col = this.getSudoku().getCols()
 		for (var i = 0; i < 9; i++) {
-			this.excludeGuess(col[i])
+			this.excludeGuess(col[i], true)
 		}
 	}
 	*/
@@ -413,7 +441,8 @@ var tileOBJ = function(){
 
 	this.set = function(val, type){
 		this._value = val;
-		this._type = type;
+		if(typeof(type) == "undefined") this._type = tileOBJ.types.set
+		else this._type = type;
 	}
 	this.get = function(){
 		return {
@@ -435,6 +464,7 @@ var tileOBJ = function(){
 
 	this.setToken=function(v){
 		this._value = v;
+		this._type = tileOBJ.types.set
 	}
 	//row.tiles[rowP] = this;
 	//col.tiles[colP] = this;
@@ -454,9 +484,10 @@ var tileOBJ = function(){
 	}
 
 	this.checkGuessState = function(){
+		//set counter for guess
 		var count = 0;
 		for (var i = 0; i < _guesses.length; i++) {
-			if(_guesses[i]) count++;
+			if(_guesses[i] === true) count++;
 		}
 		if(count > 0) this._type = tileOBJ.types.guess;
 		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;

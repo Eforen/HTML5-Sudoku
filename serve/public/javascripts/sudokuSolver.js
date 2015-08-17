@@ -72,6 +72,7 @@ var sudokuSolver = function(sudoku){
 
 	this.excludeInSet = function(container){
 		var data = []
+
 		//run through set and mark all present tokens as false in data set leave all others null
 		for (var i = 0; i < container.tiles.length; i++) {
 			//If tile is guess then skip it
@@ -85,9 +86,10 @@ var sudokuSolver = function(sudoku){
 		}
 
 		//Kill all bad guesses with the data array
-		for (var i = 0; i < container.tiles.length; i++) {
-			container.tiles[i].setGuesses(data)
-		}
+		for (var i = 0; i < container.tiles.length; i++)
+			if(container.tiles[i].getType() === tileOBJ.types.guess)
+				container.tiles[i].setGuesses(data)
+		
 	}
 
 	this.excludeGuess = function(container, includeGuesses, debug){
