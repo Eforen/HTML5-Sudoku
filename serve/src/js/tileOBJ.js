@@ -223,6 +223,10 @@ var tileOBJ = function(){
 		this.checkGuessState();
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method tileOBJ#checkGuessState
+	 */
 	this.checkGuessState = function(){
 		//set counter for guess
 		var count = 0;
@@ -233,20 +237,38 @@ var tileOBJ = function(){
 		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;
 	}
 
+
+	/**
+	 * @todo Document this method
+	 * @method tileOBJ#unsetGuess
+	 */
 	this.unsetGuess = function(token){
 		_guesses[token] = false;
 		this.checkGuessState();
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method tileOBJ#getGuess
+	 */
 	this.getGuess = function(token){
 		if(typeof(_guesses[token]) == "undefined") return false;
 		if(_guesses[token] === true) return true;
 		return false;
 	}
+
+	/**
+	 * @todo Document this method
+	 * @method tileOBJ#getGuesses
+	 */
 	this.getGuesses = function(){
 		return _guesses;
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method tileOBJ#setGuesses
+	 */
 	this.setGuesses = function(data){
 		if(Array.isArray(data)) {
 			var check = function(token){

@@ -7,6 +7,9 @@ Ariel Lothlorien
 # Current Status
 Base structure testing.
 
+# Documentation
+[Clicking this link](http://htmlpreview.github.io/?https://raw.githubusercontent.com/Eforen/HTML5-Sudoku/master/serve/docs/index.html) will take you to the full documentaion for this project! Its awesome because it is extracted from the code meaning that the code is fully commented and that the docs can link to where the methods, classes, n things are defined with exact line numbers!
+
 # To Do before implimenting GUI
 - [x] Add static serving node.js to allow debugging in chrome without crossdomain issues.
 - [x] Setup Testing for TDD and Browserify.
@@ -15,7 +18,11 @@ Base structure testing.
 - [x] Create tile store
 - [x] Create tile object
 
+- [ ] Create Sudoku solver
+
 - [ ] Load Seed Puzzles from json
+
+- [ ] Create Sudoku Maker
 
 - [ ] Make Areas able to check available numbers and validity of numbers.
 
