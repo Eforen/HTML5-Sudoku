@@ -1,4 +1,32 @@
-console.log("Loaded SudokuSolver.js");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: sudokuSolver.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: sudokuSolver.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>console.log("Loaded SudokuSolver.js");
 var sudokuOBJ = require("./sudokuOBJ.js");
 var tileStore = require("./tileStore.js");
 var tileOBJ   = require("./tileOBJ.js");
@@ -28,8 +56,8 @@ var sudokuSolver = function(sudoku){
 			defaultGuesses[token.i] = true;
 
 		var tile = null;
-		for (var x = 0; x < 9; x++) {
-			for (var y = 0; y < 9; y++) {
+		for (var x = 0; x &lt; 9; x++) {
+			for (var y = 0; y &lt; 9; y++) {
 				tile = su.getTile(x,y);
 				if(tile.getType()!=tileOBJ.types.locked){
 					tile.setGuesses(defaultGuesses);
@@ -63,8 +91,8 @@ var sudokuSolver = function(sudoku){
 
 	this.excludeSet = function(tile, container){
 
-		for (var n = 1; n < 10; n++) {
-			for (var i = 0; i < container.tiles.length; i++) {
+		for (var n = 1; n &lt; 10; n++) {
+			for (var i = 0; i &lt; container.tiles.length; i++) {
 				if(container.tiles[i].getToken() === n || container.tiles[i].getType() === tileOBJ.types.locked || container.tiles[i].getType() === tileOBJ.types.set){
 					console.log("Making "+n+"|"+i+" falsy")
 					tile.setGuess(n, false);
@@ -78,7 +106,7 @@ var sudokuSolver = function(sudoku){
 		var data = []
 
 		//run through set and mark all present tokens as false in data set leave all others null
-		for (var i = 0; i < container.tiles.length; i++) {
+		for (var i = 0; i &lt; container.tiles.length; i++) {
 			//If tile is guess then skip it
 			if(container.tiles[i].getType() === tileOBJ.types.guess){
 				continue
@@ -90,7 +118,7 @@ var sudokuSolver = function(sudoku){
 		}
 
 		//Kill all bad guesses with the data array
-		for (var i = 0; i < container.tiles.length; i++)
+		for (var i = 0; i &lt; container.tiles.length; i++)
 			if(container.tiles[i].getType() === tileOBJ.types.guess)
 				container.tiles[i].setGuesses(data)
 		
@@ -99,12 +127,12 @@ var sudokuSolver = function(sudoku){
 	this.excludeGuess = function(container, includeGuesses, debug){
 		if(includeGuesses == null) includeGuesses = false
 		var data = []
-		for (var n = 1; n < 10; n++) {
+		for (var n = 1; n &lt; 10; n++) {
 			data[n]={
 				inMoreThenOne: 0,
 				index: 0
 			}
-			for (var i = 0; i < container.tiles.length; i++) {
+			for (var i = 0; i &lt; container.tiles.length; i++) {
 				if(container.tiles[i].getType() === tileOBJ.types.guess){
 					if(container.tiles[i].getGuess(n)){
 						data[n].inMoreThenOne++
@@ -121,8 +149,8 @@ var sudokuSolver = function(sudoku){
 				*/
 			}
 		}
-		for (var n = 1; n < 10; n++) {
-			/*if(n == 4 && debug === true) {//debug 
+		for (var n = 1; n &lt; 10; n++) {
+			/*if(n == 4 &amp;&amp; debug === true) {//debug 
 				console.log("\n\n********************************************\nSolve for N"+n+" is "+data[n].inMoreThenOne+"|"+data[n].index+"\n********************************************\n\n")
 			}*/
 			if(data[n].inMoreThenOne === 1){
@@ -134,8 +162,8 @@ var sudokuSolver = function(sudoku){
 	}
 
 	this.solvePassBasic = function(){
-		for (var x = 0; x < 9; x++) {
-			for (var y = 0; y < 9; y++) {
+		for (var x = 0; x &lt; 9; x++) {
+			for (var y = 0; y &lt; 9; y++) {
 				//if(y === 7) console.log("Solving For r"+9+" c"+x)
 				this.solveForRow(x, y)
 				this.solveForCol(x, y)
@@ -144,14 +172,14 @@ var sudokuSolver = function(sudoku){
 		}
 
 		var tile = null;
-		for (var x = 0; x < 9; x++) {
-			for (var y = 0; y < 9; y++) {
+		for (var x = 0; x &lt; 9; x++) {
+			for (var y = 0; y &lt; 9; y++) {
 				tile = this.getSudoku().getTile(x, y)
 				if(tile.getType() === tileOBJ.types.guess){
 					var count = 0
 					var guesses = tile.getGuesses()
 					var lastToken = 0
-					for (var i = 0; i < guesses.length; i++) {
+					for (var i = 0; i &lt; guesses.length; i++) {
 						if(guesses[i]){
 							count++
 							lastToken = i
@@ -168,21 +196,21 @@ var sudokuSolver = function(sudoku){
 
 	this.solveRegionExclusion = function(){
 		var regions = this.getSudoku().getRegions()
-		for (var i = 0; i < 9; i++) {
+		for (var i = 0; i &lt; 9; i++) {
 			this.excludeGuess(regions[i], true)
 		}
 	}
 
 	this.solveRowExclusion = function(){
 		//var row = this.getSudoku().getRows()
-		for (var i = 0; i < 9; i++) {
+		for (var i = 0; i &lt; 9; i++) {
 			this.excludeGuess(this.getSudoku().getRow(i), true)
 		}
 	}
 
 	this.solveColExclusion = function(){
 		//var row = this.getSudoku().getRows()
-		for (var i = 0; i < 9; i++) {
+		for (var i = 0; i &lt; 9; i++) {
 			this.excludeGuess(this.getSudoku().getCol(i), true)
 		}
 	}
@@ -191,7 +219,7 @@ var sudokuSolver = function(sudoku){
 
 	this.solveColExclusion = function(){
 		var col = this.getSudoku().getCols()
-		for (var i = 0; i < 9; i++) {
+		for (var i = 0; i &lt; 9; i++) {
 			this.excludeGuess(col[i], true)
 		}
 	}
@@ -204,4 +232,26 @@ var sudokuSolver = function(sudoku){
 	//End of Constructor
 }
 
-module.exports = sudokuSolver;
+module.exports = sudokuSolver;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="puzzleMaker.html">puzzleMaker</a></li><li><a href="sudokuOBJ.html">sudokuOBJ</a></li><li><a href="sudokuSolver.html">sudokuSolver</a></li><li><a href="tileOBJ.html">tileOBJ</a></li><li><a href="tileStore.html">tileStore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#tokenENUM">tokenENUM</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Thu Aug 20 2015 12:12:29 GMT-1000 (Hawaiian Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

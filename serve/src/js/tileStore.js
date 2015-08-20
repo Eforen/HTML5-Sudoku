@@ -1,15 +1,15 @@
 console.log("Loaded tileStore.js");
 
 /**
- * tileStore
+ * This object stores an amount of tiles it is intended to hold 9 tiles but nothing is stopping it from holding more.
  * @module tileStore
  * @class
  */
 var tileStore = function(){
 	/**
-	 * Gets all valid tokens.
+	 * Gets all remaining valid tokens.
 	 * @method tileStore#available
-	 * @returns {Array} some stuff.
+	 * @returns {number[]} some stuff.
 	 */
 	this.available = function(){
 		var av = [];
@@ -21,9 +21,9 @@ var tileStore = function(){
 	}
 	
 	/**
-	 * Stores all 9 tiles as an array of tileObj.
+	 * Stores all 9 tiles as an array of {@link tileObj}.
 	 * @member tileStore#tiles
-	 * @type {Array}
+	 * @type {tileOBJ[]}
 	 */
 	this.tiles = [];
 }

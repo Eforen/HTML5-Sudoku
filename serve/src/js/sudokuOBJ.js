@@ -4,7 +4,7 @@ var tileOBJ   = require("./tileOBJ.js");
 var token = require("./tokenENUM.js");
 
 /**
- * sudokuOBJ
+ * The core object that holds the data to describe a sudoku.
  * @class
  */
 var sudokuOBJ = function(){
@@ -58,7 +58,7 @@ var sudokuOBJ = function(){
 	 * Gets a row in the Sudoku Object as an tileStore.
 	 * @method sudokuOBJ#getRow
 	 * @param {number} index - The index of the target row also can be refured to as the tiles Y position.
-	 * @returns {tileStore} 
+	 * @returns {tileStore} The returned tileStore.
 	 */
 	this.getRow=function(index){
 		return rows[index];
@@ -77,16 +77,28 @@ var sudokuOBJ = function(){
 	 * Gets a column in the Sudoku Object as an tileStore.
 	 * @method sudokuOBJ#getCol
 	 * @param {number} index - The index of the target column also can be refured to as the tiles X position.
+	 * @returns {tileStore} The returned tileStore.
 	 */
 	this.getCol=function(index){
 		return cols[index];
 	}
 
-	/** @method sudokuOBJ#getRegions */
+	/**
+	 * Gets all regions in the Sudoku Object. 
+	 * @method sudokuOBJ#getRegions
+	 * @returns {tileStore[]} 9 tileStore objects in as elements.
+	 */
 	this.getRegions=function(){
 		return regions;
 	}
 
+	/**
+	 * Gets a region in the Sudoku Object as an {@link tileStore}.
+	 * @method sudokuOBJ#getRegion
+	 * @param {number} posX - The X position of the target region.
+	 * @param {number} posY - The Y position of the target region.
+	 * @returns {tileStore} The returned tileStore.
+	 */
 	this.getRegion=function(posX, posY){
 		if(typeof posY === "undefined") return regions[posX];
 
@@ -95,6 +107,15 @@ var sudokuOBJ = function(){
 		return regions[3*posY+posX];
 	}
 
+
+
+	/**
+	 * Internal method used to setup the tiles in a sudokuOBJ to the desired starting state.
+	 * @method sudokuOBJ#putTile
+	 * @param {number} x - The X position of the target tile.
+	 * @param {number} y - The Y position of the target tile.
+	 * @private
+	 */
 	this.putTile = function(x, y){
 		var r = rows[y];
 		var c = cols[x];
@@ -115,58 +136,65 @@ var sudokuOBJ = function(){
 		}
 	}
 
+
+	/**
+	 * Gets a tile.
+	 * @method sudokuOBJ#getTile
+	 * @param {number} x - The X position of the target tile.
+	 * @param {number} y - The Y position of the target tile.
+	 */
 	this.getTile = function(x, y){
 		var r = this.getRow(y)
 		return r.tiles[x];
 	}
 
-	this.debugDataSet = function(data){
-		var r = "|"
-		for (var i = 0; i < data.length; i++) {
-			if(data == null) continue
-			if(data[i].getType() === tileOBJ.types.locked || data[i].getType() === tileOBJ.types.set) r += data[i].getToken()
-			if(data[i].getType() === tileOBJ.types.guess){
-				for (var n = 1; n <= 9; n++) {
-					if(data[i].getGuess(n)) r += n
-				}
-			}
-			r += "|"
-		}
-		return r
-	}
-
-	/** @memberof sudokuOBJ# */
+	/**
+	 * This gets a {@link tileStore} as a string. This method is used in the debug methods.
+	 * @method sudokuOBJ#debugRow
+	 * @param {tileStore} y - The X position of the target row.
+	 */
 	this.debugRow = function(y){
-		return this.debugDataSet(this.getRow(y).tiles)
+		return sudokuOBJ.debugDataSet(this.getRow(y).tiles)
 	}
 
-	/** @memberof sudokuOBJ# */
+	/**
+	 * This gets a column as a string via [sudoku.debugDataSet(data)]{@link debugDataSet}.
+	 * @method sudokuOBJ#debugCol
+	 * @param {number} x - The X position of the target column.
+	 */
 	this.debugCol = function(x){
-		return this.debugDataSet(this.getCol(x).tiles)
+		return sudokuOBJ.debugDataSet(this.getCol(x).tiles)
 	}
 
-	/** @memberof sudokuOBJ# */
+	/**
+	 * This gets a {@link tileStore} as a string. This method is used in the debug methods.
+	 * @method sudokuOBJ#debugRegion
+	 * @param {number} x - The X position of the target region.
+	 * @param {number} y - The Y position of the target region.
+	 */
 	this.debugRegion = function(x, y){
-		return this.debugDataSet(this.getRegion(x, y).tiles)
+		return sudokuOBJ.debugDataSet(this.getRegion(x, y).tiles)
 	}
 
-	/** @memberof sudokuOBJ# */
+	/**
+	 * This gets this sudokuOBJ as a string. This method is used in the debug primarily.
+	 * @example
+	 * *---*---*---*
+	 * |043|000|620|
+	 * |700|403|008|
+	 * |600|208|007|
+	 * *---+---+---*
+	 * |075|000|340|
+	 * |000|000|000|
+	 * |098|000|570|
+	 * *---+---+---*
+	 * |900|507|003|
+	 * |100|602|005|
+	 * |087|000|260|
+	 * *---*---*---*
+	 * @method sudokuOBJ#getStructure
+	 */
 	this.getStructure = function(){
-		/*
-*---*---*---*
-|043|000|620|
-|700|403|008|
-|600|208|007|
-*---+---+---*
-|075|000|340|
-|000|000|000|
-|098|000|570|
-*---+---+---*
-|900|507|003|
-|100|602|005|
-|087|000|260|
-*---*---*---*
-		*/
 		
 		var r = "*---*---*---*\n"
 		var row //storage for a row
@@ -190,7 +218,14 @@ var sudokuOBJ = function(){
 	var debug = "breakpointable";
 }
 
-	/** @static sudokuOBJ# */
+/**
+ * This static method loads a sudoku from an object
+ * @static sudokuOBJ#loadFromOBJ
+ * @param {Object} obj - Puzzle data in an object to be loaded.
+ * @param {String} obj.name - The name of the puzzle.
+ * @param {String} obj.puzzle - The data in the form of a string of 81 intergers 0 through 9, where 0 is an empty tile and 1-9 are tokens.
+ * @returns {sudokuOBJ}
+ */
 sudokuOBJ.loadFromOBJ = function(obj){
 	var su = new sudokuOBJ();
 
@@ -231,6 +266,43 @@ sudokuOBJ.loadFromOBJ = function(obj){
 	}
 
 	return su;
+}
+
+/**
+ * This static method loads a sudoku from a JSON string
+ * @todo This function has not been implimented yet.
+ * @todo Parse JSON string and send it to {@link sudokuOBJ#loadFromOBJ}
+ * @static sudokuOBJ#loadFromJSON
+ * @param {JSON} jobj - Puzzle data in a JSON string to be loaded.
+ * @param {String} jobj.name - The name of the puzzle.
+ * @param {String} jobj.puzzle - The data in the form of a string of 81 intergers 0 through 9, where 0 is an empty tile and 1-9 are tokens.
+ * @returns {sudokuOBJ}
+ */
+sudokuOBJ.loadFromJSON = function(jobj){
+}
+
+/**
+ * This gets a {@link tileStore} as a string. This method is used in the debug methods.
+ * @example This example shows how it would look with just locks and sets.
+ * ||4|3||||6|2||
+ * @example This example shows both locks/sets and guesses.
+ * |58|4|3|179|1579|159|6|2|19|
+ * @static sudokuOBJ#getTile
+ * @param {tileStore} data - The tileStore to be debuged.
+ */
+sudokuOBJ.debugDataSet = function(data){
+	var r = "|"
+	for (var i = 0; i < data.length; i++) {
+		if(data == null) continue
+		if(data[i].getType() === tileOBJ.types.locked || data[i].getType() === tileOBJ.types.set) r += data[i].getToken()
+		if(data[i].getType() === tileOBJ.types.guess){
+			for (var n = 1; n <= 9; n++) {
+				if(data[i].getGuess(n)) r += n
+			}
+		}
+		r += "|"
+	}
+	return r
 }
 
 module.exports = sudokuOBJ;

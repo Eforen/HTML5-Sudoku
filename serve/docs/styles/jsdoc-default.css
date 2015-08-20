@@ -384,3 +384,12 @@ article dl {
 .details li { margin-left: 30px; padding-top: 6px; }
 .details pre.prettyprint { margin: 0 }
 .details .object-value { padding-top: 0; }
+
+.tag-todo {
+    color: #F55;
+    font-weight: bold;
+}
+
+dd.tag-todo ul li:before {
+    content:'► ';
+}

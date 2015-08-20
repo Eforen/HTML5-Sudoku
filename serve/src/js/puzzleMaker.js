@@ -1,7 +1,7 @@
 /**
  * Puzzle Maker
  * {Not Implimented Yet}
- * @module puzzleMaker
+ * @class puzzleMaker
  */
 
 var puzzleMaker = function () {
