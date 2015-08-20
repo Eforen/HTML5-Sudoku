@@ -2,21 +2,21 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     browserify: {
-      'public/javascripts/bundle.js': ['public/javascripts/app.js']
+      'public/javascripts/bundle.js': ['src/js/app.js']
     },
     watch: {
       main: {
         options: {
           livereload: true,
         },
-        files: [ "public/javascripts/*.js", "!public/javascripts/bundle.js"],
+        files: [ "src/js/**/*.js", "!public/javascripts/bundle.js"],
         tasks: [ 'browserify' ]
       },
       test: {
         options: {
           spawn: false,
         },
-        files: [ "public/javascripts/*.js", "test/*.js", "!public/javascripts/bundle.js"],
+        files: [ "src/js/**/*.js", "test/**/*.js", "!public/javascripts/bundle.js"],
         tasks: [ 'clear', 'mochaTest:all', 'jshint:codeBase' ]
       }
     },
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       },
       codeBase: {
         files: {
-          src: [ "public/javascripts/*.js", "!public/javascripts/bundle.js" ]
+          src: [ "src/js/**/*.js", "!public/javascripts/bundle.js" ]
         }
       },
       bundle:{

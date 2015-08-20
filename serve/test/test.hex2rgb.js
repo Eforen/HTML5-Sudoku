@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var hex2rgb = require("../src/lib/hex2rgb");
+var hex2rgb = require("../src/js/lib/hex2rgb");
 
 describe("hex to rgb conversion", function() {
 	it("should fail with less than 3 characters", function(done){

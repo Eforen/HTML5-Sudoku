@@ -1,10 +1,10 @@
 var expect = require("chai").expect;
 
-var sudoku = require("../public/javascripts/sudokuOBJ.js");
-var tileStore = require("../public/javascripts/tileStore.js");
-var tileOBJ = require("../public/javascripts/tileOBJ.js");
+var sudoku = require("../src/js/sudokuOBJ.js");
+var tileStore = require("../src/js/tileStore.js");
+var tileOBJ = require("../src/js/tileOBJ.js");
 
-var tokens = require("../public/javascripts/tokenENUM.js");
+var tokens = require("../src/js/tokenENUM.js");
 
 describe("tile Object", function() {
 
