@@ -168,10 +168,18 @@ var sudokuSolver = function(sudoku){
 			this.excludeGuess(regions[i], true)
 		}
 	}
+
 	this.solveRowExclusion = function(){
 		//var row = this.getSudoku().getRows()
 		for (var i = 0; i < 9; i++) {
-			this.excludeGuess(this.getSudoku().getRow(i), true, i === 6)
+			this.excludeGuess(this.getSudoku().getRow(i), true)
+		}
+	}
+
+	this.solveColExclusion = function(){
+		//var row = this.getSudoku().getRows()
+		for (var i = 0; i < 9; i++) {
+			this.excludeGuess(this.getSudoku().getCol(i), true)
 		}
 	}
 
