@@ -1,7 +1,7 @@
 # HTML5-Sudoku
 Simple React.js Sudoku app writen with Legit TDD and full documentation.
 
-#Author
+# Author
 Ariel Lothlorien
 
 # Documentation

@@ -83,6 +83,7 @@ module.exports = function(grunt) {
           private: true,
           verbose: true,
           template : "docs-template",
+          readme: "../README.md"//,
           //configure : "jsdoc.conf.json"
         }
       }
