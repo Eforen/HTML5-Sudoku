@@ -73,6 +73,19 @@ module.exports = function(grunt) {
         },
         src:['test/**/*.js']
       }
+    },
+    jsdoc : {
+      dist : {
+        src: ['src/**/*.js'],
+        jsdoc: 'node_modules/.bin/jsdoc',
+        options: {
+          destination: 'docs',
+          private: true,
+          verbose: true,
+          template : "docs-template",
+          //configure : "jsdoc.conf.json"
+        }
+      }
     }
   })
 
@@ -83,11 +96,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-exec')
   grunt.loadNpmTasks('grunt-mocha-test')
+  grunt.loadNpmTasks('grunt-jsdoc')
 
 
   grunt.registerTask('default', ['jshint:codeBase', 'mochaTest:all', 'browserify', 'uglify', 'jshint:bundle']);
   grunt.registerTask('develop', ['browserify', 'concurrent:develop']);
   grunt.registerTask('developTest', ['browserify', 'concurrent:developTest']);
+  grunt.registerTask('buildDocs', ['jsdoc']);
   
   //grunt.registerTask('test', ['watch:test']);
   grunt.registerTask('test', 'runs my tasks', function () {
