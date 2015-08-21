@@ -798,7 +798,7 @@ describe("sudoku solver", function() {
 		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
 		expect(su.debugRow(4)).to.equal("|34|16|16|1379|123579|14569|189|18|1269|")
 		expect(su.debugRow(5)).to.equal("|34|9|8|13|123|146|5|7|126|")
-		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
+		expect(su.debugRow(6)).to.equal("|9|6|26|5|4|7|18|18|3|")
 		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
 		expect(su.debugRow(8)).to.equal("|5|8|7|139|139|19|2|6|4|")
 
@@ -811,16 +811,15 @@ describe("sudoku solver", function() {
 											"|000|000|000|\n"+
 											"|098|000|570|\n"+
 											"*---+---+---*\n"+
-											"|900|547|003|\n"+
+											"|960|547|003|\n"+
 											"|134|682|795|\n"+
 											"|587|000|264|\n"+
 											"*---*---*---*\n");
 
 		done()
 	})
-/*
 
-	it("pass #17 Basic Pass should show no change in set", function(done){
+	it("pass #17 Basic Pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -838,10 +837,35 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solveColExclusion();
 		solve.solvePassBasic();
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|1579|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
+		expect(su.debugRow(4)).to.equal("|34|1|16|1379|123579|14569|189|18|1269|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|123|146|5|7|126|")
+		expect(su.debugRow(6)).to.equal("|9|6|2|5|4|7|18|18|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|139|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|620|\n"+
+											"|700|463|058|\n"+
+											"|650|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|010|000|000|\n"+
+											"|098|000|570|\n"+
+											"*---+---+---*\n"+
+											"|962|547|003|\n"+
+											"|134|682|795|\n"+
+											"|587|000|264|\n"+
+											"*---*---*---*\n");
 
 		done()
 	})
 
+/*
 	it("pass #18 Region Exclusion Pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();

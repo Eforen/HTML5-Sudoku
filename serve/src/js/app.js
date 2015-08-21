@@ -1,4 +1,9 @@
-window.sudokuOBJ = require("./sudokuOBJ.js");
+/**
+ * @file Main App Code
+ * @author Ariel Lothlorien
+ */
+
+ window.sudokuOBJ = require("./sudokuOBJ.js");
 window.sudokuSolver = require("./sudokuSolver.js");
 window.token = require("./tokenENUM.js");
 

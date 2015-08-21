@@ -1,4 +1,7 @@
-
+/**
+ * @file tokenENUM Code
+ * @author Ariel Lothlorien
+ */
 
 /**
  * Enum of Token Values

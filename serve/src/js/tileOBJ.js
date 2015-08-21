@@ -1,10 +1,14 @@
-console.log("Loaded tileOBJ.js");
+/**
+ * @file tileOBJ Code
+ * @author Ariel Lothlorien
+ */
+
+ console.log("Loaded tileOBJ.js");
 
 var tokens = require("./tokenENUM.js");
 
 /**
  * This object stores data to describe a tile in the sudoku.
- * @todo Document this object
  * @module tileOBJ
  * @class
  */
@@ -194,13 +198,6 @@ var tileOBJ = function(){
 		this._value = v;
 		this._type = tileOBJ.types.set
 	}
-	//row.tiles[rowP] = this;
-	//col.tiles[colP] = this;
-	//var areaP = parseInt(rowP/3) + parseInt(colP % 3);
-	//area = 
-	//TODO: Make Areas make sense!
-	
-	//this.tiles = [];
 
 	/**
 	 * Stores the tiles guesses as token values.
@@ -211,10 +208,10 @@ var tileOBJ = function(){
 	var _guesses = [];
 
 	/**
-	 * Stores the type of this tile.
-	 * @method tileOBJ#set
+	 * Stores a guess for this tile.
+	 * @method tileOBJ#setGuess
 	 * @param {tokenENUM} val - The desired token for this tile.
-	 * @param {tileOBJ.types} [type=tileOBJ.types.set] - (Optional) The desired type for this tile.
+	 * @param {boolean} [state=true] - (Optional) The desired state of this guess for tile.
 	 */
 	this.setGuess = function(token, state){
 		if(typeof(state) == "undefined") state = true;
@@ -224,8 +221,9 @@ var tileOBJ = function(){
 	}
 
 	/**
-	 * @todo Document this method
+	 * This method is used in guess manipulation functions to check it the tiles type should be changed.
 	 * @method tileOBJ#checkGuessState
+	 * @private 
 	 */
 	this.checkGuessState = function(){
 		//set counter for guess
@@ -239,7 +237,9 @@ var tileOBJ = function(){
 
 
 	/**
-	 * @todo Document this method
+	 * This function will unset the provided token.
+	 * This is just a simple helper funtion that basicly calls instance.[setGuess]{@link tileOBJ#set}(token, false)
+	 * @see {@link tileOBJ#setGuess}
 	 * @method tileOBJ#unsetGuess
 	 */
 	this.unsetGuess = function(token){
@@ -248,8 +248,10 @@ var tileOBJ = function(){
 	}
 
 	/**
-	 * @todo Document this method
+	 * Gets state of the token provided.
 	 * @method tileOBJ#getGuess
+	 * @param {tokenENUM} token - The token to retrieve state of.
+	 * @return {boolean} If the token provided token is a guess on this tile and if it is an active guess.
 	 */
 	this.getGuess = function(token){
 		if(typeof(_guesses[token]) == "undefined") return false;
@@ -258,15 +260,37 @@ var tileOBJ = function(){
 	}
 
 	/**
-	 * @todo Document this method
+	 * Retreves all the guesses for the current tile in an array.
+	 * @example
+	 * [null,true,true,true,true,true,true,true,true,true]
 	 * @method tileOBJ#getGuesses
+	 * @return the array of guesses
 	 */
 	this.getGuesses = function(){
 		return _guesses;
 	}
 
 	/**
-	 * @todo Document this method
+	 * Sets guesses using an array.
+	 * @example
+	 * tile = new Tile();
+	 * ...
+	 * var arr = [];
+	 *
+	 * // The array does not need to contain a value for all 9 tokens. Only values set in the array are touched.
+	 * arr[tokenENUM.c] = true;
+	 * arr[tokenENUM.d] = true;
+	 * arr[tokenENUM.i] = true;
+	 *
+	 * // You can insure that a token is false by setting it in the array to false
+	 * arr[tokenENUM.f] = false;
+	 *
+	 * console.log(arr);
+	 * // Output: [null,null,null,true,true,null,false,null,null,true]
+	 * tile.setGuesses(arr);
+	 *
+	 * console.log(tile.getGuesses());
+	 * // Output: [null,false,false,true,true,false,false,false,false,true]
 	 * @method tileOBJ#setGuesses
 	 */
 	this.setGuesses = function(data){
@@ -314,8 +338,27 @@ var tileOBJ = function(){
 	}
 }
 
+
+
 /**
  * Enum of Tile Types
+ * @name Tile Types
+ * @readonly
+ * @prop {number} tileOBJ.types.blank 1
+ * @prop {number} tileOBJ.types.set 2
+ * @prop {number} tileOBJ.types.guess 3
+ * @prop {number} tileOBJ.types.locked 4
+ * @enum {number}
+ * @see {@link tileOBJ#types}
+ * @global
+ */
+/**
+ * Enum of Tile Types
+ * @prop {number} blank 1
+ * @prop {number} set 2
+ * @prop {number} guess 3
+ * @prop {number} locked 4
+ * @name tileOBJ.types
  * @readonly
  * @enum {number}
  */

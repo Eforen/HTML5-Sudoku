@@ -1,3 +1,8 @@
+/**
+ * @file SudokuSolver Code
+ * @author Ariel Lothlorien
+ */
+
 console.log("Loaded SudokuSolver.js");
 var sudokuOBJ = require("./sudokuOBJ.js");
 var tileStore = require("./tileStore.js");
@@ -5,16 +10,27 @@ var tileOBJ   = require("./tileOBJ.js");
 var token = require("./tokenENUM.js");
 
 /**
+ * Holds all the logic to solve a sudoku or preform parts of solving.
  * @todo Document this object
  * @class
  */
+ 
 var sudokuSolver = function(sudoku){
 	//Private Vars
+	/**
+	 * @todo Document this member
+	 * @member sudokuSolver#su
+	 * @private
+	 */
 	var su = sudoku;
 
 	//Public Vars
 
 	//Methods
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#prepSudoku
+	 */
 	this.prepSudoku=function(){
 		var defaultGuesses = [];
 			defaultGuesses[token.a] = true;
@@ -39,28 +55,48 @@ var sudokuSolver = function(sudoku){
 	}
 
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#getSudoku
+	 */
 	this.getSudoku = function(){
 		return su;
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#solveForRow
+	 */
 	this.solveForRow = function(x, y){
 		//var row = su.getRow(y);
 		var tile = su.getTile(x, y);
 		this.excludeInSet(tile.getRow());
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#solveForCol
+	 */
 	this.solveForCol = function(x, y){
 		//var col = su.getCol(x);
 		var tile = su.getTile(x, y);
 		this.excludeInSet(tile.getCol());
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#solveForRegion
+	 */
 	this.solveForRegion = function(x, y){
 		//var region = su.getRegion(parseInt(x/3)-1, parseInt(y/3)-1);
 		var tile = su.getTile(x, y);
 		this.excludeInSet(tile.getRegion());
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#excludeSet
+	 */
 	this.excludeSet = function(tile, container){
 
 		for (var n = 1; n < 10; n++) {
@@ -74,6 +110,10 @@ var sudokuSolver = function(sudoku){
 		}
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#excludeInSet
+	 */
 	this.excludeInSet = function(container){
 		var data = []
 
@@ -96,6 +136,10 @@ var sudokuSolver = function(sudoku){
 		
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#excludeGuess
+	 */
 	this.excludeGuess = function(container, includeGuesses, debug){
 		if(includeGuesses == null) includeGuesses = false
 		var data = []
@@ -133,6 +177,10 @@ var sudokuSolver = function(sudoku){
 		}
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#solvePassBasic
+	 */
 	this.solvePassBasic = function(){
 		for (var x = 0; x < 9; x++) {
 			for (var y = 0; y < 9; y++) {
@@ -166,6 +214,10 @@ var sudokuSolver = function(sudoku){
 		}
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#solveRegionExclusion
+	 */
 	this.solveRegionExclusion = function(){
 		var regions = this.getSudoku().getRegions()
 		for (var i = 0; i < 9; i++) {
@@ -173,6 +225,10 @@ var sudokuSolver = function(sudoku){
 		}
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#solveRowExclusion
+	 */
 	this.solveRowExclusion = function(){
 		//var row = this.getSudoku().getRows()
 		for (var i = 0; i < 9; i++) {
@@ -180,22 +236,15 @@ var sudokuSolver = function(sudoku){
 		}
 	}
 
+	/**
+	 * @todo Document this method
+	 * @method sudokuSolver#solveColExclusion
+	 */
 	this.solveColExclusion = function(){
-		//var row = this.getSudoku().getRows()
 		for (var i = 0; i < 9; i++) {
 			this.excludeGuess(this.getSudoku().getCol(i), true)
 		}
 	}
-
-	/*
-
-	this.solveColExclusion = function(){
-		var col = this.getSudoku().getCols()
-		for (var i = 0; i < 9; i++) {
-			this.excludeGuess(col[i], true)
-		}
-	}
-	*/
 
 	//Start of Constructor
 

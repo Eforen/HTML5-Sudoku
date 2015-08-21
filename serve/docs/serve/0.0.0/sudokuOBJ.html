@@ -1,0 +1,2606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 Sudoku App: Class: sudokuOBJ</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: sudokuOBJ</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        sudokuOBJ
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="sudokuOBJ"><span class="type-signature"></span>new sudokuOBJ<span class="signature">()</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        The core object that holds the data to describe a sudoku.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+        <div class="subsection-content Members">
+            
+                
+<div class="member section">
+    <h4 class="name" id="cols"><span class="type-signature">(private) </span>cols<span class="type-signature"> :Array.&lt;<a href="tileStore.html">tileStore</a>></span></h4>
+
+    
+
+    
+    <div class="description">
+        Stores all 9 columns as an array of tileStores
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="tileStore.html">tileStore</a>></span>
+
+
+            </li>
+        </ul>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</div>
+
+            
+                
+<div class="member section">
+    <h4 class="name" id="regions"><span class="type-signature">(private) </span>regions<span class="type-signature"> :Array.&lt;<a href="tileStore.html">tileStore</a>></span></h4>
+
+    
+
+    
+    <div class="description">
+        Stores all 9 regions as an array of tileStores
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="tileStore.html">tileStore</a>></span>
+
+
+            </li>
+        </ul>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</div>
+
+            
+                
+<div class="member section">
+    <h4 class="name" id="rows"><span class="type-signature">(private) </span>rows<span class="type-signature"> :Array.&lt;<a href="tileStore.html">tileStore</a>></span></h4>
+
+    
+
+    
+    <div class="description">
+        Stores all 9 rows as an array of tileStores
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="tileStore.html">tileStore</a>></span>
+
+
+            </li>
+        </ul>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</div>
+
+            
+        </div>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+        <div class="subsection-content Methods">
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id=".debugDataSet"><span class="type-signature">(static) </span>debugDataSet<span class="signature">(data)</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        This gets a <a href="tileStore.html">tileStore</a> as a string. This method is used in the debug methods.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="tileStore.html">tileStore</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The tileStore to be debuged.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line298">line 298</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>This example shows how it would look with just locks and sets.||4|3||||6|2||</code></pre>
+
+    <pre class="prettyprint"><code>This example shows both locks/sets and guesses.|58|4|3|179|1579|159|6|2|19|</code></pre>
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id=".loadFromJSON"><span class="type-signature">(static) </span>loadFromJSON<span class="signature">(jobj)</span><span class="type-signature"> &rarr; {<a href="sudokuOBJ.html">sudokuOBJ</a>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        This static method loads a sudoku from a JSON string
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>jobj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">JSON</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Puzzle data in a JSON string to be loaded.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of the puzzle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>puzzle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data in the form of a string of 81 intergers 0 through 9, where 0 is an empty tile and 1-9 are tokens.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line286">line 286</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-todo">To Do:</dt>
+    <dd class="tag-todo">
+        <ul>
+            <li>This function has not been implimented yet.</li>
+        
+            <li>Parse JSON string and send it to sudokuOBJ#loadFromOBJ</li>
+        </ul>
+    </dd>
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="sudokuOBJ.html">sudokuOBJ</a></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id=".loadFromOBJ"><span class="type-signature">(static) </span>loadFromOBJ<span class="signature">(obj)</span><span class="type-signature"> &rarr; {<a href="sudokuOBJ.html">sudokuOBJ</a>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        This static method loads a sudoku from an object
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Puzzle data in an object to be loaded.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of the puzzle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>puzzle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data in the form of a string of 81 intergers 0 through 9, where 0 is an empty tile and 1-9 are tokens.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line234">line 234</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="sudokuOBJ.html">sudokuOBJ</a></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="debugCol"><span class="type-signature"></span>debugCol<span class="signature">(x)</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        This gets a column as a string via sudoku.debugDataSet(data).
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The X position of the target column.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line165">line 165</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="debugRegion"><span class="type-signature"></span>debugRegion<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        This gets a <a href="tileStore.html">tileStore</a> as a string. This method is used in the debug methods.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The X position of the target region.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Y position of the target region.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line174">line 174</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="debugRow"><span class="type-signature"></span>debugRow<span class="signature">(y)</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        This gets a <a href="tileStore.html">tileStore</a> as a string. This method is used in the debug methods.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="tileStore.html">tileStore</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The X position of the target row.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line156">line 156</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getCol"><span class="type-signature"></span>getCol<span class="signature">(index)</span><span class="type-signature"> &rarr; {<a href="tileStore.html">tileStore</a>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Gets a column in the Sudoku Object as an tileStore.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The index of the target column also can be refured to as the tiles X position.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line81">line 81</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The returned tileStore.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="tileStore.html">tileStore</a></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getCols"><span class="type-signature"></span>getCols<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="tileStore.html">tileStore</a>>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Gets all columns in the Sudoku Object.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line72">line 72</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    9 tileStore objects in as elements.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="tileStore.html">tileStore</a>></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getRegion"><span class="type-signature"></span>getRegion<span class="signature">(posX, posY)</span><span class="type-signature"> &rarr; {<a href="tileStore.html">tileStore</a>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Gets a region in the Sudoku Object as an <a href="tileStore.html">tileStore</a>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>posX</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The X position of the target region.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>posY</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Y position of the target region.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The returned tileStore.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="tileStore.html">tileStore</a></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getRegions"><span class="type-signature"></span>getRegions<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="tileStore.html">tileStore</a>>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Gets all regions in the Sudoku Object.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line91">line 91</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    9 tileStore objects in as elements.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="tileStore.html">tileStore</a>></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getRow"><span class="type-signature"></span>getRow<span class="signature">(index)</span><span class="type-signature"> &rarr; {<a href="tileStore.html">tileStore</a>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Gets a row in the Sudoku Object as an tileStore.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The index of the target row also can be refured to as the tiles Y position.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The returned tileStore.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="tileStore.html">tileStore</a></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getRows"><span class="type-signature"></span>getRows<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="tileStore.html">tileStore</a>>}</span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Gets all Rows in the Sudoku Object.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    9 tileStore objects in as elements.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="tileStore.html">tileStore</a>></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getStructure"><span class="type-signature"></span>getStructure<span class="signature">()</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        This gets this sudokuOBJ as a string. This method is used in the debug primarily.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line184">line 184</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>*---*---*---*|043|000|620||700|403|008||600|208|007|*---+---+---*|075|000|340||000|000|000||098|000|570|*---+---+---*|900|507|003||100|602|005||087|000|260|*---*---*---*</code></pre>
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="getTile"><span class="type-signature"></span>getTile<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Gets a tile.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The X position of the target tile.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Y position of the target tile.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line145">line 145</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+            
+                
+<div class="method section">
+    
+        
+
+        <h4 class="name" id="putTile"><span class="type-signature">(private) </span>putTile<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+
+        
+    
+
+    
+    <div class="description">
+        Internal method used to setup the tiles in a sudokuOBJ to the desired starting state.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The X position of the target tile.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Y position of the target tile.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sudokuOBJ.js.html">sudokuOBJ.js</a>, <a href="sudokuOBJ.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+            
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="puzzleMaker.html">puzzleMaker</a></li><li><a href="sudokuOBJ.html">sudokuOBJ</a></li><li><a href="sudokuSolver.html">sudokuSolver</a></li><li><a href="tileOBJ.html">tileOBJ</a></li><li><a href="tileStore.html">tileStore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#TileTypes">Tile Types</a></li><li><a href="global.html#tokenENUM">tokenENUM</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Fri Aug 21 2015 13:21:45 GMT-1000 (Hawaiian Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

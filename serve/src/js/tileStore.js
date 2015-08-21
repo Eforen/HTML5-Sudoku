@@ -1,4 +1,9 @@
-console.log("Loaded tileStore.js");
+/**
+ * @file tileStore Code
+ * @author Ariel Lothlorien
+ */
+
+ console.log("Loaded tileStore.js");
 
 /**
  * This object stores an amount of tiles it is intended to hold 9 tiles but nothing is stopping it from holding more.

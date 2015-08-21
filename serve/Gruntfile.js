@@ -9,15 +9,31 @@ module.exports = function(grunt) {
         options: {
           livereload: true,
         },
-        files: [ "src/js/**/*.js", "!public/javascripts/bundle.js"],
+        files: [ "src/js/**/*.js"],
         tasks: [ 'browserify' ]
       },
       test: {
         options: {
           spawn: false,
         },
-        files: [ "src/js/**/*.js", "test/**/*.js", "!public/javascripts/bundle.js"],
+        files: [ "src/js/**/*.js", "test/**/*.js"],
         tasks: [ 'clear', 'mochaTest:all', 'jshint:codeBase' ]
+      },
+      doc: {
+        options: {
+          spawn: false,
+          livereload: true
+        },
+        files: [ "src/js/**/*.js"],
+        tasks: [ 'jsdoc:all' ]
+      },
+      testndoc: {
+        options: {
+          spawn: false,
+          livereload: 35730
+        },
+        files: [ "src/js/**/*.js", "test/**/*.js"],
+        tasks: [ 'clear', 'mochaTest:all', 'jshint:codeBase', 'jsdoc:all' ]
       }
     },
     exec: {
@@ -75,7 +91,7 @@ module.exports = function(grunt) {
       }
     },
     jsdoc : {
-      dist : {
+      all : {
         src: ['src/**/*.js'],
         jsdoc: 'node_modules/.bin/jsdoc',
         options: {
@@ -83,7 +99,8 @@ module.exports = function(grunt) {
           private: true,
           verbose: true,
           template : "docs-template",
-          readme: "../README.md"//,
+          readme: "../README.md",
+          package: "package.json"
           //configure : "jsdoc.conf.json"
         }
       }
@@ -104,10 +121,21 @@ module.exports = function(grunt) {
   grunt.registerTask('develop', ['browserify', 'concurrent:develop']);
   grunt.registerTask('developTest', ['browserify', 'concurrent:developTest']);
   grunt.registerTask('buildDocs', ['jsdoc']);
+  grunt.registerTask('watchDoc', ['watch:doc']);
   
   //grunt.registerTask('test', ['watch:test']);
   grunt.registerTask('test', 'runs my tasks', function () {
       var tasks = ['mochaTest:all', 'jshint:codeBase', 'watch:test'];
+
+      // Use the force option for all tasks declared in the previous line
+      // This allows tests to fail and still run jshint after
+      grunt.option('force', true);
+
+      grunt.task.run(tasks);
+  });
+
+  grunt.registerTask('testndoc', 'runs my tasks', function () {
+      var tasks = ['mochaTest:all', 'jshint:codeBase', 'watch:testndoc'];
 
       // Use the force option for all tasks declared in the previous line
       // This allows tests to fail and still run jshint after
@@ -122,7 +150,7 @@ module.exports = function(grunt) {
   var defaultJsHintSrc = grunt.config('jshint.codeBase.files.src');
   // on watch:test events configure mochaTest.all to only run on changed file
   grunt.event.on('watch', function(action, filepath, target) {
-    if(target == "test"){
+    if(target == "test" || target == "testndoc"){
       //debug
       console.log("Test: "+ target + " | "+ action + " | " + filepath)
 

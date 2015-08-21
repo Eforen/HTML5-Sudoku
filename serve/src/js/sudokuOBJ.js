@@ -1,4 +1,9 @@
-console.log("Loaded SudokuOBJ.js");
+/**
+ * @file sudokuOBJ Code
+ * @author Ariel Lothlorien
+ */
+
+ console.log("Loaded SudokuOBJ.js");
 var tileStore = require("./tileStore.js");
 var tileOBJ   = require("./tileOBJ.js");
 var token = require("./tokenENUM.js");
