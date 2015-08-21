@@ -150,6 +150,7 @@ module.exports = function(grunt) {
   var defaultJsHintSrc = grunt.config('jshint.codeBase.files.src');
   // on watch:test events configure mochaTest.all to only run on changed file
   grunt.event.on('watch', function(action, filepath, target) {
+    console.log("wtf!")
     if(target == "test" || target == "testndoc"){
       //debug
       console.log("Test: "+ target + " | "+ action + " | " + filepath)
@@ -164,7 +165,7 @@ module.exports = function(grunt) {
       var file = filepath;
 
       //if the path is not already a test then target the correct test
-      if(file.indexOf('public\\javascripts\\') === 0) {
+      if(file.indexOf('src\\js\\') === 0) {
         //change file target
         file = "test\\test."+file.substring(19);
         console.log("Test: "+file+"|"+ file.substring(19)); //debug
