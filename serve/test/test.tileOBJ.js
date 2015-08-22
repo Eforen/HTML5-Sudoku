@@ -266,6 +266,17 @@ describe("tile Object", function() {
 		it("should NOT change type to guess when mass falseing and was set", function(done){
 			tile.setGuesses(true);
 			tile.setToken(tokens.a);
+			tile.setType(tileOBJ.types.guess);
+			//Object.watch("tile._type", function(){ console.log(debug.getstack())})
+			var arr = []
+			arr[tokens.a] = false;
+			arr[tokens.d] = false;
+			arr[tokens.i] = false;
+			tile.setGuesses(arr)
+			expect(tile.getType()).to.equal(tileOBJ.types.guess);
+
+			tile.setGuesses(true);
+			tile.setToken(tokens.a);
 			tile.setType(tileOBJ.types.set);
 			//Object.watch("tile._type", function(){ console.log(debug.getstack())})
 			var arr = []
@@ -274,6 +285,18 @@ describe("tile Object", function() {
 			arr[tokens.i] = false;
 			tile.setGuesses(arr)
 			expect(tile.getType()).to.equal(tileOBJ.types.set);
+
+			tile.setGuesses(true);
+			tile.setToken(tokens.a);
+			tile.setType(tileOBJ.types.lock);
+			//Object.watch("tile._type", function(){ console.log(debug.getstack())})
+			var arr = []
+			arr[tokens.a] = false;
+			arr[tokens.d] = false;
+			arr[tokens.i] = false;
+			tile.setGuesses(arr)
+			expect(tile.getType()).to.equal(tileOBJ.types.lock);
+
 			done();
 		})
 	})

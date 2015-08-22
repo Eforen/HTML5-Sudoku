@@ -231,7 +231,7 @@ var tileOBJ = function(){
 			if(this._guesses[i] === true) count++;
 		}
 		if(this._type == tileOBJ.types.blank && count > 0) this._type = tileOBJ.types.guess;
-		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;
+		else if(this._type == tileOBJ.types.guess && count === 0) this._type = tileOBJ.types.blank;
 	}
 
 

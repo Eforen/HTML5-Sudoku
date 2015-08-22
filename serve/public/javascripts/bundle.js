@@ -337,13 +337,16 @@ sudokuOBJ.loadFromJSON = function(jobj){
 sudokuOBJ.debugDataSet = function(data){
 	var r = "|"
 	for (var i = 0; i < data.length; i++) {
-		if(data == null) continue
+		if(data[i] == null) continue
 		if(data[i].getType() === tileOBJ.types.locked || data[i].getType() === tileOBJ.types.set) r += data[i].getToken()
 		if(data[i].getType() === tileOBJ.types.guess){
 			for (var n = 1; n <= 9; n++) {
-				if(data[i].getGuess(n)) r += n
+				if(data[i].getGuess(n)) {
+					r += n
+					//console.log(i+"|"+data[i].getType()+":"+data[i].getToken()+"n="+n) //debug
+				}// else console.log(i+"|"+data[i].getType()+":"+data[i].getToken()+"n"+n) //debug
 			}
-		}
+		}// else console.log(i+"|"+data[i].getType()+":"+data[i].getToken()) //debug
 		//r += ":" + data[i].getToken() //debug
 		r += "|"
 	}
@@ -465,23 +468,34 @@ var sudokuSolver = function(sudoku){
 	this.excludeInSet = function(container){
 		var data = []
 
+		var log = "" //Debug
+		
 		//run through set and mark all present tokens as false in data set leave all others null
 		for (var i = 0; i < container.tiles.length; i++) {
+			log += i+" loop"+", "
 			//If tile is guess then skip it
 			if(container.tiles[i].getType() === tileOBJ.types.guess){
+				log += i+" skip"+", "
 				continue
 			}
 			//If tile is set then set data as false
-			if((container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set ) && container.tiles[i].getToken() !== 0){
+			if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+				log += i+" set "+container.tiles[i].getToken()+". "
 				data[container.tiles[i].getToken()] = false
 			}
 		}
 
+		log += "|"+data+"|"
+
 		//Kill all bad guesses with the data array
-		for (var i = 0; i < container.tiles.length; i++)
-			if(container.tiles[i].getType() === tileOBJ.types.guess)
+		for (var i = 0; i < container.tiles.length; i++){
+			log += i+" loop"+", "
+			if(typeof(container.tiles[i]) !== "undefined"){
+				log += i+" set"+". "
 				container.tiles[i].setGuesses(data)
-		
+			}
+		}
+		console.log(log)
 	}
 
 	/**
@@ -842,7 +856,7 @@ var tileOBJ = function(){
 			if(this._guesses[i] === true) count++;
 		}
 		if(this._type == tileOBJ.types.blank && count > 0) this._type = tileOBJ.types.guess;
-		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;
+		else if(this._type == tileOBJ.types.guess && count === 0) this._type = tileOBJ.types.blank;
 	}
 
 

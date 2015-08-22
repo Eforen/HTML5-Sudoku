@@ -298,13 +298,16 @@ sudokuOBJ.loadFromJSON = function(jobj){
 sudokuOBJ.debugDataSet = function(data){
 	var r = "|"
 	for (var i = 0; i < data.length; i++) {
-		if(data == null) continue
+		if(data[i] == null) continue
 		if(data[i].getType() === tileOBJ.types.locked || data[i].getType() === tileOBJ.types.set) r += data[i].getToken()
 		if(data[i].getType() === tileOBJ.types.guess){
 			for (var n = 1; n <= 9; n++) {
-				if(data[i].getGuess(n)) r += n
+				if(data[i].getGuess(n)) {
+					r += n
+					//console.log(i+"|"+data[i].getType()+":"+data[i].getToken()+"n="+n) //debug
+				}// else console.log(i+"|"+data[i].getType()+":"+data[i].getToken()+"n"+n) //debug
 			}
-		}
+		}// else console.log(i+"|"+data[i].getType()+":"+data[i].getToken()) //debug
 		//r += ":" + data[i].getToken() //debug
 		r += "|"
 	}

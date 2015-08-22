@@ -111,23 +111,34 @@ var sudokuSolver = function(sudoku){
 	this.excludeInSet = function(container){
 		var data = []
 
+		var log = "" //Debug
+		
 		//run through set and mark all present tokens as false in data set leave all others null
 		for (var i = 0; i < container.tiles.length; i++) {
+			log += i+" loop"+", "
 			//If tile is guess then skip it
 			if(container.tiles[i].getType() === tileOBJ.types.guess){
+				log += i+" skip"+", "
 				continue
 			}
 			//If tile is set then set data as false
-			if((container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set ) && container.tiles[i].getToken() !== 0){
+			if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+				log += i+" set "+container.tiles[i].getToken()+". "
 				data[container.tiles[i].getToken()] = false
 			}
 		}
 
+		log += "|"+data+"|"
+
 		//Kill all bad guesses with the data array
-		for (var i = 0; i < container.tiles.length; i++)
-			if(container.tiles[i].getType() === tileOBJ.types.guess)
+		for (var i = 0; i < container.tiles.length; i++){
+			log += i+" loop"+", "
+			if(typeof(container.tiles[i]) !== "undefined"){
+				log += i+" set"+". "
 				container.tiles[i].setGuesses(data)
-		
+			}
+		}
+		console.log(log)
 	}
 
 	/**
