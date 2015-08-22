@@ -9,6 +9,7 @@
  * @enum {number}
  */
 
+/*
 var tokenENUM = {
 	a: 1,
 	b: 2,
@@ -22,9 +23,9 @@ var tokenENUM = {
 	h: 8,
 	i: 9
 }
-
 exports = tokenENUM
-/*
+*/
+
 exports.a = 1;
 exports.b = 2;
 exports.c = 3;
@@ -36,4 +37,3 @@ exports.f = 6;
 exports.g = 7;
 exports.h = 8;
 exports.i = 9;
-*/
