@@ -5,6 +5,7 @@ var tileStore = require("../src/js/tileStore.js");
 var tileOBJ = require("../src/js/tileOBJ.js");
 
 var tokens = require("../src/js/tokenENUM.js");
+var debug = require("../src/js/debugger.js");
 
 describe("tile Object", function() {
 
@@ -258,6 +259,20 @@ describe("tile Object", function() {
 		it("should change type to set when was guess 2", function(done){
 			tile.setGuesses(true);
 			tile.setToken(tokens.a);
+			expect(tile.getType()).to.equal(tileOBJ.types.set);
+			done();
+		})
+		
+		it("should NOT change type to guess when mass falseing and was set", function(done){
+			tile.setGuesses(true);
+			tile.setToken(tokens.a);
+			tile.setType(tileOBJ.types.set);
+			//Object.watch("tile._type", function(){ console.log(debug.getstack())})
+			var arr = []
+			arr[tokens.a] = false;
+			arr[tokens.d] = false;
+			arr[tokens.i] = false;
+			tile.setGuesses(arr)
 			expect(tile.getType()).to.equal(tileOBJ.types.set);
 			done();
 		})

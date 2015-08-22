@@ -18,3 +18,20 @@ window.solve = new window.sudokuSolver(window.su);
 window.su2 = window.solve.getSudoku();
 /*
 */
+window.runTest = function(){
+	solve.solvePassBasic();
+	solve.solvePassBasic();
+	solve.solvePassBasic();
+	solve.solvePassBasic();
+	solve.solveRegionExclusion();
+	solve.solvePassBasic();
+	solve.solveRowExclusion();
+	solve.solvePassBasic();
+	solve.solveColExclusion();
+	solve.solvePassBasic();
+	solve.solveRegionExclusion();
+	solve.solvePassBasic();
+	solve.solveRowExclusion();
+	solve.solvePassBasic();
+	solve.solvePassBasic();
+}

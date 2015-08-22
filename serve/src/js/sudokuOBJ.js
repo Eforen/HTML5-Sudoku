@@ -305,6 +305,7 @@ sudokuOBJ.debugDataSet = function(data){
 				if(data[i].getGuess(n)) r += n
 			}
 		}
+		//r += ":" + data[i].getToken() //debug
 		r += "|"
 	}
 	return r

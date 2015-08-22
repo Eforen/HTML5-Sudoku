@@ -44,12 +44,27 @@ describe("sudoku solver", function() {
 
 	it("should prep object sudoku by filling every tile with all guesses", function(done){
 		var tile;
+
+
+		expect(su.debugRow(0)).to.equal("|123456789|4|3|123456789|123456789|123456789|6|2|123456789|")
+		expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
+		expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
+		expect(su.debugRow(3)).to.equal("|123456789|7|5|123456789|123456789|123456789|3|4|123456789|")
+		expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		expect(su.debugRow(5)).to.equal("|123456789|9|8|123456789|123456789|123456789|5|7|123456789|")
+		expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
+		expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
+		expect(su.debugRow(8)).to.equal("|123456789|8|7|123456789|123456789|123456789|2|6|123456789|")
+
 		var val = true;
 		for (var x = 0; x < 9; x++) {
 			for (var y = 0; y < 9; y++) {
 				tile = solve.getSudoku().getTile(x,y);
 				//tile = su.getTile(x,y);
 				val = true;
+
+				expect(tile.getType()).to.not.equal(tileOBJ.types.blank)
+
 				if(tile.getType() == tileOBJ.types.locked) val = false;
 
 				expect(tile.getGuess(tokens.a)).to.equal(val);
@@ -79,7 +94,16 @@ describe("sudoku solver", function() {
 	// 0hg 000 bf0
 
 	it("should remove all guesses of tile that are in row", function(done){
-		solve.solveForRow(0,0);
+		solve.solveForRow(0);
+		solve.solveForRow(1);
+		solve.solveForRow(2);
+		solve.solveForRow(3);
+		solve.solveForRow(4);
+		solve.solveForRow(5);
+		solve.solveForRow(6);
+		solve.solveForRow(7);
+		solve.solveForRow(8);
+
 		tile = solve.getSudoku().getTile(0,0);
 		expect(tile.getGuess(tokens.a)).to.equal(true); // 1
 		expect(tile.getGuess(tokens.b)).to.equal(false); // 2
@@ -90,11 +114,30 @@ describe("sudoku solver", function() {
 		expect(tile.getGuess(tokens.g)).to.equal(true); // 7
 		expect(tile.getGuess(tokens.h)).to.equal(true); // 8
 		expect(tile.getGuess(tokens.i)).to.equal(true); // 9
+
+		expect(su.debugRow(0)).to.equal("|15789|4|3|15789|15789|15789|6|2|15789|")
+		expect(su.debugRow(1)).to.equal("|7|12569|12569|4|12569|3|12569|12569|8|")
+		expect(su.debugRow(2)).to.equal("|6|13459|13459|2|13459|8|13459|13459|7|")
+		expect(su.debugRow(3)).to.equal("|12689|7|5|12689|12689|12689|3|4|12689|")
+		expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		expect(su.debugRow(5)).to.equal("|12346|9|8|12346|12346|12346|5|7|12346|")
+		expect(su.debugRow(6)).to.equal("|9|12468|12468|5|12468|7|12468|12468|3|")
+		expect(su.debugRow(7)).to.equal("|1|34789|34789|6|34789|2|34789|34789|5|")
+		expect(su.debugRow(8)).to.equal("|13459|8|7|13459|13459|13459|2|6|13459|")
 		done()
 	})
 
 	it("should remove all guesses of tile that are in col", function(done){
-		solve.solveForCol(0,0);
+		solve.solveForRow(0);
+		solve.solveForRow(1);
+		solve.solveForRow(2);
+		solve.solveForRow(3);
+		solve.solveForRow(4);
+		solve.solveForRow(5);
+		solve.solveForRow(6);
+		solve.solveForRow(7);
+		solve.solveForRow(8);
+
 		tile = solve.getSudoku().getTile(0,0);
 		expect(tile.getGuess(tokens.a)).to.equal(false); // 1
 		expect(tile.getGuess(tokens.b)).to.equal(true); // 2
@@ -105,6 +148,16 @@ describe("sudoku solver", function() {
 		expect(tile.getGuess(tokens.g)).to.equal(false); // 7
 		expect(tile.getGuess(tokens.h)).to.equal(true); // 8
 		expect(tile.getGuess(tokens.i)).to.equal(false); // 9
+
+		expect(su.debugRow(0)).to.equal("|123456789|4|3|123456789|123456789|123456789|6|2|123456789|")
+		expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
+		expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
+		expect(su.debugRow(3)).to.equal("|123456789|7|5|123456789|123456789|123456789|3|4|123456789|")
+		expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		expect(su.debugRow(5)).to.equal("|123456789|9|8|123456789|123456789|123456789|5|7|123456789|")
+		expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
+		expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
+		expect(su.debugRow(8)).to.equal("|123456789|8|7|123456789|123456789|123456789|2|6|123456789|")
 		done()
 	})
 
@@ -112,7 +165,16 @@ describe("sudoku solver", function() {
 	// g 0 0
 	// f 0 0
 	it("should remove all guesses of tile that are in region", function(done){
-		solve.solveForRegion(0,0);
+		solve.solveForRow(0);
+		solve.solveForRow(1);
+		solve.solveForRow(2);
+		solve.solveForRow(3);
+		solve.solveForRow(4);
+		solve.solveForRow(5);
+		solve.solveForRow(6);
+		solve.solveForRow(7);
+		solve.solveForRow(8);
+
 		tile = solve.getSudoku().getTile(0,0);
 		expect(tile.getGuess(tokens.a)).to.equal(true); // 1
 		expect(tile.getGuess(tokens.b)).to.equal(true); // 2
@@ -123,6 +185,16 @@ describe("sudoku solver", function() {
 		expect(tile.getGuess(tokens.g)).to.equal(false); // 7
 		expect(tile.getGuess(tokens.h)).to.equal(true); // 8
 		expect(tile.getGuess(tokens.i)).to.equal(true); // 9
+		
+		expect(su.debugRow(0)).to.equal("|123456789|4|3|123456789|123456789|123456789|6|2|123456789|")
+		expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
+		expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
+		expect(su.debugRow(3)).to.equal("|123456789|7|5|123456789|123456789|123456789|3|4|123456789|")
+		expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		expect(su.debugRow(5)).to.equal("|123456789|9|8|123456789|123456789|123456789|5|7|123456789|")
+		expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
+		expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
+		expect(su.debugRow(8)).to.equal("|123456789|8|7|123456789|123456789|123456789|2|6|123456789|")
 		done()
 	})
 

@@ -203,9 +203,8 @@ var tileOBJ = function(){
 	 * Stores the tiles guesses as token values.
 	 * @member tileOBJ#_guesses
 	 * @type {tokenENUM[]}
-	 * @private
 	 */
-	var _guesses = [];
+	this._guesses = [];
 
 	/**
 	 * Stores a guess for this tile.
@@ -215,7 +214,7 @@ var tileOBJ = function(){
 	 */
 	this.setGuess = function(token, state){
 		if(typeof(state) == "undefined") state = true;
-		_guesses[token] = state;
+		this._guesses[token] = state;
 
 		this.checkGuessState();
 	}
@@ -228,10 +227,10 @@ var tileOBJ = function(){
 	this.checkGuessState = function(){
 		//set counter for guess
 		var count = 0;
-		for (var i = 0; i < _guesses.length; i++) {
-			if(_guesses[i] === true) count++;
+		for (var i = 0; i < this._guesses.length; i++) {
+			if(this._guesses[i] === true) count++;
 		}
-		if(count > 0) this._type = tileOBJ.types.guess;
+		if(this._type == tileOBJ.types.blank && count > 0) this._type = tileOBJ.types.guess;
 		else if(this._type == tileOBJ.types.guess) this._type = tileOBJ.types.blank;
 	}
 
@@ -243,7 +242,7 @@ var tileOBJ = function(){
 	 * @method tileOBJ#unsetGuess
 	 */
 	this.unsetGuess = function(token){
-		_guesses[token] = false;
+		this._guesses[token] = false;
 		this.checkGuessState();
 	}
 
@@ -254,8 +253,8 @@ var tileOBJ = function(){
 	 * @return {boolean} If the token provided token is a guess on this tile and if it is an active guess.
 	 */
 	this.getGuess = function(token){
-		if(typeof(_guesses[token]) == "undefined") return false;
-		if(_guesses[token] === true) return true;
+		if(typeof(this._guesses[token]) == "undefined") return false;
+		if(this._guesses[token] === true) return true;
 		return false;
 	}
 
@@ -267,7 +266,7 @@ var tileOBJ = function(){
 	 * @return the array of guesses
 	 */
 	this.getGuesses = function(){
-		return _guesses;
+		return this._guesses;
 	}
 
 	/**
@@ -295,9 +294,10 @@ var tileOBJ = function(){
 	 */
 	this.setGuesses = function(data){
 		if(Array.isArray(data)) {
+			var guesses = this._guesses
 			var check = function(token){
 				if(data[token] === true || data[token] === false){
-					_guesses[token] = data[token];
+					guesses[token] = data[token];
 				}
 			}
 			check(tokens.a);
@@ -310,31 +310,31 @@ var tileOBJ = function(){
 			check(tokens.h);
 			check(tokens.i);
 			/*
-			_guesses[tokens.a] = data[tokens.a];
-			_guesses[tokens.b] = data[tokens.b];
-			_guesses[tokens.c] = data[tokens.c];
-			_guesses[tokens.d] = data[tokens.d];
-			_guesses[tokens.e] = data[tokens.e];
-			_guesses[tokens.f] = data[tokens.f];
-			_guesses[tokens.g] = data[tokens.g];
-			_guesses[tokens.h] = data[tokens.h];
-			_guesses[tokens.i] = data[tokens.i];
+			this._guesses[tokens.a] = data[tokens.a];
+			this._guesses[tokens.b] = data[tokens.b];
+			this._guesses[tokens.c] = data[tokens.c];
+			this._guesses[tokens.d] = data[tokens.d];
+			this._guesses[tokens.e] = data[tokens.e];
+			this._guesses[tokens.f] = data[tokens.f];
+			this._guesses[tokens.g] = data[tokens.g];
+			this._guesses[tokens.h] = data[tokens.h];
+			this._guesses[tokens.i] = data[tokens.i];
 			*/
-			this.checkGuessState();
+			if(this.getType != tileOBJ.types.set && this.getType != tileOBJ.types.locked) this.checkGuessState();
 			return;
 		}
 		if(data !== true) data = false;
-		_guesses = [];
-		_guesses[tokens.a] = data;
-		_guesses[tokens.b] = data;
-		_guesses[tokens.c] = data;
-		_guesses[tokens.d] = data;
-		_guesses[tokens.e] = data;
-		_guesses[tokens.f] = data;
-		_guesses[tokens.g] = data;
-		_guesses[tokens.h] = data;
-		_guesses[tokens.i] = data;
-		this.checkGuessState();
+		this._guesses = [];
+		this._guesses[tokens.a] = data;
+		this._guesses[tokens.b] = data;
+		this._guesses[tokens.c] = data;
+		this._guesses[tokens.d] = data;
+		this._guesses[tokens.e] = data;
+		this._guesses[tokens.f] = data;
+		this._guesses[tokens.g] = data;
+		this._guesses[tokens.h] = data;
+		this._guesses[tokens.i] = data;
+		if(this.getType != tileOBJ.types.set && this.getType != tileOBJ.types.locked) this.checkGuessState();
 	}
 }
 

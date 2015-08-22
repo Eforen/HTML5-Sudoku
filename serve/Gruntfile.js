@@ -167,8 +167,8 @@ module.exports = function(grunt) {
       //if the path is not already a test then target the correct test
       if(file.indexOf('src\\js\\') === 0) {
         //change file target
-        file = "test\\test."+file.substring(19);
-        console.log("Test: "+file+"|"+ file.substring(19)); //debug
+        file = "test\\test."+file.substring(7);
+        console.log("Test: "+file+"|"+ file.substring(7)); //debug
 
       }
 

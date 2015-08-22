@@ -14,7 +14,7 @@ var token = require("./tokenENUM.js");
  * @todo Document this object
  * @class
  */
- 
+
 var sudokuSolver = function(sudoku){
 	//Private Vars
 	/**
@@ -67,20 +67,16 @@ var sudokuSolver = function(sudoku){
 	 * @todo Document this method
 	 * @method sudokuSolver#solveForRow
 	 */
-	this.solveForRow = function(x, y){
-		//var row = su.getRow(y);
-		var tile = su.getTile(x, y);
-		this.excludeInSet(tile.getRow());
+	this.solveForRow = function(y){
+		this.excludeInSet(su.getRow(y));
 	}
 
 	/**
 	 * @todo Document this method
 	 * @method sudokuSolver#solveForCol
 	 */
-	this.solveForCol = function(x, y){
-		//var col = su.getCol(x);
-		var tile = su.getTile(x, y);
-		this.excludeInSet(tile.getCol());
+	this.solveForCol = function(x){
+		this.excludeInSet(su.getCol(x));
 	}
 
 	/**
@@ -88,9 +84,7 @@ var sudokuSolver = function(sudoku){
 	 * @method sudokuSolver#solveForRegion
 	 */
 	this.solveForRegion = function(x, y){
-		//var region = su.getRegion(parseInt(x/3)-1, parseInt(y/3)-1);
-		var tile = su.getTile(x, y);
-		this.excludeInSet(tile.getRegion());
+		this.excludeInSet(getRegion(x, y));
 	}
 
 	/**
@@ -124,7 +118,7 @@ var sudokuSolver = function(sudoku){
 				continue
 			}
 			//If tile is set then set data as false
-			if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+			if((container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set ) && container.tiles[i].getToken() !== 0){
 				data[container.tiles[i].getToken()] = false
 			}
 		}
@@ -165,6 +159,7 @@ var sudokuSolver = function(sudoku){
 				*/
 			}
 		}
+		if(typeof(window) != "undefined") window.testGuess = data //debug
 		for (var n = 1; n < 10; n++) {
 			/*if(n == 4 && debug === true) {//debug 
 				console.log("\n\n********************************************\nSolve for N"+n+" is "+data[n].inMoreThenOne+"|"+data[n].index+"\n********************************************\n\n")
@@ -185,8 +180,12 @@ var sudokuSolver = function(sudoku){
 		for (var x = 0; x < 9; x++) {
 			for (var y = 0; y < 9; y++) {
 				//if(y === 7) console.log("Solving For r"+9+" c"+x)
-				this.solveForRow(x, y)
-				this.solveForCol(x, y)
+				this.solveForRow(y)
+				this.solveForCol(x)
+			}
+		}
+		for (var x = 0; x < 3; x++) {
+			for (var y = 0; y < 3; y++) {
 				this.solveForRegion(x, y)
 			}
 		}
@@ -242,6 +241,7 @@ var sudokuSolver = function(sudoku){
 	 */
 	this.solveColExclusion = function(){
 		for (var i = 0; i < 9; i++) {
+			console.log(su.debugCol(i)) //debug
 			this.excludeGuess(this.getSudoku().getCol(i), true)
 		}
 	}

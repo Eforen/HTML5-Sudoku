@@ -153,6 +153,7 @@ describe("sudoku Object", function() {
 		})
 		describe("should be the correct data:", function(){
 			it("token check...", function(done){
+				//console.log("wtf! "+tokens.a+" "+tokens.b)
 				expect(su.getTile(1,0).getToken()).to.equal(tokens.d);
 				expect(su.getTile(2,0).getToken()).to.equal(tokens.c);
 
