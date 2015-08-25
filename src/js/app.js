@@ -3,7 +3,7 @@
  * @author Ariel Lothlorien
  */
 
- window.sudokuOBJ = require("./sudokuOBJ.js");
+window.sudokuOBJ = require("./sudokuOBJ.js");
 window.sudokuSolver = require("./sudokuSolver.js");
 window.token = require("./tokenENUM.js");
 
@@ -35,3 +35,6 @@ window.runTest = function(){
 	solve.solvePassBasic();
 	solve.solvePassBasic();
 }
+
+require("../view/view.jsx")
+//require("./view.js")

@@ -2,7 +2,9 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     browserify: {
-      'public/javascripts/bundle.js': ['src/js/app.js']
+      all: {
+        files: {'public/javascripts/bundle.js': ['src/js/app.js']}
+      }
     },
     watch: {
       main: {
@@ -46,6 +48,16 @@ module.exports = function(grunt) {
       developTest: ['watch:test', 'exec:start'],
       test: ['jshint', 'mocha']
     },
+    copy:{
+      rawjs: {
+        files: [{
+            expand: true,
+            cwd: 'src/js/',
+            src: ['**'],
+            dest: 'tmp/'
+        }]
+            }
+    },
     jshint: {
       options: { //http://jshint.com/docs/options/
         asi: true, //This option suppresses warnings about missing semicolons.
@@ -88,6 +100,17 @@ module.exports = function(grunt) {
           clearRequireCache: true // Clear the require cache before running tests so that the tests actually run on the new code
         },
         src:['test/**/*.js']
+      },
+      react: {
+        options: {
+          ui: 'bdd',
+          reporter: 'spec',
+          captureFile: 'TestResults/react.txt',
+          quiet: false, // Optionally suppress output to standard out (defaults to false) 
+          clearRequireCache: true, // Clear the require cache before running tests so that the tests actually run on the new code
+          require: ["mocha-babel"]
+        },
+        src:['test/**/*.jsx']
       }
     },
     jsdoc : {
@@ -104,19 +127,31 @@ module.exports = function(grunt) {
           //configure : "jsdoc.conf.json"
         }
       }
+    },
+    babel: {
+        options: {
+            sourceMap: true,
+            modules: "common"
+        },
+        dist: {
+            src: ['src/view/*.jsx'],
+            dest: 'tmp/view.js'
+        }
     }
   })
 
   grunt.loadNpmTasks('grunt-browserify')
+  grunt.loadNpmTasks('grunt-babel')
   grunt.loadNpmTasks('grunt-clear')
   grunt.loadNpmTasks('grunt-concurrent')
+  grunt.loadNpmTasks('grunt-contrib-copy')
   grunt.loadNpmTasks('grunt-contrib-jshint')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-exec')
   grunt.loadNpmTasks('grunt-mocha-test')
   grunt.loadNpmTasks('grunt-jsdoc')
 
-
+  grunt.registerTask('build', ['babel', 'copy:rawjs', 'browserify:tmp']);
   grunt.registerTask('default', ['jshint:codeBase', 'mochaTest:all', 'browserify', 'uglify', 'jshint:bundle']);
   grunt.registerTask('develop', ['browserify', 'concurrent:develop']);
   grunt.registerTask('developTest', ['browserify', 'concurrent:developTest']);
