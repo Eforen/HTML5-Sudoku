@@ -1,0 +1,49 @@
+div.SudokuTile {
+	display: inline-block;
+}
+
+.SudokuBoard{
+
+	//Layout
+	.tile, .region {
+		display: table-cell;
+	}
+
+	.tile {
+		
+		text-align: center;
+	    vertical-align: middle;
+	    margin: 0;
+	    padding: 0;
+	    font-size: 1em;
+	    width: 3em;
+	    height: 3em;
+
+	    .guess{
+	    	display: inline-block;
+	    	width: 1em;
+	    	height: 1em;
+	    }
+	}
+
+	.regionRow {
+		display: block;
+	}
+
+//	.region-0-1, .region-0-2 {
+//		display: block;
+//	}
+
+	//Look
+
+	.region {
+		border: 1px #533 solid;
+	}
+
+	.tile {
+		border: 1px #000 solid;
+	    font-family: monospace;
+	    border: 1px #000 solid;
+	    position: relative;
+	}
+}
