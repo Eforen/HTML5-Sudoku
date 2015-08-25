@@ -441,7 +441,7 @@ var sudokuSolver = function(sudoku){
 	 * @method sudokuSolver#solveForRegion
 	 */
 	this.solveForRegion = function(x, y){
-		this.excludeInSet(getRegion(x, y));
+		this.excludeInSet(su.getRegion(x, y));
 	}
 
 	/**
@@ -495,7 +495,7 @@ var sudokuSolver = function(sudoku){
 				container.tiles[i].setGuesses(data)
 			}
 		}
-		console.log(log)
+		//console.log(log)
 	}
 
 	/**
@@ -550,11 +550,7 @@ var sudokuSolver = function(sudoku){
 				//if(y === 7) console.log("Solving For r"+9+" c"+x)
 				this.solveForRow(y)
 				this.solveForCol(x)
-			}
-		}
-		for (var x = 0; x < 3; x++) {
-			for (var y = 0; y < 3; y++) {
-				this.solveForRegion(x, y)
+				this.solveForRegion(x)
 			}
 		}
 
@@ -609,7 +605,7 @@ var sudokuSolver = function(sudoku){
 	 */
 	this.solveColExclusion = function(){
 		for (var i = 0; i < 9; i++) {
-			console.log(su.debugCol(i)) //debug
+			//console.log(su.debugCol(i)) //debug
 			this.excludeGuess(this.getSudoku().getCol(i), true)
 		}
 	}

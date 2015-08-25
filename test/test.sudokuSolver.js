@@ -102,14 +102,14 @@ describe("sudoku solver", function() {
 		expect(solve.getSudoku().getTile(0,0).getType()).to.equal(tileOBJ.types.guess)
 
 		solve.solveForRow(0);
-		//solve.solveForRow(1);
-		//solve.solveForRow(2);
-		//solve.solveForRow(3);
-		//solve.solveForRow(4);
-		//solve.solveForRow(5);
-		//solve.solveForRow(6);
-		//solve.solveForRow(7);
-		//solve.solveForRow(8);
+		solve.solveForRow(1);
+		solve.solveForRow(2);
+		solve.solveForRow(3);
+		solve.solveForRow(4);
+		solve.solveForRow(5);
+		solve.solveForRow(6);
+		solve.solveForRow(7);
+		solve.solveForRow(8);
 
 		expect(solve.getSudoku().getTile(0,0).getType()).to.equal(tileOBJ.types.guess)
 
@@ -125,49 +125,61 @@ describe("sudoku solver", function() {
 		expect(tile.getGuess(tokens.i)).to.equal(true); // 9
 
 		expect(solve.getSudoku().debugRow(0)).to.equal("|15789|4|3|15789|15789|15789|6|2|15789|")
-		//expect(su.debugRow(1)).to.equal("|7|12569|12569|4|12569|3|12569|12569|8|")
-		//expect(su.debugRow(2)).to.equal("|6|13459|13459|2|13459|8|13459|13459|7|")
-		//expect(su.debugRow(3)).to.equal("|12689|7|5|12689|12689|12689|3|4|12689|")
-		//expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
-		//expect(su.debugRow(5)).to.equal("|12346|9|8|12346|12346|12346|5|7|12346|")
-		//expect(su.debugRow(6)).to.equal("|9|12468|12468|5|12468|7|12468|12468|3|")
-		//expect(su.debugRow(7)).to.equal("|1|34789|34789|6|34789|2|34789|34789|5|")
-		//expect(su.debugRow(8)).to.equal("|13459|8|7|13459|13459|13459|2|6|13459|")
+		expect(su.debugRow(1)).to.equal("|7|12569|12569|4|12569|3|12569|12569|8|")
+		expect(su.debugRow(2)).to.equal("|6|13459|13459|2|13459|8|13459|13459|7|")
+		expect(su.debugRow(3)).to.equal("|12689|7|5|12689|12689|12689|3|4|12689|")
+		expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		expect(su.debugRow(5)).to.equal("|12346|9|8|12346|12346|12346|5|7|12346|")
+		expect(su.debugRow(6)).to.equal("|9|12468|12468|5|12468|7|12468|12468|3|")
+		expect(su.debugRow(7)).to.equal("|1|34789|34789|6|34789|2|34789|34789|5|")
+		expect(su.debugRow(8)).to.equal("|13459|8|7|13459|13459|13459|2|6|13459|")
 		done()
 	})
 
 	it("should remove all guesses of tile that are in col", function(done){
+		//check start start state
+		expect(su.debugRow(0)).to.equal("|123456789|4|3|123456789|123456789|123456789|6|2|123456789|")
+		//expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
+		//expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
+		//expect(su.debugRow(3)).to.equal("|123456789|7|5|123456789|123456789|123456789|3|4|123456789|")
+		//expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		//expect(su.debugRow(5)).to.equal("|123456789|9|8|123456789|123456789|123456789|5|7|123456789|")
+		//expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
+		//expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
+		//expect(su.debugRow(8)).to.equal("|123456789|8|7|123456789|123456789|123456789|2|6|123456789|")
 
-		solve.solveForRow(0);
-		solve.solveForRow(1);
-		solve.solveForRow(2);
-		solve.solveForRow(3);
-		solve.solveForRow(4);
-		solve.solveForRow(5);
-		solve.solveForRow(6);
-		solve.solveForRow(7);
-		solve.solveForRow(8);
+		solve.solveForCol(0);
+		//solve.solveForCol(1);
+		//solve.solveForCol(2);
+		//solve.solveForCol(3);
+		//solve.solveForCol(4);
+		//solve.solveForCol(5);
+		//solve.solveForCol(6);
+		//solve.solveForCol(7);
+		//solve.solveForCol(8);
 
 		tile = solve.getSudoku().getTile(0,0);
-		expect(tile.getGuess(tokens.a)).to.equal(false); // 1
-		expect(tile.getGuess(tokens.b)).to.equal(true); // 2
-		expect(tile.getGuess(tokens.c)).to.equal(true); // 3
-		expect(tile.getGuess(tokens.d)).to.equal(true); // 4
-		expect(tile.getGuess(tokens.e)).to.equal(true); // 5
-		expect(tile.getGuess(tokens.f)).to.equal(false); // 6
-		expect(tile.getGuess(tokens.g)).to.equal(false); // 7
-		expect(tile.getGuess(tokens.h)).to.equal(true); // 8
-		expect(tile.getGuess(tokens.i)).to.equal(false); // 9
+		//expect(tile.getGuess(tokens.a)).to.equal(false); // 1
+		//expect(tile.getGuess(tokens.b)).to.equal(true); // 2
+		//expect(tile.getGuess(tokens.c)).to.equal(true); // 3
+		//expect(tile.getGuess(tokens.d)).to.equal(true); // 4
+		//expect(tile.getGuess(tokens.e)).to.equal(true); // 5
+		//expect(tile.getGuess(tokens.f)).to.equal(false); // 6
+		//expect(tile.getGuess(tokens.g)).to.equal(false); // 7
+		//expect(tile.getGuess(tokens.h)).to.equal(true); // 8
+		//expect(tile.getGuess(tokens.i)).to.equal(false); // 9
 
-		expect(su.debugRow(0)).to.equal("|123456789|4|3|123456789|123456789|123456789|6|2|123456789|")
-		expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
-		expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
-		expect(su.debugRow(3)).to.equal("|123456789|7|5|123456789|123456789|123456789|3|4|123456789|")
-		expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
-		expect(su.debugRow(5)).to.equal("|123456789|9|8|123456789|123456789|123456789|5|7|123456789|")
-		expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
-		expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
-		expect(su.debugRow(8)).to.equal("|123456789|8|7|123456789|123456789|123456789|2|6|123456789|")
+		expect()
+		expect(su.debugCol(0)).to.equal("|23458|7|6|23458|23458|23458|9|1|23458|")
+		//expect(su.debugRow(0)).to.equal("|23458|4|3|123456789|123456789|123456789|6|2|123456789|")
+		//expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
+		//expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
+		//expect(su.debugRow(3)).to.equal("|23458|7|5|123456789|123456789|123456789|3|4|123456789|")
+		//expect(su.debugRow(4)).to.equal("|23458|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		//expect(su.debugRow(5)).to.equal("|23458|9|8|123456789|123456789|123456789|5|7|123456789|")
+		//expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
+		//expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
+		//expect(su.debugRow(8)).to.equal("|23458|8|7|123456789|123456789|123456789|2|6|123456789|")
 		done()
 	})
 
@@ -175,15 +187,15 @@ describe("sudoku solver", function() {
 	// g 0 0
 	// f 0 0
 	it("should remove all guesses of tile that are in region", function(done){
-		solve.solveForRow(0);
-		solve.solveForRow(1);
-		solve.solveForRow(2);
-		solve.solveForRow(3);
-		solve.solveForRow(4);
-		solve.solveForRow(5);
-		solve.solveForRow(6);
-		solve.solveForRow(7);
-		solve.solveForRow(8);
+		solve.solveForRegion(0);
+		solve.solveForRegion(1);
+		solve.solveForRegion(2);
+		solve.solveForRegion(3);
+		solve.solveForRegion(4);
+		solve.solveForRegion(5);
+		solve.solveForRegion(6);
+		solve.solveForRegion(7);
+		solve.solveForRegion(8);
 
 		tile = solve.getSudoku().getTile(0,0);
 		expect(tile.getGuess(tokens.a)).to.equal(true); // 1
@@ -196,15 +208,26 @@ describe("sudoku solver", function() {
 		expect(tile.getGuess(tokens.h)).to.equal(true); // 8
 		expect(tile.getGuess(tokens.i)).to.equal(true); // 9
 
-		expect(su.debugRow(0)).to.equal("|123456789|4|3|123456789|123456789|123456789|6|2|123456789|")
-		expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
-		expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
-		expect(su.debugRow(3)).to.equal("|123456789|7|5|123456789|123456789|123456789|3|4|123456789|")
-		expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
-		expect(su.debugRow(5)).to.equal("|123456789|9|8|123456789|123456789|123456789|5|7|123456789|")
-		expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
-		expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
-		expect(su.debugRow(8)).to.equal("|123456789|8|7|123456789|123456789|123456789|2|6|123456789|")
+		expect(su.debugRegion(0)).to.equal("|12589|4|3|7|12589|12589|6|12589|12589|")
+		expect(su.debugRegion(1)).to.equal("|15679|15679|15679|4|15679|3|2|15679|8|")
+		expect(su.debugRegion(2)).to.equal("|6|2|13459|13459|13459|8|13459|13459|7|")
+		expect(su.debugRegion(3)).to.equal("|12346|7|5|12346|12346|12346|12346|9|8|")
+		expect(su.debugRegion(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		expect(su.debugRegion(5)).to.equal("|3|4|12689|12689|12689|12689|5|7|12689|")
+		expect(su.debugRegion(6)).to.equal("|9|23456|23456|1|23456|23456|23456|8|7|")
+		expect(su.debugRegion(7)).to.equal("|5|13489|7|6|13489|2|13489|13489|13489|")
+		expect(su.debugRegion(8)).to.equal("|14789|14789|3|14789|14789|5|2|6|14789|")
+
+		//expect(su.debugRow(0)).to.equal("|123456789|4|3|123456789|123456789|123456789|6|2|123456789|")
+		//expect(su.debugRow(1)).to.equal("|7|123456789|123456789|4|123456789|3|123456789|123456789|8|")
+		//expect(su.debugRow(2)).to.equal("|6|123456789|123456789|2|123456789|8|123456789|123456789|7|")
+		//expect(su.debugRow(3)).to.equal("|123456789|7|5|123456789|123456789|123456789|3|4|123456789|")
+		//expect(su.debugRow(4)).to.equal("|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|123456789|")
+		//expect(su.debugRow(5)).to.equal("|123456789|9|8|123456789|123456789|123456789|5|7|123456789|")
+		//expect(su.debugRow(6)).to.equal("|9|123456789|123456789|5|123456789|7|123456789|123456789|3|")
+		//expect(su.debugRow(7)).to.equal("|1|123456789|123456789|6|123456789|2|123456789|123456789|5|")
+		//expect(su.debugRow(8)).to.equal("|123456789|8|7|123456789|123456789|123456789|2|6|123456789|")
+
 		done()
 	})
 
@@ -856,21 +879,27 @@ describe("sudoku solver", function() {
 		done()
 	})
 
-	it("pass #16 Col Exclusion", function(done){
+	it("pass #16 simple is stuck", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
-		solve.solvePassBasic();
+		solve.solvePassBasic(); //No change start simple
 		solve.solveRegionExclusion();
 		solve.solvePassBasic();
 		solve.solveRowExclusion();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
+		solve.solvePassBasic(); //first run finished trying again
 		solve.solveRegionExclusion();
 		solve.solvePassBasic();
 		solve.solveRowExclusion();
 		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveColExclusion(); //No Change
+		solve.solvePassBasic(); //No change running simple one more time
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
 
@@ -880,7 +909,7 @@ describe("sudoku solver", function() {
 		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
 		expect(su.debugRow(4)).to.equal("|34|16|16|1379|123579|14569|189|18|1269|")
 		expect(su.debugRow(5)).to.equal("|34|9|8|13|123|146|5|7|126|")
-		expect(su.debugRow(6)).to.equal("|9|6|26|5|4|7|18|18|3|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
 		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
 		expect(su.debugRow(8)).to.equal("|5|8|7|139|139|19|2|6|4|")
 
@@ -893,7 +922,7 @@ describe("sudoku solver", function() {
 											"|000|000|000|\n"+
 											"|098|000|570|\n"+
 											"*---+---+---*\n"+
-											"|960|547|003|\n"+
+											"|900|547|003|\n"+
 											"|134|682|795|\n"+
 											"|587|000|264|\n"+
 											"*---*---*---*\n");
@@ -901,7 +930,7 @@ describe("sudoku solver", function() {
 		done()
 	})
 
-	it("pass #17 Basic Pass", function(done){
+	it("pass #17.a run pairs pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -918,15 +947,19 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.checkPairsRow()
+
 
 		expect(su.debugRow(0)).to.equal("|8|4|3|179|1579|159|6|2|19|")
 		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
 		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
 		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
-		expect(su.debugRow(4)).to.equal("|34|1|16|1379|123579|14569|189|18|1269|")
+
+		expect(su.debugRow(4)).to.equal("|34|16|16|379|23579|459|89|8|29|")
+
 		expect(su.debugRow(5)).to.equal("|34|9|8|13|123|146|5|7|126|")
-		expect(su.debugRow(6)).to.equal("|9|6|2|5|4|7|18|18|3|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
 		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
 		expect(su.debugRow(8)).to.equal("|5|8|7|139|139|19|2|6|4|")
 
@@ -936,10 +969,10 @@ describe("sudoku solver", function() {
 											"|650|208|437|\n"+
 											"*---+---+---*\n"+
 											"|275|800|340|\n"+
-											"|010|000|000|\n"+
+											"|000|000|000|\n"+
 											"|098|000|570|\n"+
 											"*---+---+---*\n"+
-											"|962|547|003|\n"+
+											"|900|547|003|\n"+
 											"|134|682|795|\n"+
 											"|587|000|264|\n"+
 											"*---*---*---*\n");
@@ -947,8 +980,7 @@ describe("sudoku solver", function() {
 		done()
 	})
 
-/*
-	it("pass #18 Region Exclusion Pass", function(done){
+	it("pass #17.b run pairs pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -965,12 +997,283 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairsRow();
+		solve.checkPairsCol();
+
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|620|\n"+
+											"|700|463|058|\n"+
+											"|650|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|000|000|000|\n"+
+											"|098|000|570|\n"+
+											"*---+---+---*\n"+
+											"|900|547|003|\n"+
+											"|134|682|795|\n"+
+											"|587|000|264|\n"+
+											"*---*---*---*\n");
 
 		done()
 	})
 
+	it("pass #17.c run pairs pass", function(done){
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solveRegionExclusion();
+		solve.checkPairsRow()
+		solve.checkPairsCol()
+		solve.checkPairsRegion()
+
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|620|\n"+
+											"|700|463|058|\n"+
+											"|650|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|000|000|000|\n"+
+											"|098|000|570|\n"+
+											"*---+---+---*\n"+
+											"|900|547|003|\n"+
+											"|134|682|795|\n"+
+											"|587|000|264|\n"+
+											"*---*---*---*\n");
+		done()
+	})
+/*
+	it("pass #17 run pairs pass", function(done){
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solveRegionExclusion();
+		solve.checkPairs()
+
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|620|\n"+
+											"|700|463|058|\n"+
+											"|650|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|000|000|000|\n"+
+											"|098|000|570|\n"+
+											"*---+---+---*\n"+
+											"|900|547|003|\n"+
+											"|134|682|795|\n"+
+											"|587|000|264|\n"+
+											"*---*---*---*\n");
+
+		done()
+	})
+	it("pass #18 Basic Pass", function(done){
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solveRegionExclusion();
+		solve.checkPairs();
+		solve.solvePassBasic();
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|620|\n"+
+											"|700|463|058|\n"+
+											"|650|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|000|000|080|\n"+
+											"|098|000|570|\n"+
+											"*---+---+---*\n"+
+											"|900|547|003|\n"+
+											"|134|682|795|\n"+
+											"|587|000|264|\n"+
+											"*---*---*---*\n");
+
+		done()
+	})
+
+	it("pass #19 Basic Pass", function(done){
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solveRegionExclusion();
+		solve.checkPairs();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|9|8|29|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|1|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|620|\n"+
+											"|700|463|058|\n"+
+											"|650|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|000|000|980|\n"+
+											"|098|000|570|\n"+
+											"*---+---+---*\n"+
+											"|900|547|013|\n"+
+											"|134|682|795|\n"+
+											"|587|000|264|\n"+
+											"*---*---*---*\n");
+
+		done()
+	})
+
+	it("pass #20 Basic Pass", function(done){
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solveRegionExclusion();
+		solve.checkPairs();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|1|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|16|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|37|2357|45|9|8|2|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|8|1|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|620|\n"+
+											"|700|463|058|\n"+
+											"|650|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|000|000|982|\n"+
+											"|098|000|570|\n"+
+											"*---+---+---*\n"+
+											"|900|547|813|\n"+
+											"|134|682|795|\n"+
+											"|587|000|264|\n"+
+											"*---*---*---*\n");
+
+		done()
+	})
+*/
+
+/*
 	it("pass #19 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
