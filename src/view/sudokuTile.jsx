@@ -21,26 +21,26 @@ var SudokuTile = React.createClass({
   	var inside = null
   	switch (this.props.tile.getType()){
   		case tileOBJ.types.set:
-  			inside = (<div className="set">{this.props.tile.getToken()}</div>)
+  			inside = (<div className="set">{this.props.tile._value}</div>)
   			break
   		case tileOBJ.types.locked:
-  			inside = (<div className="locked">{this.props.tile.getToken()}</div>)
+  			inside = (<div className="locked">{this.props.tile._value}</div>)
   			break
   		case tileOBJ.types.guess:
-			var guessItems = []
-			var guesses = this.props.tile.getGuesses();
+  			var guessItems = []
+  			var guesses = this.props.tile._guesses;
 
-			for (var i = 0; i < guesses.length; i++) {
-				if(guesses[i]){
-					guessItems.push(<span id={i} className="guess">{i}</span>)
-				}
-			}
+  			for (var i = 0; i < guesses.length; i++) {
+  				if(guesses[i]){
+  					guessItems.push(<span key={i} className={"guess guess-"+i}>{i}</span>)
+  				}
+  			}
   			inside = (<div className="guesses">{guessItems}</div>)
   			break
   		default:
   			inside = (<div className="empty"> </div>)
   	}
-    return (<div style={style} id={id} className="SudokuTile"> {inside} </div>)
+    return (<div style={style} className={(this.props.x != null & this.props.y != null)?"tile tile-"+id:"tile"}> {inside} </div>)
   }
 });
 

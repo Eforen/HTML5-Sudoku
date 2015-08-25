@@ -49,12 +49,12 @@ module.exports = function(grunt) {
       test: ['jshint', 'mocha']
     },
     copy:{
-      rawjs: {
+      html: {
         files: [{
             expand: true,
-            cwd: 'src/js/',
-            src: ['**'],
-            dest: 'tmp/'
+            cwd: 'src/',
+            src: ['*.html'],
+            dest: 'public/'
         }]
             }
     },
@@ -129,14 +129,25 @@ module.exports = function(grunt) {
       }
     },
     babel: {
-        options: {
-            sourceMap: true,
-            modules: "common"
+      options: {
+          sourceMap: true,
+          modules: "common"
+      },
+      dist: {
+          src: ['src/view/*.jsx'],
+          dest: 'tmp/view.js'
+      }
+    },
+    sass: {                              // Task
+      dist: {                            // Target
+        options: {                       // Target options
+          style: 'expanded'
         },
-        dist: {
-            src: ['src/view/*.jsx'],
-            dest: 'tmp/view.js'
+        files: {                         // Dictionary of files
+          'public/stylesheets/main.css': 'src/styles/main.scss'//,       // 'destination': 'source'
+          //'widgets.css': 'widgets.scss'
         }
+      }
     }
   })
 
@@ -150,8 +161,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec')
   grunt.loadNpmTasks('grunt-mocha-test')
   grunt.loadNpmTasks('grunt-jsdoc')
+  grunt.loadNpmTasks('grunt-contrib-sass')
 
-  grunt.registerTask('build', ['babel', 'copy:rawjs', 'browserify:tmp']);
+  grunt.registerTask('build', ['clear', 'sass:dist', 'copy:html', 'browserify:all']);
   grunt.registerTask('default', ['jshint:codeBase', 'mochaTest:all', 'browserify', 'uglify', 'jshint:bundle']);
   grunt.registerTask('develop', ['browserify', 'concurrent:develop']);
   grunt.registerTask('developTest', ['browserify', 'concurrent:developTest']);

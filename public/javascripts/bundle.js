@@ -20969,10 +20969,33 @@ var SudokuBoard = React.createClass({
 
   render: function render() {
     var inside = [];
-    for (var x = 0; x < 9; x++) {
-      for (var y = 0; y < 9; y++) {
-        inside.push(React.createElement(SudokuTile, { x: x, y: y, tile: this.props.sudoku.getTile(x, y) }));
+
+    for (var ry = 0; ry < 9; ry += 3) {
+      var insideRow = [];
+      for (var rx = 0; rx < 9; rx += 3) {
+        var box = [];
+        for (var y = ry; y < ry + 3; y++) {
+          var row = [];
+          for (var x = rx; x < rx + 3; x++) {
+            row.push(React.createElement(SudokuTile, { x: x, y: y, key: x + "x" + y, tile: this.props.sudoku.getTile(x, y) }));
+          }
+          box.push(React.createElement(
+            "div",
+            { key: y, className: "row row-" + parseInt(ry / 3) },
+            row
+          ));
+        }
+        insideRow.push(React.createElement(
+          "div",
+          { key: rx, className: "region region-x-" + parseInt(rx / 3) + " region-y-" + parseInt(ry / 3) + " region-" + parseInt(rx / 3) + "-" + parseInt(ry / 3) },
+          box
+        ));
       }
+      inside.push(React.createElement(
+        "div",
+        { key: ry, className: "regionRow regionRow-" + parseInt(ry / 3) },
+        insideRow
+      ));
     }
     return React.createElement(
       "div",
@@ -21017,25 +21040,25 @@ var SudokuTile = React.createClass({
         inside = React.createElement(
           "div",
           { className: "set" },
-          this.props.tile.getToken()
+          this.props.tile._value
         );
         break;
       case tileOBJ.types.locked:
         inside = React.createElement(
           "div",
           { className: "locked" },
-          this.props.tile.getToken()
+          this.props.tile._value
         );
         break;
       case tileOBJ.types.guess:
         var guessItems = [];
-        var guesses = this.props.tile.getGuesses();
+        var guesses = this.props.tile._guesses;
 
         for (var i = 0; i < guesses.length; i++) {
           if (guesses[i]) {
             guessItems.push(React.createElement(
               "span",
-              { id: i, className: "guess" },
+              { key: i, className: "guess guess-" + i },
               i
             ));
           }
@@ -21055,7 +21078,7 @@ var SudokuTile = React.createClass({
     }
     return React.createElement(
       "div",
-      { style: style, id: id, className: "SudokuTile" },
+      { style: style, className: this.props.x != null & this.props.y != null ? "tile tile-" + id : "tile" },
       " ",
       inside,
       " "
