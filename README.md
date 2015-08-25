@@ -5,7 +5,7 @@ Simple React.js Sudoku app writen with Legit TDD and full documentation.
 Ariel Lothlorien
 
 # Documentation
-[Clicking this link](http://htmlpreview.github.io/?https://raw.githubusercontent.com/Eforen/HTML5-Sudoku/master/serve/docs/index.html) will take you to the full documentaion for this project! Its awesome because it is extracted from the code meaning that the code is fully commented and that the docs can link to where the methods, classes, n things are defined with exact line numbers!
+[Clicking this link](http://htmlpreview.github.io/?https://raw.githubusercontent.com/Eforen/HTML5-Sudoku/master/docs/index.html) will take you to the full documentaion for this project! Its awesome because it is extracted from the code meaning that the code is fully commented and that the docs can link to where the methods, classes, n things are defined with exact line numbers!
 
 # Current Status
 Base structure testing.
