@@ -42,7 +42,7 @@ var token = require("./tokenENUM.js");
  * @todo Document this object
  * @class
  */
- 
+
 var sudokuSolver = function(sudoku){
 	//Private Vars
 	/**
@@ -95,20 +95,16 @@ var sudokuSolver = function(sudoku){
 	 * @todo Document this method
 	 * @method sudokuSolver#solveForRow
 	 */
-	this.solveForRow = function(x, y){
-		//var row = su.getRow(y);
-		var tile = su.getTile(x, y);
-		this.excludeInSet(tile.getRow());
+	this.solveForRow = function(y){
+		this.excludeInSet(su.getRow(y));
 	}
 
 	/**
 	 * @todo Document this method
 	 * @method sudokuSolver#solveForCol
 	 */
-	this.solveForCol = function(x, y){
-		//var col = su.getCol(x);
-		var tile = su.getTile(x, y);
-		this.excludeInSet(tile.getCol());
+	this.solveForCol = function(x){
+		this.excludeInSet(su.getCol(x));
 	}
 
 	/**
@@ -116,9 +112,7 @@ var sudokuSolver = function(sudoku){
 	 * @method sudokuSolver#solveForRegion
 	 */
 	this.solveForRegion = function(x, y){
-		//var region = su.getRegion(parseInt(x/3)-1, parseInt(y/3)-1);
-		var tile = su.getTile(x, y);
-		this.excludeInSet(tile.getRegion());
+		this.excludeInSet(su.getRegion(x, y));
 	}
 
 	/**
@@ -145,23 +139,34 @@ var sudokuSolver = function(sudoku){
 	this.excludeInSet = function(container){
 		var data = []
 
+		var log = "" //Debug
+		
 		//run through set and mark all present tokens as false in data set leave all others null
 		for (var i = 0; i &lt; container.tiles.length; i++) {
+			log += i+" loop"+", "
 			//If tile is guess then skip it
 			if(container.tiles[i].getType() === tileOBJ.types.guess){
+				log += i+" skip"+", "
 				continue
 			}
 			//If tile is set then set data as false
 			if(container.tiles[i].getType() == tileOBJ.types.locked || container.tiles[i].getType() == tileOBJ.types.set){
+				log += i+" set "+container.tiles[i].getToken()+". "
 				data[container.tiles[i].getToken()] = false
 			}
 		}
 
+		log += "|"+data+"|"
+
 		//Kill all bad guesses with the data array
-		for (var i = 0; i &lt; container.tiles.length; i++)
-			if(container.tiles[i].getType() === tileOBJ.types.guess)
+		for (var i = 0; i &lt; container.tiles.length; i++){
+			log += i+" loop"+", "
+			if(typeof(container.tiles[i]) !== "undefined"){
+				log += i+" set"+". "
 				container.tiles[i].setGuesses(data)
-		
+			}
+		}
+		//console.log(log)
 	}
 
 	/**
@@ -193,6 +198,7 @@ var sudokuSolver = function(sudoku){
 				*/
 			}
 		}
+		if(typeof(window) != "undefined") window.testGuess = data //debug
 		for (var n = 1; n &lt; 10; n++) {
 			/*if(n == 4 &amp;&amp; debug === true) {//debug 
 				console.log("\n\n********************************************\nSolve for N"+n+" is "+data[n].inMoreThenOne+"|"+data[n].index+"\n********************************************\n\n")
@@ -213,9 +219,9 @@ var sudokuSolver = function(sudoku){
 		for (var x = 0; x &lt; 9; x++) {
 			for (var y = 0; y &lt; 9; y++) {
 				//if(y === 7) console.log("Solving For r"+9+" c"+x)
-				this.solveForRow(x, y)
-				this.solveForCol(x, y)
-				this.solveForRegion(x, y)
+				this.solveForRow(y)
+				this.solveForCol(x)
+				this.solveForRegion(x)
 			}
 		}
 
@@ -270,7 +276,87 @@ var sudokuSolver = function(sudoku){
 	 */
 	this.solveColExclusion = function(){
 		for (var i = 0; i &lt; 9; i++) {
+			//console.log(su.debugCol(i)) //debug
 			this.excludeGuess(this.getSudoku().getCol(i), true)
+		}
+	}
+
+	/**
+	 * This method preforms a pair exclusion test on all rows
+	 * @method sudokuSolver#checkPairsRow
+	 */
+	this.checkPairsRow = function(){
+		for (var i = 0; i &lt; 9; i++) {
+			//console.log(su.debugCol(i)) //debug
+			this.excludePairGuess(this.getSudoku().getRow(i))
+		}
+	}
+
+	/**
+	 * This method preforms a pair exclusion test on all columns
+	 * @method sudokuSolver#checkPairsCol
+	 */
+	this.checkPairsCol = function(){
+		for (var i = 0; i &lt; 9; i++) {
+			//console.log(su.debugCol(i)) //debug
+			this.excludePairGuess(this.getSudoku().getCol(i))
+		}
+	}
+
+	/**
+	 * This method preforms a pair exclusion test on all regions
+	 * @method sudokuSolver#checkPairsRegion
+	 */
+	this.checkPairsRegion = function(){
+		for (var i = 0; i &lt; 9; i++) {
+			//console.log(su.debugCol(i)) //debug
+			this.excludePairGuess(this.getSudoku().getRegion(i))
+		}
+	}
+
+	/**
+	 * 
+	 * This method preforms a pair exclusion test on the given {@link tileStore}
+	 * @method sudokuSolver#excludeGuess
+	 */
+	this.excludePairGuess = function(container, debug){
+		if(includeGuesses == null) includeGuesses = false
+		var data = []
+		for (var n = 1; n &lt; 10; n++) {
+			var guess = []
+			var count = 0
+			for (var i = 0; i &lt; container.tiles.length; i++) {
+				if(container.tiles[i].getType() === tileOBJ.types.guess){
+					//get guesses
+					guess = container.tiles[i].getGuesses()
+					count = 0
+					//count the actual values
+					for(var g = 0; g&lt;guess; g++){
+						if(typeof(guess[g])!=="undefined"){
+							count+=1
+						}
+					}
+					//if is a pair
+					if(count = 2){
+						for (var i = Things.length - 1; i >= 0; i--) {
+							Things[i]
+						};
+						//check others of another pair the same
+					}
+
+				}
+			}
+		}
+		if(typeof(window) != "undefined") window.testGuess = data //debug
+		for (var n = 1; n &lt; 10; n++) {
+			/*if(n == 4 &amp;&amp; debug === true) {//debug 
+				console.log("\n\n********************************************\nSolve for N"+n+" is "+data[n].inMoreThenOne+"|"+data[n].index+"\n********************************************\n\n")
+			}*/
+			if(data[n].inMoreThenOne === 1){
+				//console.log("found one")
+				container.tiles[data[n].index].setToken(n)
+				container.tiles[data[n].index].setType(tileOBJ.types.set)
+			}
 		}
 	}
 
@@ -291,13 +377,13 @@ module.exports = sudokuSolver;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="puzzleMaker.html">puzzleMaker</a></li><li><a href="sudokuOBJ.html">sudokuOBJ</a></li><li><a href="sudokuSolver.html">sudokuSolver</a></li><li><a href="tileOBJ.html">tileOBJ</a></li><li><a href="tileStore.html">tileStore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#TileTypes">Tile Types</a></li><li><a href="global.html#tokenENUM">tokenENUM</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Debugger.html">Debugger</a></li></ul><h3>Classes</h3><ul><li><a href="puzzleMaker.html">puzzleMaker</a></li><li><a href="sudokuOBJ.html">sudokuOBJ</a></li><li><a href="sudokuSolver.html">sudokuSolver</a></li><li><a href="tileOBJ.html">tileOBJ</a></li><li><a href="tileStore.html">tileStore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#a">a</a></li><li><a href="global.html#TileTypes">Tile Types</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Fri Aug 21 2015 13:21:45 GMT-1000 (Hawaiian Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 25 2015 18:08:45 GMT-1000 (Hawaiian Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

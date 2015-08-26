@@ -10,7 +10,7 @@ div.SudokuTile {
 	}
 
 	.tile {
-		
+
 		text-align: center;
 	    vertical-align: middle;
 	    margin: 0;
@@ -23,6 +23,7 @@ div.SudokuTile {
 	    	display: inline-block;
 	    	width: 1em;
 	    	height: 1em;
+    		font-size: 0.8em;
 	    }
 	}
 

@@ -1,4 +1,4 @@
-var React   = require('react');
+//var React   = require('react');
 
 var SudokuTile = require("./SudokuTile.jsx")
 /**
@@ -10,6 +10,7 @@ var SudokuBoard = React.createClass({
   render: function() {
     var inside = []
 
+    var tile = null
     for(var ry = 0; ry<9; ry+=3){
       var insideRow = []
       for(var rx = 0; rx<9; rx+=3){
@@ -17,7 +18,8 @@ var SudokuBoard = React.createClass({
         for(var y = ry; y<ry+3; y++){
           var row = []
           for(var x = rx; x<rx+3; x++){
-            row.push(<SudokuTile x={x} y={y} key={x+"x"+y} tile={this.props.sudoku.getTile(x,y)} />)
+            tile = this.props.sudoku.getTile(x,y)
+            row.push(<SudokuTile x={x} y={y} key={x+"x"+y} tile={tile} />)
           }
           box.push(<div key={y} className={"row row-"+parseInt(ry/3)}>{row}</div>)
         }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>HTML5 Sudoku App: Source: puzzleMaker.js</title>
+    <title>HTML5 Sudoku App: Source: debugger.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: puzzleMaker.js</h1>
+    <h1 class="page-title">Source: debugger.js</h1>
 
     
 
@@ -27,21 +27,28 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @file Puzzle Maker Code
- * @author Ariel Lothlorien
+ * Just some floating debug helper methods
+ * @name Debugger
+ * @module
  */
 
- /**
- * Puzzle Maker
- * {Not Implimented Yet}
- * @class puzzleMaker
+/**
+ * Gets the current stack.
+ * @function
+ * @returns {string} The current stack as a string
  */
-
-var puzzleMaker = function () {
-	// body...
+exports.getstack = function(){
+	//create dubby error to get stack
+	var e = new Error('stackTrace');
+	//format stack
+	var stack = e.stack.replace(/^[^\(]+?[\n$]/gm, '')
+		.replace(/^\s+at\s+/gm, '')
+		.replace(/^Object.&lt;anonymous>\s*\(/gm, '{anonymous}()@')
+		.split('\n');
+	//return stack
+	return stack
 }
-
-module.exports = puzzleMaker;</code></pre>
+</code></pre>
         </article>
     </section>
 

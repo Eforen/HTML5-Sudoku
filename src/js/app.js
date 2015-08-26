@@ -34,6 +34,7 @@ window.runTest = function(){
 	solve.solveRowExclusion();
 	solve.solvePassBasic();
 	solve.solvePassBasic();
+	window.renderView();
 }
 
 require("../view/view.jsx")
