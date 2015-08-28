@@ -18,22 +18,82 @@ window.solve = new window.sudokuSolver(window.su);
 window.su2 = window.solve.getSudoku();
 /*
 */
+
+
 window.runTest = function(){
-	solve.solvePassBasic();
-	solve.solvePassBasic();
-	solve.solvePassBasic();
-	solve.solvePassBasic();
-	solve.solveRegionExclusion();
-	solve.solvePassBasic();
-	solve.solveRowExclusion();
-	solve.solvePassBasic();
-	solve.solveColExclusion();
-	solve.solvePassBasic();
-	solve.solveRegionExclusion();
-	solve.solvePassBasic();
-	solve.solveRowExclusion();
-	solve.solvePassBasic();
-	solve.solvePassBasic();
+	solve.solvePassBasic()
+	solve.solvePassBasic()
+	solve.solvePassBasic()
+	solve.solvePassBasic()
+	solve.solveRegionExclusion()
+	solve.solvePassBasic()
+	solve.solveRowExclusion()
+	solve.solvePassBasic()
+	solve.solveColExclusion()
+	solve.solvePassBasic()
+	solve.solveRegionExclusion()
+	solve.solvePassBasic()
+	solve.solveRowExclusion()
+	solve.solvePassBasic()
+	solve.solvePassBasic()
+}
+
+window.runRenderWait = function(waitTime, index){
+	if(waitTime == null || waitTime <= 0) return
+	if(index == null || index < 0) index = 0;
+
+	switch (index) {
+		case 0:
+			window.solve.solvePassBasic()
+			break
+		case 1:
+			window.solve.solvePassBasic()
+			break
+		case 2:
+			window.solve.solvePassBasic()
+			break
+		case 3:
+			window.solve.solvePassBasic()
+			break
+		case 4:
+			window.solve.solveRegionExclusion()
+			break
+		case 5:
+			window.solve.solvePassBasic()
+			break
+		case 6:
+			window.solve.solveRowExclusion()
+			break
+		case 7:
+			window.solve.solvePassBasic()
+			break
+		case 8:
+			window.solve.solveColExclusion()
+			break
+		case 9:
+			window.solve.solvePassBasic()
+			break
+		case 10:
+			window.solve.solveRegionExclusion()
+			break
+		case 11:
+			window.solve.solvePassBasic()
+			break
+		case 12:
+			window.solve.solveRowExclusion()
+			break
+		case 13:
+			window.solve.solvePassBasic()
+			break
+		case 14:
+			window.solve.solvePassBasic()
+			break
+		default:
+			return
+	}
+
+	index++
+	setTimeout(window.runRenderWait, waitTime, waitTime, index)
 	window.renderView();
 }
 

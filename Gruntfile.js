@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         options: {
           livereload: true,
         },
-        files: [ "src/js/**/*.js"],
+        files: [ "src/js/**/*.js", "src/view/**/*.jsx"],
         tasks: [ 'browserify' ]
       },
       test: {

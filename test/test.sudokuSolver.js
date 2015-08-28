@@ -999,18 +999,20 @@ describe("sudoku solver", function() {
 		solve.solveColExclusion();
 		solve.solveRegionExclusion();
 		solve.checkPairsRow();
+
 		solve.checkPairsCol();
 
 
-		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
-		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
-		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
-		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
-		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
-		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
-		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
-		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
-		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+
+		expect(su.debugCol(0)).to.equal("|8|7|6|2|34|34|9|1|5|")
+		expect(su.debugCol(1)).to.equal("|4|12|5|7|16|9|26|3|8|")
+		expect(su.debugCol(2)).to.equal("|3|129|19|5|16|8|26|4|7|")
+		expect(su.debugCol(3)).to.equal("|179|4|2|8|379|13|5|6|139|")
+		expect(su.debugCol(4)).to.equal("|57|6|19|19|2357|23|4|8|3|")
+		expect(su.debugCol(5)).to.equal("|159|3|8|169|459|146|7|2|19|")
+		expect(su.debugCol(6)).to.equal("|6|19|4|3|89|5|18|7|2|")
+		expect(su.debugCol(7)).to.equal("|2|5|3|4|8|7|18|9|6|")
+		expect(su.debugCol(8)).to.equal("|19|8|7|169|29|126|3|5|4|")
 
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|000|620|\n"+
@@ -1049,18 +1051,8 @@ describe("sudoku solver", function() {
 		solve.solveRegionExclusion();
 		solve.checkPairsRow()
 		solve.checkPairsCol()
+
 		solve.checkPairsRegion()
-
-
-		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
-		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
-		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
-		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
-		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
-		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
-		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
-		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
-		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
 
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|000|620|\n"+
@@ -1077,7 +1069,6 @@ describe("sudoku solver", function() {
 											"*---*---*---*\n");
 		done()
 	})
-/*
 	it("pass #17 run pairs pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1107,7 +1098,7 @@ describe("sudoku solver", function() {
 		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
 		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
 		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
-		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|139|3|19|2|6|4|")
 
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
 											"|843|000|620|\n"+
@@ -1146,29 +1137,30 @@ describe("sudoku solver", function() {
 		solve.checkPairs();
 		solve.solvePassBasic();
 
-		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
-		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
-		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
-		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
-		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
-		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
-		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
-		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
-		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
 
-		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
-											"|843|000|620|\n"+
-											"|700|463|058|\n"+
-											"|650|208|437|\n"+
-											"*---+---+---*\n"+
-											"|275|800|340|\n"+
-											"|000|000|080|\n"+
-											"|098|000|570|\n"+
-											"*---+---+---*\n"+
-											"|900|547|003|\n"+
-											"|134|682|795|\n"+
-											"|587|000|264|\n"+
-											"*---*---*---*\n");
+		 expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		 expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
+		 expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		 expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
+		 expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|89|8|29|")
+		 expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		 expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|18|3|")
+		 expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		 expect(su.debugRow(8)).to.equal("|5|8|7|139|3|19|2|6|4|")
+
+		 expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											 "|843|000|620|\n"+
+											 "|700|463|058|\n"+
+											 "|650|208|437|\n"+
+											 "*---+---+---*\n"+
+											 "|275|800|340|\n"+
+											 "|000|000|080|\n"+
+											 "|098|000|570|\n"+
+											 "*---+---+---*\n"+
+											 "|900|547|003|\n"+
+											 "|134|682|795|\n"+
+											 "|587|030|264|\n"+
+											 "*---*---*---*\n");
 
 		done()
 	})
@@ -1195,29 +1187,30 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+
 		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
 		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|19|5|8|")
 		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
 		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|169|")
-		expect(su.debugRow(4)).to.equal("|34|16|16|379|2357|459|9|8|29|")
-		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|379|257|459|9|8|29|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|2|146|5|7|126|")
 		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|18|1|3|")
 		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
-		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|19|3|19|2|6|4|")
 
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
-											"|843|000|620|\n"+
-											"|700|463|058|\n"+
-											"|650|208|437|\n"+
-											"*---+---+---*\n"+
-											"|275|800|340|\n"+
-											"|000|000|980|\n"+
-											"|098|000|570|\n"+
-											"*---+---+---*\n"+
-											"|900|547|013|\n"+
-											"|134|682|795|\n"+
-											"|587|000|264|\n"+
-											"*---*---*---*\n");
+			"|843|000|620|\n"+
+			"|700|463|058|\n"+
+			"|650|208|437|\n"+
+			"*---+---+---*\n"+
+			"|275|800|340|\n"+
+			"|000|000|980|\n"+
+			"|098|020|570|\n"+
+			"*---+---+---*\n"+
+			"|900|547|013|\n"+
+			"|134|682|795|\n"+
+			"|587|030|264|\n"+
+			"*---*---*---*\n");
 
 		done()
 	})
@@ -1245,59 +1238,87 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+
 		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
 		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|1|5|8|")
 		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
 		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|16|")
-		expect(su.debugRow(4)).to.equal("|34|16|16|37|2357|45|9|8|2|")
-		expect(su.debugRow(5)).to.equal("|34|9|8|13|23|146|5|7|126|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|37|57|45|9|8|2|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|2|146|5|7|16|")
 		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|8|1|3|")
 		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
-		expect(su.debugRow(8)).to.equal("|5|8|7|139|39|19|2|6|4|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|19|3|19|2|6|4|")
 
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
-											"|843|000|620|\n"+
-											"|700|463|058|\n"+
-											"|650|208|437|\n"+
-											"*---+---+---*\n"+
-											"|275|800|340|\n"+
-											"|000|000|982|\n"+
-											"|098|000|570|\n"+
-											"*---+---+---*\n"+
-											"|900|547|813|\n"+
-											"|134|682|795|\n"+
-											"|587|000|264|\n"+
-											"*---*---*---*\n");
+			"|843|000|620|\n"+
+			"|700|463|158|\n"+
+			"|650|208|437|\n"+
+			"*---+---+---*\n"+
+			"|275|800|340|\n"+
+			"|000|000|982|\n"+
+			"|098|020|570|\n"+
+			"*---+---+---*\n"+
+			"|900|547|813|\n"+
+			"|134|682|795|\n"+
+			"|587|030|264|\n"+
+			"*---*---*---*\n");
 
 		done()
 	})
-*/
+
+	it("pass #21 Basic Pass should show no change in set", function(done){
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solvePassBasic();
+		solve.solveRegionExclusion();
+		solve.solvePassBasic();
+		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solveColExclusion();
+		solve.solveRegionExclusion();
+		solve.checkPairs();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+
+		solve.solvePassBasic();
+
+
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
+		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|1|5|8|")
+		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
+		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|16|")
+		expect(su.debugRow(4)).to.equal("|34|16|16|37|57|45|9|8|2|")
+		expect(su.debugRow(5)).to.equal("|34|9|8|13|2|146|5|7|16|")
+		expect(su.debugRow(6)).to.equal("|9|26|26|5|4|7|8|1|3|")
+		expect(su.debugRow(7)).to.equal("|1|3|4|6|8|2|7|9|5|")
+		expect(su.debugRow(8)).to.equal("|5|8|7|19|3|19|2|6|4|")
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+			"|843|000|620|\n"+
+			"|700|463|158|\n"+
+			"|650|208|437|\n"+
+			"*---+---+---*\n"+
+			"|275|800|340|\n"+
+			"|000|000|982|\n"+
+			"|098|020|570|\n"+
+			"*---+---+---*\n"+
+			"|900|547|813|\n"+
+			"|134|682|795|\n"+
+			"|587|030|264|\n"+
+			"*---*---*---*\n");
+		done()
+	})
 
 /*
-	it("pass #19 Basic Pass should show no change in set", function(done){
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
-		solve.solveColExclusion();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solveColExclusion();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-
-		done()
-	})
-
 	it("pass #20 Row Exclusion Pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();

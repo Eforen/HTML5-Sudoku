@@ -287,12 +287,22 @@ var sudokuSolver = function(sudoku){
 	}
 
 	/**
+	 * This method preforms a pair exclusion test on all rows, columns, and regions
+	 * @method sudokuSolver#checkPairs
+	 */
+	this.checkPairs = function(){
+		this.checkPairsRow()
+		this.checkPairsCol()
+		this.checkPairsRegion()
+	}
+
+
+	/**
 	 * 
 	 * This method preforms a pair exclusion test on the given {@link tileStore}
 	 * @method sudokuSolver#excludeGuess
 	 */
 	this.excludePairGuess = function(container, debug){
-		if(includeGuesses == null) includeGuesses = false
 		var data = []
 		for (var n = 1; n < 10; n++) {
 			var guess = []
@@ -303,31 +313,48 @@ var sudokuSolver = function(sudoku){
 					guess = container.tiles[i].getGuesses()
 					count = 0
 					//count the actual values
-					for(var g = 0; g<guess; g++){
-						if(typeof(guess[g])!=="undefined"){
-							count+=1
+					for(var g = 0; g<guess.length; g++){
+						if(guess[g] === true){
+							count+=1 // Add one for every guess in the base set
 						}
 					}
 					//if is a pair
-					if(count = 2){
-						for (var i = Things.length - 1; i >= 0; i--) {
-							Things[i]
-						};
-						//check others of another pair the same
+					if(count === 2){ //base set has only 2 guesses
+						var guess2 = []
+						var same = true //define the var outside the loop to avoid object creation for speed
+						for (var ii = i+1; ii < container.tiles.length; ii++) {//check every other tile for the same values
+							same = true
+							count = 0 //reuse and reset the counter to 0
+							guess2 = container.tiles[ii].getGuesses() //get current secondary tiles set of guesses
+							for(var g = 0; g<guess2.length; g++) {
+								if (guess2[g] !== guess[g]) { // If it does not match the base set
+									same = false //backup to insure it does not stop on the 3rd guess and not match thus looking like a pair
+									break
+								}else if(guess2[g] === true){
+									count++ //Backup to insure that the other is a pair not just something that has for example an empty guess list
+								}
+							}
+							if(same === true && count === 2){
+								//We have found a pair now kill these guesses in all others that are not this pair
+								var killSet = []
+								for(var g = 0; g<guess2.length; g++) {
+									if (guess2[g] == true) { // If it matches the base set
+										killSet[g] = false //set it to false so when applied to target tiles it removes both elements of the pair if they are present
+									}
+								}
+								for (var k = 0; k < container.tiles.length; k++) {
+									//kill guesses that are in this set in all other tiles.
+									if(k !== i && k !== ii){
+										if(container.tiles[k].getToken() !== tileOBJ.types.locked || container.tiles[k].getToken() !== tileOBJ.types.set){
+											container.tiles[k].setGuesses(killSet)
+										}
+									}
+								}
+							}
+						}
 					}
 
 				}
-			}
-		}
-		if(typeof(window) != "undefined") window.testGuess = data //debug
-		for (var n = 1; n < 10; n++) {
-			/*if(n == 4 && debug === true) {//debug 
-				console.log("\n\n********************************************\nSolve for N"+n+" is "+data[n].inMoreThenOne+"|"+data[n].index+"\n********************************************\n\n")
-			}*/
-			if(data[n].inMoreThenOne === 1){
-				//console.log("found one")
-				container.tiles[data[n].index].setToken(n)
-				container.tiles[data[n].index].setType(tileOBJ.types.set)
 			}
 		}
 	}

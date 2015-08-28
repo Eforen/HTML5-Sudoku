@@ -1,4 +1,5 @@
-jsdom = require("jsdom")
+/*
+//jsdom = require("jsdom")
 
 require("mocha-sinon")
 
@@ -17,3 +18,4 @@ afterEach( function(){
     // it prevents contamination between tests and prevents memory leaks
     global.window.close()
 })
+    */

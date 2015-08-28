@@ -1,4 +1,4 @@
-jsdom = require("jsdom")
+//jsdom = require("jsdom")
 
 sinon = require("mocha-sinon")
 
