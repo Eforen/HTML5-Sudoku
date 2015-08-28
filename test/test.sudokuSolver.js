@@ -1292,8 +1292,8 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 
 
-		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|19|")
-		expect(su.debugRow(1)).to.equal("|7|12|129|4|6|3|1|5|8|")
+		expect(su.debugRow(0)).to.equal("|8|4|3|179|57|159|6|2|9|")
+		expect(su.debugRow(1)).to.equal("|7|2|29|4|6|3|1|5|8|")
 		expect(su.debugRow(2)).to.equal("|6|5|19|2|19|8|4|3|7|")
 		expect(su.debugRow(3)).to.equal("|2|7|5|8|19|169|3|4|16|")
 		expect(su.debugRow(4)).to.equal("|34|16|16|37|57|45|9|8|2|")
@@ -1303,8 +1303,8 @@ describe("sudoku solver", function() {
 		expect(su.debugRow(8)).to.equal("|5|8|7|19|3|19|2|6|4|")
 
 		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
-			"|843|000|620|\n"+
-			"|700|463|158|\n"+
+			"|843|000|629|\n"+
+			"|720|463|158|\n"+
 			"|650|208|437|\n"+
 			"*---+---+---*\n"+
 			"|275|800|340|\n"+
@@ -1318,8 +1318,7 @@ describe("sudoku solver", function() {
 		done()
 	})
 
-/*
-	it("pass #20 Row Exclusion Pass", function(done){
+	it("pass #22 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1336,15 +1335,32 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairs();
 		solve.solvePassBasic();
-		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
 
+		solve.solvePassBasic();
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+			"|843|000|629|\n"+
+			"|729|463|158|\n"+
+			"|650|208|437|\n"+
+			"*---+---+---*\n"+
+			"|275|800|340|\n"+
+			"|000|000|982|\n"+
+			"|098|020|570|\n"+
+			"*---+---+---*\n"+
+			"|960|547|813|\n"+
+			"|134|682|795|\n"+
+			"|587|030|264|\n"+
+			"*---*---*---*\n");
 		done()
 	})
 
-	it("pass #21 Basic Pass", function(done){
+	it("pass #23 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1361,16 +1377,33 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairs();
 		solve.solvePassBasic();
-		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+		solve.solvePassBasic();
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|629|\n"+
+											"|729|463|158|\n"+
+											"|651|208|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|010|000|982|\n"+
+											"|098|020|570|\n"+
+											"*---+---+---*\n"+
+											"|962|547|813|\n"+
+											"|134|682|795|\n"+
+											"|587|030|264|\n"+
+											"*---*---*---*\n");
 		done()
 	})
 
-	it("pass #22 Basic Pass", function(done){
+	it("pass #24 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1387,17 +1420,34 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairs();
 		solve.solvePassBasic();
-		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+		solve.solvePassBasic();
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+											"|843|000|629|\n"+
+											"|729|463|158|\n"+
+											"|651|298|437|\n"+
+											"*---+---+---*\n"+
+											"|275|800|340|\n"+
+											"|016|000|982|\n"+
+											"|098|020|570|\n"+
+											"*---+---+---*\n"+
+											"|962|547|813|\n"+
+											"|134|682|795|\n"+
+											"|587|030|264|\n"+
+											"*---*---*---*\n");
 		done()
 	})
 
-	it("pass #23 Basic Pass", function(done){
+	it("pass #25 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1414,18 +1464,37 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairs();
 		solve.solvePassBasic();
-		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+		solve.solvePassBasic();
+
+
+
+        expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+        "|843|000|629|\n"+
+        "|729|463|158|\n"+
+        "|651|298|437|\n"+
+        "*---+---+---*\n"+
+        "|275|810|340|\n"+
+        "|016|000|982|\n"+
+        "|098|020|570|\n"+
+        "*---+---+---*\n"+
+        "|962|547|813|\n"+
+        "|134|682|795|\n"+
+        "|587|030|264|\n"+
+        "*---*---*---*\n");
 		done()
 	})
 
-	it("pass #24 Basic Pass", function(done){
+	it("pass #26 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1442,19 +1511,36 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairs();
 		solve.solvePassBasic();
-		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+		solve.solvePassBasic();
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+        "|843|000|629|\n"+
+        "|729|463|158|\n"+
+        "|651|298|437|\n"+
+        "*---+---+---*\n"+
+        "|275|810|346|\n"+
+        "|016|000|982|\n"+
+        "|098|320|570|\n"+
+        "*---+---+---*\n"+
+        "|962|547|813|\n"+
+        "|134|682|795|\n"+
+        "|587|030|264|\n"+
+        "*---*---*---*\n");
 		done()
 	})
 
-	it("pass #25 Basic Pass", function(done){
+	it("pass #27 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1471,20 +1557,37 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairs();
 		solve.solvePassBasic();
-		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+		solve.solvePassBasic();
+
+		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+        "|843|000|629|\n"+
+        "|729|463|158|\n"+
+        "|651|298|437|\n"+
+        "*---+---+---*\n"+
+        "|275|819|346|\n"+
+        "|016|700|982|\n"+
+        "|498|320|571|\n"+
+        "*---+---+---*\n"+
+        "|962|547|813|\n"+
+        "|134|682|795|\n"+
+        "|587|030|264|\n"+
+        "*---*---*---*\n");
 		done()
 	})
 
-	it("pass #26 Basic Pass", function(done){
+	it("pass #28 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1501,10 +1604,12 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
+		solve.checkPairs();
 		solve.solvePassBasic();
-		solve.solveRowExclusion();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
+		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1512,10 +1617,25 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
+		solve.solvePassBasic();
+
+        expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+        "|843|100|629|\n"+
+        "|729|463|158|\n"+
+        "|651|298|437|\n"+
+        "*---+---+---*\n"+
+        "|275|819|346|\n"+
+        "|316|750|982|\n"+
+        "|498|326|571|\n"+
+        "*---+---+---*\n"+
+        "|962|547|813|\n"+
+        "|134|682|795|\n"+
+        "|587|031|264|\n"+
+        "*---*---*---*\n");
 		done()
 	})
 
-	it("pass #27 Basic Pass", function(done){
+	it("pass #29 Solve with one final Basic Pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1532,43 +1652,14 @@ describe("sudoku solver", function() {
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solveColExclusion();
-		solve.solvePassBasic();
 		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
+		solve.checkPairs();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 
-		done()
-	})
-
-	it("pass #28 Solve with one final Basic Pass", function(done){
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
-		solve.solveColExclusion();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solveColExclusion();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1592,5 +1683,6 @@ describe("sudoku solver", function() {
 											"*---*---*---*\n");
 		done()
 	})
+/*
 	*/
 })
