@@ -3,3 +3,5 @@
 /TestResults/
 /tmp/
 /.sass-cache/
+/public/
+!/public/placeholder

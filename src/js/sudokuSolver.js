@@ -359,11 +359,87 @@ var sudokuSolver = function(sudoku){
 		}
 	}
 
+    this.solve = function(){
+        var lastPass = 0
+        var thisPass = 0
+        var solved = false
+        var failed = false
+        var lastState = ""
+        var thisState = ""
+
+        while(solved === false) {
+
+            switch(thisPass){
+                case sudokuSolver.solvers.basicPass:
+                    this.solvePassBasic();
+                    break
+                case sudokuSolver.solvers.RowExclusion:
+                    this.solveRegionExclusion();
+                    break
+                case sudokuSolver.solvers.ColExclusion:
+                    this.solveRowExclusion();
+                    break
+                case sudokuSolver.solvers.RegionExclusion:
+                    this.solveColExclusion();
+                    break
+                case sudokuSolver.solvers.checkPairs:
+                    this.checkPairs();
+                    break
+                default:
+                    solved = true
+                    failed = true
+                    console.log("Solver not found!")
+            }
+
+            lastState = thisState
+            thisState = su.getStructure(true)
+
+            if(su.isSolved()){
+                solved = true;
+                break
+            }
+
+            if(lastState == thisState) {
+                //This pass did nothing
+                //if(lastPass > thisStep){
+                if(thisPass < sudokuSolver.solvers.lastSolver){
+                    lastPass = sudokuSolver.solvers.firstSolver
+                    thisPass = sudokuSolver.solvers.firstSolver
+                } else{
+                    if(lastPass > thisPass){
+                        //If the last pass in greater then this one then that means that we where checking for basic changes
+                        //Should switch back to where it was and run the next step.
+                        thisPass = lastPass + 1
+                    } else{
+                        thisPass++
+                    }
+                }
+            } else{
+                //This pass did something so check basic pass
+                lastPass = thisPass
+                thisPass = sudokuSolver.solvers.firstSolver
+            }
+        }
+
+    }
+
+
+
 	//Start of Constructor
 
 	this.prepSudoku();
 
 	//End of Constructor
+}
+
+sudokuSolver.solvers = {
+    firstSolver: 0,
+    basicPass: 0,
+	RegionExclusion: 1,
+	RowExclusion: 2,
+	ColExclusion: 3,
+	checkPairs: 4,
+    lastSolver: 4
 }
 
 module.exports = sudokuSolver;

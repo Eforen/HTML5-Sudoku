@@ -58,7 +58,7 @@ var sudokuOBJ = function(){
 	this.getRows=function(){
 		return rows;
 	}
-	
+
 	/**
 	 * Gets a row in the Sudoku Object as an tileStore.
 	 * @method sudokuOBJ#getRow
@@ -70,7 +70,7 @@ var sudokuOBJ = function(){
 	}
 
 	/**
-	 * Gets all columns in the Sudoku Object. 
+	 * Gets all columns in the Sudoku Object.
 	 * @method sudokuOBJ#getCols
 	 * @returns {tileStore[]} 9 tileStore objects in as elements.
 	 */
@@ -89,7 +89,7 @@ var sudokuOBJ = function(){
 	}
 
 	/**
-	 * Gets all regions in the Sudoku Object. 
+	 * Gets all regions in the Sudoku Object.
 	 * @method sudokuOBJ#getRegions
 	 * @returns {tileStore[]} 9 tileStore objects in as elements.
 	 */
@@ -200,7 +200,7 @@ var sudokuOBJ = function(){
 	 * @method sudokuOBJ#getStructure
 	 */
 	this.getStructure = function(){
-		
+		//TODO: add an option to get everything including type and guesses
 		var r = "*---*---*---*\n"
 		var row //storage for a row
 		for (var y = 0; y < 9; y++) {
@@ -219,6 +219,10 @@ var sudokuOBJ = function(){
 
 		return r
 	}
+
+    this.isSolved = function(){
+        //TODO: code this function
+    }
 
 	var debug = "breakpointable";
 }

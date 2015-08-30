@@ -632,6 +632,8 @@ describe("sudoku solver", function() {
 		done()
 	})
 
+
+    /* Don't need to run these most of the time
 	it("pass #10 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1069,6 +1071,8 @@ describe("sudoku solver", function() {
 											"*---*---*---*\n");
 		done()
 	})
+    */
+
 	it("pass #17 run pairs pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1116,6 +1120,8 @@ describe("sudoku solver", function() {
 
 		done()
 	})
+
+    /* Don't need to run these most of the time
 	it("pass #18 Basic Pass", function(done){
 		solve.solvePassBasic();
 		solve.solvePassBasic();
@@ -1586,6 +1592,7 @@ describe("sudoku solver", function() {
         "*---*---*---*\n");
 		done()
 	})
+    */
 
 	it("pass #28 Basic Pass should show no change in set", function(done){
 		solve.solvePassBasic();
