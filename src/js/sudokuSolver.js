@@ -371,18 +371,23 @@ var sudokuSolver = function(sudoku){
 
             switch(thisPass){
                 case sudokuSolver.solvers.basicPass:
+                    console.log("solvePassBasic")
                     this.solvePassBasic();
                     break
                 case sudokuSolver.solvers.RowExclusion:
+                    console.log("RowExclusion")
                     this.solveRegionExclusion();
                     break
                 case sudokuSolver.solvers.ColExclusion:
+                    console.log("ColExclusion")
                     this.solveRowExclusion();
                     break
                 case sudokuSolver.solvers.RegionExclusion:
+                    console.log("RegionExclusion")
                     this.solveColExclusion();
                     break
                 case sudokuSolver.solvers.checkPairs:
+                    console.log("checkPairs")
                     this.checkPairs();
                     break
                 default:
@@ -392,7 +397,8 @@ var sudokuSolver = function(sudoku){
             }
 
             lastState = thisState
-            thisState = su.getStructure(true)
+            thisState = su.getStructure(true, true)
+            console.log(thisState)
 
             if(su.isSolved()){
                 solved = true;
@@ -403,18 +409,22 @@ var sudokuSolver = function(sudoku){
                 //This pass did nothing
                 //if(lastPass > thisStep){
                 if(thisPass < sudokuSolver.solvers.lastSolver){
-                    lastPass = sudokuSolver.solvers.firstSolver
-                    thisPass = sudokuSolver.solvers.firstSolver
-                } else{
-                    if(lastPass > thisPass){
+                    if(lastPass >= thisPass && lastPass != sudokuSolver.solvers.firstSolver){
+                        console.log("WTF2!")
                         //If the last pass in greater then this one then that means that we where checking for basic changes
                         //Should switch back to where it was and run the next step.
                         thisPass = lastPass + 1
                     } else{
+                        console.log("WTF3!")
                         thisPass++
                     }
+                } else{
+                    console.log("WTF1!")
+                    lastPass = sudokuSolver.solvers.firstSolver
+                    thisPass = sudokuSolver.solvers.firstSolver
                 }
             } else{
+                console.log("WTF3!")
                 //This pass did something so check basic pass
                 lastPass = thisPass
                 thisPass = sudokuSolver.solvers.firstSolver

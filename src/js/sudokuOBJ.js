@@ -199,15 +199,26 @@ var sudokuOBJ = function(){
 	 * *---*---*---*
 	 * @method sudokuOBJ#getStructure
 	 */
-	this.getStructure = function(){
+	this.getStructure = function(includeGuesses, includeType){
 		//TODO: add an option to get everything including type and guesses
+        //if(includeGuesses == null) includeGuesses = false
+        //if(includeType == null) includeType = false
+
 		var r = "*---*---*---*\n"
 		var row //storage for a row
 		for (var y = 0; y < 9; y++) {
 			r += "|"
 			row = this.getRow(y);
 			for (var x = 0; x < 9; x++) {
+                if(includeType) r += row.tiles[x].getType() + ":"
 				r += row.tiles[x].getToken()
+                if(includeGuesses){
+                    for (var n = 1; n <= 9; n++) {
+                        if(row.tiles[x].getGuess(n)) {
+                            r += n
+                        }
+                    }
+                }
 				if(x % 3 === 2) r += "|"
 			}
 
@@ -220,8 +231,22 @@ var sudokuOBJ = function(){
 		return r
 	}
 
+    /**
+     * Checks if this sudoku has been solved by checking all tiles agenst set or locked
+     * @method sudokuOBJ#isSolved
+     * @returns {boolean} If the sudoku is solved or not.
+     */
     this.isSolved = function(){
-        //TODO: code this function
+        var row //storage for a row
+        for (var y = 0; y < 9; y++) {
+            row = this.getRow(y);
+            for (var x = 0; x < 9; x++) {
+                if (!(row.tiles[x].getType() === tileOBJ.types.set || row.tiles[x].getType() === tileOBJ.types.locked)) {
+                    return false
+                }
+            }
+        }
+        return true
     }
 
 	var debug = "breakpointable";

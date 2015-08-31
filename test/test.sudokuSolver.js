@@ -1642,54 +1642,75 @@ describe("sudoku solver", function() {
 		done()
 	})
 
-	it("pass #29 Solve with one final Basic Pass", function(done){
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
-		solve.solveColExclusion();
-		solve.solvePassBasic();
-		solve.solveRegionExclusion();
-		solve.solvePassBasic();
-		solve.solveRowExclusion();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solveColExclusion();
-		solve.solveRegionExclusion();
-		solve.checkPairs();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
+    it("pass #29 Solve with one final Basic Pass", function(done){
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solveRegionExclusion();
+        solve.solvePassBasic();
+        solve.solveRowExclusion();
+        solve.solvePassBasic();
+        solve.solveColExclusion();
+        solve.solvePassBasic();
+        solve.solveRegionExclusion();
+        solve.solvePassBasic();
+        solve.solveRowExclusion();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solveColExclusion();
+        solve.solveRegionExclusion();
+        solve.checkPairs();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
 
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
-		solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
+        solve.solvePassBasic();
 
-		expect(su.getStructure()).to.equal( "*---*---*---*\n"+
-											"|843|175|629|\n"+
-											"|729|463|158|\n"+
-											"|651|298|437|\n"+
-											"*---+---+---*\n"+
-											"|275|819|346|\n"+
-											"|316|754|982|\n"+
-											"|498|326|571|\n"+
-											"*---+---+---*\n"+
-											"|962|547|813|\n"+
-											"|134|682|795|\n"+
-											"|587|931|264|\n"+
-											"*---*---*---*\n");
-		done()
-	})
+        expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+        "|843|175|629|\n"+
+        "|729|463|158|\n"+
+        "|651|298|437|\n"+
+        "*---+---+---*\n"+
+        "|275|819|346|\n"+
+        "|316|754|982|\n"+
+        "|498|326|571|\n"+
+        "*---+---+---*\n"+
+        "|962|547|813|\n"+
+        "|134|682|795|\n"+
+        "|587|931|264|\n"+
+        "*---*---*---*\n");
+        done()
+    })
+
+
+
+    it("Just solve", function(done){
+        solve.solve()
+
+        expect(su.getStructure()).to.equal( "*---*---*---*\n"+
+        "|843|175|629|\n"+
+        "|729|463|158|\n"+
+        "|651|298|437|\n"+
+        "*---+---+---*\n"+
+        "|275|819|346|\n"+
+        "|316|754|982|\n"+
+        "|498|326|571|\n"+
+        "*---+---+---*\n"+
+        "|962|547|813|\n"+
+        "|134|682|795|\n"+
+        "|587|931|264|\n"+
+        "*---*---*---*\n");
+        done()
+    })
 /*
 	*/
 })
